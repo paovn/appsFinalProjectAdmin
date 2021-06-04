@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/principalItem"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Principal" />
+    <item
+        android:id="@+id/contabilidadItem"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Contabilidad" />
+    <item
+        android:id="@+id/aniadirItem"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Aniadir" />
+    <item
+        android:id="@+id/contabilidadItem2"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Contabilidad2" />
+    <item
+        android:id="@+id/estadisticasItem"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Estadisticas" />
+</menu>
