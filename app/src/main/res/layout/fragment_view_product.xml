@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ViewProductFragment">
+
+    <EditText
+        android:id="@+id/view_product_title_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Título del producto"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/view_product_image_button"
+        app:layout_constraintStart_toStartOf="@+id/view_product_image_button"
+        app:layout_constraintTop_toBottomOf="@+id/view_product_image_button" />
+
+    <ImageButton
+        android:id="@+id/view_product_image_button"
+        android:layout_width="210dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/view_presentation_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Presentación"
+        app:layout_constraintBottom_toBottomOf="@+id/view_presentation_ET"
+        app:layout_constraintEnd_toStartOf="@+id/view_presentation_ET"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_presentation_ET" />
+
+    <EditText
+        android:id="@+id/view_presentation_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view_presentation_TV"
+        app:layout_constraintTop_toBottomOf="@+id/view_product_title_ET" />
+
+    <TextView
+        android:id="@+id/view_unit_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unidad"
+        app:layout_constraintBottom_toBottomOf="@+id/view_unit_ET"
+        app:layout_constraintEnd_toStartOf="@+id/view_unit_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_unit_ET" />
+
+    <EditText
+        android:id="@+id/view_unit_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/view_presentation_ET"
+        app:layout_constraintStart_toStartOf="@+id/view_presentation_ET"
+        app:layout_constraintTop_toBottomOf="@+id/view_presentation_ET" />
+
+    <EditText
+        android:id="@+id/view_medium_range_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/view_unit_ET"
+        app:layout_constraintStart_toStartOf="@+id/view_unit_ET"
+        app:layout_constraintTop_toBottomOf="@+id/view_unit_ET" />
+
+    <TextView
+        android:id="@+id/view_medium_range_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rango medio"
+        app:layout_constraintBottom_toBottomOf="@+id/view_medium_range_ET"
+        app:layout_constraintEnd_toStartOf="@+id/view_medium_range_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_medium_range_ET" />
+
+    <TextView
+        android:id="@+id/view_low_range_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rango bajo"
+        app:layout_constraintBottom_toBottomOf="@+id/view_low_range_ET"
+        app:layout_constraintEnd_toStartOf="@+id/view_low_range_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_low_range_ET" />
+
+    <EditText
+        android:id="@+id/view_low_range_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/view_medium_range_ET"
+        app:layout_constraintStart_toStartOf="@+id/view_medium_range_ET"
+        app:layout_constraintTop_toBottomOf="@+id/view_medium_range_ET" />
+
+    <Button
+        android:id="@+id/view_delete_product_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Eliminar"
+        app:layout_constraintEnd_toStartOf="@+id/view_edit_product_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_low_range_ET" />
+
+    <Button
+        android:id="@+id/view_edit_product_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="@+id/view_delete_product_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view_delete_product_button"
+        app:layout_constraintTop_toTopOf="@+id/view_delete_product_button" />
+
+    <Button
+        android:id="@+id/view_return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_delete_product_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
