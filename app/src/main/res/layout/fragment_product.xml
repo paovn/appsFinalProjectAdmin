@@ -5,10 +5,10 @@
     android:id="@+id/productsListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductFragment">
+    tools:context=".fragments.ProductFragment">
 
     <SearchView
-        android:id="@+id/productSearchView"
+        android:id="@+id/product_search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/productSearchView"
-        app:layout_constraintStart_toStartOf="@+id/productSearchView"
-        app:layout_constraintTop_toBottomOf="@+id/productSearchView" />
+        app:layout_constraintEnd_toEndOf="@+id/product_search_view"
+        app:layout_constraintStart_toStartOf="@+id/product_search_view"
+        app:layout_constraintTop_toBottomOf="@+id/product_search_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
