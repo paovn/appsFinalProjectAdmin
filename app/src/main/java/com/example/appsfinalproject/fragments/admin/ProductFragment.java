@@ -1,4 +1,4 @@
-package com.example.appsfinalproject.fragments;
+package com.example.appsfinalproject.fragments.admin;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.example.appsfinalproject;
+package com.example.appsfinalproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -9,26 +9,25 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.os.Bundle;
 
-import com.example.appsfinalproject.fragments.AddProductFragment;
-import com.example.appsfinalproject.fragments.ProductFragment;
-import com.example.appsfinalproject.fragments.ViewProductFragment;
+import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.owner.OwnerInventoryFragment;
+import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class LocalActivityOwner extends AppCompatActivity {
 
     private BottomNavigationView navigator;
-    private ProductFragment productFragment;
-    private AddProductFragment addProductFragment;
-    private ViewProductFragment viewProductFragment;
+
+    private OwnerInventoryFragment ownerInventoryFragment;
+    private SpendsAndIncomeFragment spendsAndIncomeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.accounting_stats_activity_owner);
 
-        productFragment = ProductFragment.newInstance();
-        addProductFragment = AddProductFragment.newInstance();
-        viewProductFragment = ViewProductFragment.newInstance();
+        ownerInventoryFragment = OwnerInventoryFragment.newInstance();
+        spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
 
         requestPermissions();
         configureNavigator();
@@ -45,18 +44,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureNavigator() {
-        navigator = findViewById(R.id.navBarAdmin);
+        navigator = findViewById(R.id.navBarOwner);
 
         navigator.setOnNavigationItemSelectedListener(
                 (menuItem)->{
                     switch(menuItem.getItemId()){
-                        case R.id.principalItem:
-                            showFragment(productFragment);
+                        case R.id.owner_acountability_item:
+                            showFragment(spendsAndIncomeFragment);
                             break;
-                        case R.id.aniadirItem:
-                            showFragment(addProductFragment);
+                        case R.id.owner_inventory_item:
+                            showFragment(ownerInventoryFragment);
                             break;
-                        case R.id.contabilidadItem:
+                        case R.id.owner_stats_local_item:
+                            // TODO
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private void showFragment(Fragment fragment){
+    private void showFragment(Fragment fragment) {
         // todas las actividades vienen con el fragmentManager solo lo debemos llamar
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragmentContainerAdmin, fragment);
+        transaction.replace(R.id.fragmentContainerOwnerAccountingAndStatistics, fragment);
         transaction.commit();
     }
 }
