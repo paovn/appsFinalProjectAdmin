@@ -10,16 +10,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Product name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/row_product_img_view"
         app:layout_constraintEnd_toStartOf="@+id/row_product_img_view"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/row_product_img_view" />
 
     <ImageView
         android:id="@+id/row_product_img_view"
         android:layout_width="134dp"
         android:layout_height="76dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

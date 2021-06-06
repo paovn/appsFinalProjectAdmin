@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/owner_acountability_item"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Contabilidad" />
+    <item
+        android:id="@+id/owner_inventory_item"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Inventario" />
+    <item
+        android:id="@+id/owner_stats_local_item"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Estadisticas" />
+</menu>

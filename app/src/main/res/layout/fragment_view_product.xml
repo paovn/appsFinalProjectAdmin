@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ViewProductFragment">
+    tools:context=".fragments.admin.ViewProductFragment">
 
     <EditText
         android:id="@+id/view_product_title_ET"
