@@ -10,6 +10,7 @@ import android.Manifest;
 import android.os.Bundle;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.OwnerInventoryFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,14 +21,16 @@ public class LocalActivityOwner extends AppCompatActivity {
 
     private OwnerInventoryFragment ownerInventoryFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
+    private LocalStatsFragment localStatsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accounting_stats_activity_owner);
+        setContentView(R.layout.activity_local_owner);
 
         ownerInventoryFragment = OwnerInventoryFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+        localStatsFragment = LocalStatsFragment.newInstance();
 
         requestPermissions();
         configureNavigator();
@@ -56,7 +59,7 @@ public class LocalActivityOwner extends AppCompatActivity {
                             showFragment(ownerInventoryFragment);
                             break;
                         case R.id.owner_stats_local_item:
-                            // TODO
+                            showFragment(localStatsFragment);
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra

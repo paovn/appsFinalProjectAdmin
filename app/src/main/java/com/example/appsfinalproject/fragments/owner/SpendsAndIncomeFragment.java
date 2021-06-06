@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 
 import com.example.appsfinalproject.R;
 
+import java.util.ArrayList;
+
 
 public class SpendsAndIncomeFragment extends Fragment {
 
     private RecyclerView conceptList;
+    private ConceptAdapter adapter;
 
     public SpendsAndIncomeFragment() {
         // Required empty public constructor
@@ -38,9 +41,10 @@ public class SpendsAndIncomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_spends_income, container, false);
 
         conceptList = v.findViewById(R.id.spends_income_RV);
-        // TODO set adapter (concept)
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         conceptList.setLayoutManager(manager);
+        adapter = new ConceptAdapter(new ArrayList<>()); // TODO poner la lista de ingresos y gastos
+        conceptList.setAdapter(adapter);
 
         return v;
     }

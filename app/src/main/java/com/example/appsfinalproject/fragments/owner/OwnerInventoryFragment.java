@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 
 import com.example.appsfinalproject.R;
 
+import java.util.ArrayList;
+
 
 public class OwnerInventoryFragment extends Fragment {
 
     private RecyclerView conceptList;
+    private ConceptAdapter adapter;
 
     public OwnerInventoryFragment() {
         // Required empty public constructor
@@ -37,9 +40,10 @@ public class OwnerInventoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_owner_inventory, container, false);
         conceptList = v.findViewById(R.id.owner_inventory_RV);
-        // TODO set adapter (concept)
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         conceptList.setLayoutManager(manager);
+        adapter = new ConceptAdapter(new ArrayList<>()); // TODO poner la lista de ingresos y gastos
+        conceptList.setAdapter(adapter);
         return v;
     }
 }

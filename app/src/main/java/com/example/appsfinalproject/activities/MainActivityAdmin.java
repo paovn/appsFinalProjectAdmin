@@ -13,9 +13,12 @@ import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
+import com.example.appsfinalproject.model.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivityAdmin extends AppCompatActivity {
+
+    private Usuario usuario;
 
     private BottomNavigationView navigator;
     private ProductFragment productFragment;
@@ -33,6 +36,8 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         requestPermissions();
         configureNavigator();
+
+        showFragment(productFragment);
     }
 
     private void requestPermissions() {
