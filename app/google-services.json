@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352351631602",
+    "project_id": "pollos-gvl",
+    "storage_bucket": "pollos-gvl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352351631602:android:0ac59359e2c6052bb0386b",
+        "android_client_info": {
+          "package_name": "com.example.appsfinalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352351631602-mmpu37661igcqmvlgbmpq3vpmtj17l6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0101Kn-kCWSSv934BcAX9SWbTjvOt6Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352351631602-mmpu37661igcqmvlgbmpq3vpmtj17l6u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
