@@ -6,9 +6,9 @@ public class Inventario {
     private int elementos;
     private ArrayList<Producto> productos_inventario;
 
-    public Inventario(int elementos, ArrayList<Producto> productos_inventario) {
-        this.elementos = elementos;
-        this.productos_inventario = productos_inventario;
+    public Inventario() {
+        this.elementos = 0;
+        this.productos_inventario = new ArrayList<>();
     }
 
     public int getElementos() {
@@ -25,5 +25,10 @@ public class Inventario {
 
     public void setProductos_inventario(ArrayList<Producto> productos_inventario) {
         this.productos_inventario = productos_inventario;
+    }
+
+    public void addProducto(String nombre, String id, double precio) {
+        Producto producto = new Producto(nombre,id,precio);
+        productos_inventario.add(producto);
     }
 }

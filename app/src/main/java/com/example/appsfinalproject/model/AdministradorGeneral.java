@@ -3,18 +3,18 @@ package com.example.appsfinalproject.model;
 import java.util.ArrayList;
 
 public class AdministradorGeneral extends Usuario{
-    private ArrayList<Local> locales;
+    private ArrayList<String> idlocales;
 
     public AdministradorGeneral(String username, String password, String id, Tipo_usuario tipo) {
         super(username,password,id,tipo);
-        this.locales = new ArrayList<>();
+        this.idlocales = new ArrayList<>();
     }
 
-//    public ArrayList<Local> getLocales() {
-//        return locales;
-//    }
-//
-//    public void setLocales(ArrayList<Local> locales) {
-//        this.locales = locales;
-//    }
+    public ArrayList<String> getIdLocales() {
+        return idlocales;
+    }
+
+    public void setIdLocales(ArrayList<String> idlocales) {
+        this.idlocales = idlocales;
+    }
 }

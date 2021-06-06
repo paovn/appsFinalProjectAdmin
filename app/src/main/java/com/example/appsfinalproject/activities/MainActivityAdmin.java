@@ -17,6 +17,9 @@ import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
 import com.example.appsfinalproject.model.AdministradorGeneral;
+import com.example.appsfinalproject.model.AdministradorLocal;
+import com.example.appsfinalproject.model.Inventario;
+import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,7 +53,8 @@ public class MainActivityAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         requestPermissions();
         configureNavigator();
-        //createUser();
+        //saveUser(createUser());
+        //saveUserLocal();
         showFragment(productFragment);
     }
 
@@ -93,8 +97,8 @@ public class MainActivityAdmin extends AppCompatActivity {
     }
 
 
-    public void createUser(){
-        auth.createUserWithEmailAndPassword(
+    public Usuario createUser(){
+        /*auth.createUserWithEmailAndPassword(
                 "admin@admin.com",
                 "admon169"
         ).addOnSuccessListener(
@@ -113,10 +117,46 @@ public class MainActivityAdmin extends AppCompatActivity {
                 command -> {
                     Toast.makeText(this, command.getMessage(), Toast.LENGTH_LONG).show();
                 }
+        );*/
+        AdministradorGeneral user2 = new AdministradorGeneral(
+                "admin@admin.com",
+                "admon169",
+                "xgs59h6q9APWAeW36tGY8Ygh2tb2",
+                Tipo_usuario.ADMINISTRADOR_G
         );
-    }
 
+        Inventario inventario1 = new Inventario();
+        //saveInventario(inventario1);
+
+        String idLocal = UUID.randomUUID().toString();
+        Local local1 = new Local("Local1", "Carlos", "3259996452",inventario1,idLocal );
+        saveLocal(local1);
+        user2.getIdLocales().add(local1.getId());
+
+        return user2;
+
+
+    }
+    private void saveUserLocal() {
+        String id = UUID.randomUUID().toString();
+        AdministradorLocal userLocal = new AdministradorLocal(
+                "245f0a73-db9b-472a-a5a9-450571553f72",
+                "local1@local.com",
+                "xlocal1",
+                id,
+                Tipo_usuario.ADMINISTRADOR_L
+        );
+        db.collection("users").document(id).set(userLocal).
+                addOnSuccessListener(
+                dbtask -> {
+                }
+            ).addOnFailureListener(task-> {
+            Log.e(">>", "errooooooooooooor");
+        });
+
+    }
     private void saveUser(Usuario user){
+
 
         db.collection("users")
                 .document(user.getId()).set(user)
@@ -125,6 +165,18 @@ public class MainActivityAdmin extends AppCompatActivity {
                         }
                 ).addOnFailureListener(task->{
                     Log.e(">>", "errooooooooooooor");
+        });
+    }
+
+
+    private void saveLocal(Local local){
+        db.collection("local")
+                .document(local.getId()).set(local)
+                .addOnSuccessListener(
+                        dbtask -> {
+                        }
+                ).addOnFailureListener(task->{
+            Log.e(">>", "errooooooooooooor");
         });
     }
 }

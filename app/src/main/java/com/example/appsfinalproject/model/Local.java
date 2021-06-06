@@ -3,23 +3,27 @@ package com.example.appsfinalproject.model;
 import java.util.ArrayList;
 
 public class Local {
-    private String nombre;
+    private String nombreLocal;
+    private String nombreEncargado;
     private String telefono;
     private Inventario inventario;
     private ContabilidadLocal contabilidad;
+    private String id;
 
-    public Local(String nombre, String telefono, Inventario inventario) {
-        this.nombre = nombre;
+    public Local(String nombreLocal, String nombreEncargado,String telefono, Inventario inventario, String id) {
+        this.nombreLocal = nombreLocal;
+        this.nombreEncargado=nombreEncargado;
         this.telefono = telefono;
         this.inventario = inventario;
+        this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreLocal() {
+        return nombreLocal;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreLocal(String nombre) {
+        this.nombreLocal = nombre;
     }
 
     public String getTelefono() {
@@ -44,5 +48,17 @@ public class Local {
 
     public void setContabilidad(ContabilidadLocal contabilidad) {
         this.contabilidad = contabilidad;
+    }
+
+    public String getNombreEncargado() {
+        return nombreEncargado;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

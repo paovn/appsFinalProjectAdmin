@@ -8,11 +8,11 @@ public class Producto {
     private double precio;
     private ArrayList<Registro_producto> registros;
 
-    public Producto(String nombre, String id, double precio, ArrayList<Registro_producto> registros) {
+    public Producto(String nombre, String id, double precio) {
         this.nombre = nombre;
         this.id = id;
         this.precio = precio;
-        this.registros = registros;
+        this.registros = new ArrayList<>();
     }
 
     public String getNombre() {
