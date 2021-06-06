@@ -7,14 +7,26 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
+import com.example.appsfinalproject.model.AdministradorGeneral;
+import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.UUID;
 
 public class MainActivityAdmin extends AppCompatActivity {
 
@@ -24,7 +36,8 @@ public class MainActivityAdmin extends AppCompatActivity {
     private ProductFragment productFragment;
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
-
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +46,11 @@ public class MainActivityAdmin extends AppCompatActivity {
         productFragment = ProductFragment.newInstance();
         addProductFragment = AddProductFragment.newInstance();
         viewProductFragment = ViewProductFragment.newInstance();
-
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         requestPermissions();
         configureNavigator();
-
+        //createUser();
         showFragment(productFragment);
     }
 
@@ -76,5 +90,41 @@ public class MainActivityAdmin extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentContainerAdmin, fragment);
         transaction.commit();
+    }
+
+
+    public void createUser(){
+        auth.createUserWithEmailAndPassword(
+                "admin@admin.com",
+                "admon169"
+        ).addOnSuccessListener(
+                command -> {
+                    // Aquí ya estamos loggeados
+                    String id = auth.getCurrentUser().getUid();
+                    Usuario user = new AdministradorGeneral(
+                            "admin@admin.com",
+                            "admon169",
+                            id,
+                            Tipo_usuario.ADMINISTRADOR_G
+                    );
+                    saveUser(user);
+                }
+        ).addOnFailureListener(
+                command -> {
+                    Toast.makeText(this, command.getMessage(), Toast.LENGTH_LONG).show();
+                }
+        );
+    }
+
+    private void saveUser(Usuario user){
+
+        db.collection("users")
+                .document(user.getId()).set(user)
+                .addOnSuccessListener(
+                        dbtask -> {
+                        }
+                ).addOnFailureListener(task->{
+                    Log.e(">>", "errooooooooooooor");
+        });
     }
 }
