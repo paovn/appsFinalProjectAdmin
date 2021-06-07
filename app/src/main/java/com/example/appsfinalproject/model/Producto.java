@@ -8,6 +8,8 @@ public class Producto {
     private double precio;
     private ArrayList<Registro_producto> registros;
 
+    public Producto(){}
+
     public Producto(String nombre, String id, double precio) {
         this.nombre = nombre;
         this.id = id;

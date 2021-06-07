@@ -8,6 +8,9 @@ public class Registro_producto {
     private Date fechaSalida;
     private int cantidad;
 
+    public Registro_producto() {
+    }
+
     public Registro_producto(String id, Date fechaEntrada, Date fechaSalida, int cantidad) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;

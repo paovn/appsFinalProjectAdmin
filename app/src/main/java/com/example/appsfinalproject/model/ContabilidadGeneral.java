@@ -6,6 +6,9 @@ public class ContabilidadGeneral {
 
     private ArrayList<ContabilidadLocal> contabilidades;
 
+    public ContabilidadGeneral() {
+    }
+
     public ContabilidadGeneral(ArrayList<ContabilidadLocal> contabilidades) {
         this.contabilidades = contabilidades;
     }

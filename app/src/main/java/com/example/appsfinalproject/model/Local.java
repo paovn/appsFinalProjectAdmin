@@ -10,6 +10,10 @@ public class Local {
     private ContabilidadLocal contabilidad;
     private String id;
 
+    public Local(){
+
+    }
+
     public Local(String nombreLocal, String nombreEncargado,String telefono, Inventario inventario, String id) {
         this.nombreLocal = nombreLocal;
         this.nombreEncargado=nombreEncargado;

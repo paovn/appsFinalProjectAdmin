@@ -7,6 +7,9 @@ public class ContabilidadLocal {
     private ArrayList<RegistroContable> registros;
     private String id;
 
+    public ContabilidadLocal() {
+    }
+
     public ContabilidadLocal(String id) {
         this.registros = new ArrayList<>();
         this.id = id;
