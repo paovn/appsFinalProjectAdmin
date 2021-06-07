@@ -27,8 +27,8 @@ public class Inventario {
         this.productos_inventario = productos_inventario;
     }
 
-    public void addProducto(String nombre, String id, double precio) {
-        Producto producto = new Producto(nombre,id,precio);
+    public void addProducto(String nombre, String id) {
+        Producto producto = new Producto(nombre,id);
         productos_inventario.add(producto);
     }
 }

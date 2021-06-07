@@ -14,9 +14,7 @@ import android.widget.ImageButton;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.model.AdministradorLocal;
-import com.example.appsfinalproject.model.Inventario;
 import com.example.appsfinalproject.model.Local;
-import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,7 +29,6 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     private EditText unitET;
     private EditText mediumRangeET;
     private EditText lowRangeET;
-    private EditText addPriceET;
     private Button addButton;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -62,12 +59,11 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
 
         titleET = v.findViewById(R.id.add_product_title_ET);
         presentationET = v.findViewById(R.id.add_presentation_ET);
-        unitET = v.findViewById(R.id.add_unit_ET);
+        unitET = v.findViewById(R.id.add_amount_ET);
         mediumRangeET = v.findViewById(R.id.add_medium_range_ET);
         lowRangeET = v.findViewById(R.id.add_low_range_ET);
-        addPriceET = v.findViewById(R.id.add_price_ET);
 
-        addButton = v.findViewById(R.id.add_product_button);
+        addButton = v.findViewById(R.id.add_cost_BTN);
         addButton.setOnClickListener(this);
 
         return v;
@@ -76,7 +72,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.add_product_button:
+            case R.id.add_cost_BTN:
 
                 // ver el usuario que está logueado y obtenerle el local. Como el local tiene el id del inventario,
                 //traer el inventario de la base de datos y a ese añadirle el producto
@@ -90,8 +86,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
                                         Local local = command1.getDocuments().get(0).toObject(Local.class);
                                         String productName =titleET.getText().toString();
                                         String idProducto = UUID.randomUUID().toString();
-                                        double precio = Double.valueOf(addPriceET.getText().toString());
-                                        local.getInventario().addProducto(productName, idProducto,precio);
+                                        local.getInventario().addProducto(productName, idProducto);
                                         updateLocal(local);
                                     }
                             ).addOnFailureListener(

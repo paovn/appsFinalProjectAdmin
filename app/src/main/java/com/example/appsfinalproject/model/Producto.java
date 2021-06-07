@@ -5,15 +5,13 @@ import java.util.ArrayList;
 public class Producto {
     private String nombre;
     private String id;
-    private double precio;
     private ArrayList<Registro_producto> registros;
 
     public Producto(){}
 
-    public Producto(String nombre, String id, double precio) {
+    public Producto(String nombre, String id) {
         this.nombre = nombre;
         this.id = id;
-        this.precio = precio;
         this.registros = new ArrayList<>();
     }
 
@@ -31,14 +29,6 @@ public class Producto {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     public ArrayList<Registro_producto> getRegistros() {

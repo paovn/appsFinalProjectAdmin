@@ -7,15 +7,17 @@ public class Registro_producto {
     private Date fechaEntrada;
     private Date fechaSalida;
     private int cantidad;
+    private int precio;
 
     public Registro_producto() {
     }
 
-    public Registro_producto(String id, Date fechaEntrada, Date fechaSalida, int cantidad) {
+    public Registro_producto(String id, Date fechaEntrada, Date fechaSalida, int cantidad, int precio) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.cantidad = cantidad;
+        this.precio = precio;
     }
 
     public String getId() {

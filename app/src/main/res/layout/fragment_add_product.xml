@@ -59,17 +59,17 @@
         app:layout_constraintTop_toBottomOf="@+id/add_product_title_ET" />
 
     <TextView
-        android:id="@+id/add_unit_TV"
+        android:id="@+id/add_amount_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Unidad"
-        app:layout_constraintBottom_toBottomOf="@+id/add_unit_ET"
-        app:layout_constraintEnd_toStartOf="@+id/add_unit_ET"
+        app:layout_constraintBottom_toBottomOf="@+id/add_amount_ET"
+        app:layout_constraintEnd_toStartOf="@+id/add_amount_ET"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_unit_ET" />
+        app:layout_constraintTop_toTopOf="@+id/add_amount_ET" />
 
     <EditText
-        android:id="@+id/add_unit_ET"
+        android:id="@+id/add_amount_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -86,9 +86,9 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/add_unit_ET"
-        app:layout_constraintStart_toStartOf="@+id/add_unit_ET"
-        app:layout_constraintTop_toBottomOf="@+id/add_unit_ET" />
+        app:layout_constraintEnd_toEndOf="@+id/add_amount_ET"
+        app:layout_constraintStart_toStartOf="@+id/add_amount_ET"
+        app:layout_constraintTop_toBottomOf="@+id/add_amount_ET" />
 
     <TextView
         android:id="@+id/add_medium_range_TV"
@@ -110,16 +110,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/add_low_range_ET" />
 
-    <TextView
-        android:id="@+id/add_price_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio"
-        app:layout_constraintBottom_toBottomOf="@+id/add_price_ET"
-        app:layout_constraintEnd_toStartOf="@+id/add_price_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_price_ET" />
-
     <EditText
         android:id="@+id/add_low_range_ET"
         android:layout_width="wrap_content"
@@ -131,29 +121,18 @@
         app:layout_constraintStart_toStartOf="@+id/add_medium_range_ET"
         app:layout_constraintTop_toBottomOf="@+id/add_medium_range_ET" />
 
-    <EditText
-        android:id="@+id/add_price_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/add_low_range_ET"
-        app:layout_constraintStart_toStartOf="@+id/add_low_range_ET"
-        app:layout_constraintTop_toBottomOf="@+id/add_low_range_ET" />
-
     <Button
-        android:id="@+id/add_product_button"
+        android:id="@+id/add_cost_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:text="Agregar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_price_ET" />
+        app:layout_constraintTop_toBottomOf="@+id/add_low_range_ET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
