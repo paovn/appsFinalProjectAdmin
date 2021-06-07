@@ -11,14 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.model.Local;
+import com.example.appsfinalproject.model.Usuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 
 public class SpendsAndIncomeFragment extends Fragment {
 
-    private RecyclerView conceptList;
-    private ConceptAdapter adapter;
+    private RecyclerView registroContableList;
+    private RegistroContableAdapter adapter;
+
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
     public SpendsAndIncomeFragment() {
         // Required empty public constructor
@@ -40,11 +47,28 @@ public class SpendsAndIncomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_spends_income, container, false);
 
-        conceptList = v.findViewById(R.id.spends_income_RV);
+        registroContableList = v.findViewById(R.id.spends_income_RV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        conceptList.setLayoutManager(manager);
-        adapter = new ConceptAdapter(new ArrayList<>()); // TODO poner la lista de ingresos y gastos
-        conceptList.setAdapter(adapter);
+        registroContableList.setLayoutManager(manager);
+        adapter = new RegistroContableAdapter(new ArrayList<>()); // TODO poner la lista de ingresos y gastos
+        registroContableList.setAdapter(adapter);
+
+        // FIXME puede que esto no funcione, probadlo
+        db.collection("users").document(auth.getCurrentUser().getUid()).get()
+                .addOnSuccessListener(
+                        command -> {
+                            Usuario u = command.toObject(Usuario.class);
+                            /* FIXME no se como traer los registros contables de la base de datos
+                            db.collection("local").document(u.getIdLocal()).get()
+                                    .addOnSuccessListener(
+                                            command1 -> {
+
+                                                local = command1.toObject(Local.class);
+                                                adapter.setItems(local.getInventario().getProductos_inventario());
+                                            }
+                                    );*/
+                        }
+                );
 
         return v;
     }
