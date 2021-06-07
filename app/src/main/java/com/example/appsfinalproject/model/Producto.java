@@ -48,4 +48,12 @@ public class Producto {
     public void setRegistros(ArrayList<Registro_producto> registros) {
         this.registros = registros;
     }
+
+    public int getQuantity() {
+        int q = 0;
+        for(Registro_producto r : registros) {
+            q += r.getCantidad();
+        }
+        return q;
+    }
 }
