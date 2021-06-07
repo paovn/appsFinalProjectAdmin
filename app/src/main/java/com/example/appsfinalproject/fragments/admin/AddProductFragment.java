@@ -31,6 +31,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     private EditText unitET;
     private EditText mediumRangeET;
     private EditText lowRangeET;
+    private EditText addPriceET;
     private Button addButton;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -64,6 +65,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         unitET = v.findViewById(R.id.add_unit_ET);
         mediumRangeET = v.findViewById(R.id.add_medium_range_ET);
         lowRangeET = v.findViewById(R.id.add_low_range_ET);
+        addPriceET = v.findViewById(R.id.add_price_ET);
 
         addButton = v.findViewById(R.id.add_product_button);
         addButton.setOnClickListener(this);
@@ -88,7 +90,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
                                         Local local = command1.getDocuments().get(0).toObject(Local.class);
                                         String productName =titleET.getText().toString();
                                         String idProducto = UUID.randomUUID().toString();
-                                        double precio = 500;
+                                        double precio = Double.valueOf(addPriceET.getText().toString());
                                         local.getInventario().addProducto(productName, idProducto,precio);
                                         updateLocal(local);
                                     }
@@ -120,5 +122,9 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
                     Log.e(">>>", "Falló en la tercera");
                 }
         );
+    }
+
+    private void addCountability(){
+
     }
 }

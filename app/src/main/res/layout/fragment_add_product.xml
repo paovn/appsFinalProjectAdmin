@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.admin.AddProductFragment">
@@ -71,7 +72,7 @@
         android:id="@+id/add_unit_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/add_presentation_ET"
@@ -82,7 +83,7 @@
         android:id="@+id/add_medium_range_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/add_unit_ET"
@@ -109,28 +110,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/add_low_range_ET" />
 
+    <TextView
+        android:id="@+id/add_price_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        app:layout_constraintBottom_toBottomOf="@+id/add_price_ET"
+        app:layout_constraintEnd_toStartOf="@+id/add_price_ET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_price_ET" />
+
     <EditText
         android:id="@+id/add_low_range_ET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/add_medium_range_ET"
         app:layout_constraintStart_toStartOf="@+id/add_medium_range_ET"
         app:layout_constraintTop_toBottomOf="@+id/add_medium_range_ET" />
 
+    <EditText
+        android:id="@+id/add_price_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/add_low_range_ET"
+        app:layout_constraintStart_toStartOf="@+id/add_low_range_ET"
+        app:layout_constraintTop_toBottomOf="@+id/add_low_range_ET" />
+
     <Button
         android:id="@+id/add_product_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:text="Agregar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_low_range_ET" />
+        app:layout_constraintTop_toBottomOf="@+id/add_price_ET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

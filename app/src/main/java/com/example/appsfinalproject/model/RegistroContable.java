@@ -3,24 +3,26 @@ package com.example.appsfinalproject.model;
 import java.util.Date;
 
 public class RegistroContable {
-    private String RegistroContable;
+    private String nombre;
     private Date  fecha;
     private double Costo;
     private Tipo_registro tipo;
+    private String id;
 
-    public RegistroContable(String registroContable, Date fecha, double costo, Tipo_registro tipo) {
-        RegistroContable = registroContable;
+    public RegistroContable(String nombre, Date fecha, double costo, Tipo_registro tipo, String id) {
+        this.nombre = nombre;
         this.fecha = fecha;
         Costo = costo;
         this.tipo = tipo;
+        this.id = id;
     }
 
-    public String getRegistroContable() {
-        return RegistroContable;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setRegistroContable(String registroContable) {
-        RegistroContable = registroContable;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Date getFecha() {
@@ -45,5 +47,13 @@ public class RegistroContable {
 
     public void setTipo(Tipo_registro tipo) {
         this.tipo = tipo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

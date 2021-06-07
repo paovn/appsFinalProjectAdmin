@@ -16,8 +16,10 @@ import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
+import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
+import com.example.appsfinalproject.model.ContabilidadLocal;
 import com.example.appsfinalproject.model.Inventario;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_usuario;
@@ -39,6 +41,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private ProductFragment productFragment;
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
+    private SpendsAndIncomeFragment spendsAndIncomeFragment; //A lo mejor hay que quitar esto de aqui XD
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
@@ -50,6 +53,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         productFragment = ProductFragment.newInstance();
         addProductFragment = AddProductFragment.newInstance();
         viewProductFragment = ViewProductFragment.newInstance();
+        spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         requestPermissions();
@@ -82,6 +86,11 @@ public class MainActivityAdmin extends AppCompatActivity {
                             showFragment(addProductFragment);
                             break;
                         case R.id.contabilidadItem:
+                            showFragment(spendsAndIncomeFragment);
+                            break;
+                        case R.id.contabilidadItem2:
+                            break;
+                        case R.id.estadisticasItem:
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra
@@ -128,9 +137,11 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         Inventario inventario1 = new Inventario();
         //saveInventario(inventario1);
+        //ContabilidadLocal contabilidad1 = new ContabilidadLocal();   //Tener en cuenta crearlo con contabilidad para proximos dummies
 
         String idLocal = UUID.randomUUID().toString();
         Local local1 = new Local("Local1", "Carlos", "3259996452",inventario1,idLocal );
+        //local1.setContabilidad(contabilidad1);
         saveLocal(local1);
         user2.getIdLocales().add(local1.getId());
 
@@ -180,4 +191,57 @@ public class MainActivityAdmin extends AppCompatActivity {
             Log.e(">>", "errooooooooooooor");
         });
     }
+
+    private void updateLocalAccounting(){
+        db.collection("users").whereEqualTo("id", "152091e6-71b5-4230-8743-9c4616297cf4").get().addOnSuccessListener(
+                command -> {
+                    AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
+                    String idLocal = user.getIdLocal();
+
+                    db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                            command1 -> {
+                                ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
+                                Local local = command1.getDocuments().get(0).toObject(Local.class);
+                                local.setContabilidad(contabilidad1);
+                                updateLocal(local);
+                                updateAccounting(contabilidad1);
+                            }
+                    ).addOnFailureListener(
+                            command2 ->{
+                                Log.e(">>>", "Falló obteniendo el local");
+                            }
+                    );
+
+                }
+        ).addOnFailureListener(
+                command222 ->{
+                    Log.e(">>>", "Falló obteniendo el usuario");
+                }
+        );
+
+    }
+
+    private void updateAccounting(ContabilidadLocal contabilidad1) {
+        db.collection("accounting")
+                .document(contabilidad1.getId()).set(contabilidad1)
+                .addOnSuccessListener(
+                        dbtask -> {
+                        }
+                ).addOnFailureListener(task->{
+            Log.e(">>", "errooooooooooooor agregando contabilidad");
+        });
+    }
+
+    private void updateLocal(Local local){
+        db.collection("local").document(local.getId()).set(local).addOnSuccessListener(
+                command -> {
+                    Log.e(">>>>" ,"local id: "+ local.getId());
+                }).addOnFailureListener(
+                command ->{
+                    Log.e(">>>", "Falló en la tercera");
+                }
+        );
+    }
+
+
 }
