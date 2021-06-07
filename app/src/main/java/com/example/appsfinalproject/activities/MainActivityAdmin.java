@@ -45,7 +45,6 @@ public class MainActivityAdmin extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
