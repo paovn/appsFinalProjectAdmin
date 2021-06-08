@@ -9,6 +9,8 @@ public class RegistroContable {
     private Tipo_registro tipo;
     private String id;
 
+    public RegistroContable(){}
+
     public RegistroContable(String nombre, Date fecha, double costo, Tipo_registro tipo, String id) {
         this.nombre = nombre;
         this.fecha = fecha;

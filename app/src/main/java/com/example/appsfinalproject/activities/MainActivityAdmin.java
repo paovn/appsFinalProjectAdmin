@@ -16,6 +16,7 @@ import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
+import com.example.appsfinalproject.fragments.owner.AddSpendsAndIncomeFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
@@ -42,6 +43,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment; //A lo mejor hay que quitar esto de aqui XD
+    private AddSpendsAndIncomeFragment addSpendsAndIncomeFragment;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
@@ -54,6 +56,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         addProductFragment = AddProductFragment.newInstance();
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+        addSpendsAndIncomeFragment = addSpendsAndIncomeFragment.newInstance();
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         requestPermissions();
@@ -89,6 +92,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                             showFragment(spendsAndIncomeFragment);
                             break;
                         case R.id.contabilidadItem2:
+                            showFragment(addSpendsAndIncomeFragment);
                             break;
                         case R.id.estadisticasItem:
                             break;

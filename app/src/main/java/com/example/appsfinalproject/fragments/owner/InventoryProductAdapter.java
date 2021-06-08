@@ -40,7 +40,7 @@ public class InventoryProductAdapter extends RecyclerView.Adapter<InventoryProdu
         Producto producto = items.get(position);
 
         holder.getProductTV().setText(producto.getNombre());
-        holder.getMonetaryValue().setText(producto.getPrecio()+"");
+        //holder.getMonetaryValue().setText(producto.getPrecio()+"");
         holder.getDateTV().setText(producto.getQuantity());
     }
 

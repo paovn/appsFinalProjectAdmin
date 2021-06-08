@@ -41,7 +41,7 @@ public class RegistroContableAdapter extends RecyclerView.Adapter<RegistroContab
         RegistroContable r = items.get(position);
         holder.getAmount().setText("ALGUNA CANTIDAD"); // FIXME no veo el atributo
         holder.getMonetaryValue().setText(r.getCosto()+"");
-        holder.getName().setText(r.getRegistroContable());
+        holder.getName().setText(r.getNombre());
     }
 
     @Override

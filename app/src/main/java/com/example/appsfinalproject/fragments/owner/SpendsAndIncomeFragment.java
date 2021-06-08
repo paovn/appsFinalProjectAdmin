@@ -52,8 +52,11 @@ public class SpendsAndIncomeFragment extends Fragment {
         registroContableList.setLayoutManager(manager);
         adapter = new RegistroContableAdapter(new ArrayList<>()); // TODO poner la lista de ingresos y gastos
         registroContableList.setAdapter(adapter);
-
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         // FIXME puede que esto no funcione, probadlo
+
+        /*
         db.collection("users").document(auth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(
                         command -> {
@@ -66,9 +69,9 @@ public class SpendsAndIncomeFragment extends Fragment {
                                                 local = command1.toObject(Local.class);
                                                 adapter.setItems(local.getInventario().getProductos_inventario());
                                             }
-                                    );*/
+                                    );
                         }
-                );
+                );*/
 
         return v;
     }
