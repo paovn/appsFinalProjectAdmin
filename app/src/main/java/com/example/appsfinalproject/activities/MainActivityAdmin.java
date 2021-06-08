@@ -154,22 +154,28 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     }
     private void saveUserLocal() {
-        String id = UUID.randomUUID().toString();
-        AdministradorLocal userLocal = new AdministradorLocal(
-                "245f0a73-db9b-472a-a5a9-450571553f72",
-                "local1@local.com",
-                "xlocal1",
-                id,
-                Tipo_usuario.ADMINISTRADOR_L
-        );
-        db.collection("users").document(id).set(userLocal).
-                addOnSuccessListener(
-                dbtask -> {
-                }
-            ).addOnFailureListener(task-> {
-            Log.e(">>", "errooooooooooooor");
-        });
 
+        auth.createUserWithEmailAndPassword(
+                "admin@admin.com",
+                "admon169"
+        ).addOnSuccessListener(
+                command -> {
+                    // Aquí ya estamos loggeados
+                    String id = auth.getCurrentUser().getUid();
+                    AdministradorLocal userLocal = new AdministradorLocal(
+                            "245f0a73-db9b-472a-a5a9-450571553f72",
+                            "local1@local.com",
+                            "xlocal1",
+                            id,
+                            Tipo_usuario.ADMINISTRADOR_L
+                    );
+                    saveUser(userLocal);
+                }
+        ).addOnFailureListener(
+                command -> {
+                    Toast.makeText(this, command.getMessage(), Toast.LENGTH_LONG).show();
+                }
+        );
     }
     private void saveUser(Usuario user){
 
