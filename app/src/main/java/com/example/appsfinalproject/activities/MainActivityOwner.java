@@ -24,6 +24,7 @@ public class MainActivityOwner extends AppCompatActivity {
         setContentView(R.layout.activity_main_owner);
 
         shopFragment = ShopFragment.newInstance();
+        showFragment(shopFragment);
     }
 
     private void configureNavigator() {

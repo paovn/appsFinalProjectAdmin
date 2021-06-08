@@ -1,5 +1,6 @@
 package com.example.appsfinalproject.fragments.owner;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.activities.AddLocalActivity;
+import com.example.appsfinalproject.activities.MainActivityOwner;
 
 
 public class ShopFragment extends Fragment implements View.OnClickListener {
@@ -52,6 +55,11 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.add_shop_button:
+                Intent i = new Intent(getContext(), AddLocalActivity.class);
+                startActivity(i);
+                break;
+        }
     }
 }

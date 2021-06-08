@@ -173,7 +173,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                 }
         ).addOnFailureListener(
                 command -> {
-                    Toast.makeText(this, command.getMessage(), Toast.LENGTH_LONG).show();
+
                 }
         );
     }

@@ -15,9 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppsFinalProject">
+        <activity android:name=".activities.AddLocalActivity"></activity>
         <activity android:name=".activities.MainActivityOwner" />
         <activity android:name=".activities.LocalActivityOwner" />
-        <activity android:name=".activities.MainActivityAdmin"/>
+        <activity android:name=".activities.MainActivityAdmin" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,4 +11,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="local_name">Nombre del local</string>
+    <string name="admin_name">Nombre del encargado</string>
+    <string name="address">Dirección</string>
+    <string name="phone">Telefono</string>
+    <string name="add_local">Añadir local</string>
+    <string name="cancel">Cancelar</string>
+
+
+
 </resources>
