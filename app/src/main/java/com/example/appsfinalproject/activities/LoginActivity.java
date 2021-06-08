@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginBtn;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,24 +48,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void login(){
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(
+        auth.signInWithEmailAndPassword(
                 emailET.getText().toString(),
                 passwordET.getText().toString()
         ).addOnSuccessListener(
                 command -> {
-                    FirebaseUser fireUser = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser fireUser = auth.getCurrentUser();
                     String id = fireUser.getUid();
-                    sendToActividy(id);
+                    sendToActivity(id);
                 }
         ).addOnFailureListener(
                 command -> {
-
-                    Log.e(">>", "no funcionó el login  "+ command.getMessage() );
+                    Toast.makeText(this, "Invalid credentials, inserting dummy users", Toast.LENGTH_LONG).show();
+                    MainActivityAdmin.createUser(this);
+                    Log.e(">>", "no funcionó el login  " + command.getMessage());
                 }
         );
     }
 
-    public void sendToActividy(String id){
+    public void sendToActivity(String id){
+        Log.e(">>>", "The id is " + id);
         db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
                 command -> {
                     Usuario user = command.getDocuments().get(0).toObject(Usuario.class);

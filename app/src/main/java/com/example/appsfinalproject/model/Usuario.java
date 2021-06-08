@@ -1,8 +1,11 @@
 package com.example.appsfinalproject.model;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Usuario {
     private String username;
-    private String password;
+    @Exclude // FIXME la contrasenia no se supone que se guarde NUNCA, ni siquiera de forma local. Con esta anotacion se evita que se suba a Firestore
+    private String password; // FIXME considerar dejar que FirebaseAuth se encargue de esto y eliminar el atributo
     private String idLocal;
     private String id;
     private Tipo_usuario tipo;

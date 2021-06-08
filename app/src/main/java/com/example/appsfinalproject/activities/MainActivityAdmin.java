@@ -7,10 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
@@ -29,20 +28,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.UUID;
 
 public class MainActivityAdmin extends AppCompatActivity {
 
-    private Usuario usuario;
+    private static AdministradorGeneral usuarioMayor;
 
     private BottomNavigationView navigator;
     private ProductFragment productFragment;
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
-    private SpendsAndIncomeFragment spendsAndIncomeFragment; //A lo mejor hay que quitar esto de aqui XD
+    private SpendsAndIncomeFragment spendsAndIncomeFragment;
     private AddSpendsAndIncomeFragment addSpendsAndIncomeFragment;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -56,9 +52,11 @@ public class MainActivityAdmin extends AppCompatActivity {
         addProductFragment = AddProductFragment.newInstance();
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
-        addSpendsAndIncomeFragment = addSpendsAndIncomeFragment.newInstance();
+        addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+
         requestPermissions();
         configureNavigator();
         //saveUser(createUser());
@@ -95,6 +93,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                             showFragment(addSpendsAndIncomeFragment);
                             break;
                         case R.id.estadisticasItem:
+                            // TODO
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra
@@ -110,107 +109,96 @@ public class MainActivityAdmin extends AppCompatActivity {
         transaction.commit();
     }
 
+    public static Usuario createUser(Context context){
+        Log.e(">>>", "Epa, se creo el usuario admin@admin.com en FireBaseAuth");
+        // Aquí ya estamos loggeados
+        String id = UUID.randomUUID().toString();
 
-    public Usuario createUser(){
-        /*auth.createUserWithEmailAndPassword(
-                "admin@admin.com",
-                "admon169"
-        ).addOnSuccessListener(
-                command -> {
-                    // Aquí ya estamos loggeados
-                    String id = auth.getCurrentUser().getUid();
-                    Usuario user = new AdministradorGeneral(
-                            "admin@admin.com",
-                            "admon169",
-                            id,
-                            Tipo_usuario.ADMINISTRADOR_G
-                    );
-                    saveUser(user);
-                }
-        ).addOnFailureListener(
-                command -> {
-                    Toast.makeText(this, command.getMessage(), Toast.LENGTH_LONG).show();
-                }
-        );*/
-        AdministradorGeneral user2 = new AdministradorGeneral(
+        AdministradorGeneral user = new AdministradorGeneral(
                 "admin@admin.com",
                 "admon169",
-                "xgs59h6q9APWAeW36tGY8Ygh2tb2",
+                id,
                 Tipo_usuario.ADMINISTRADOR_G
         );
 
-        Inventario inventario1 = new Inventario();
-        //saveInventario(inventario1);
-        //ContabilidadLocal contabilidad1 = new ContabilidadLocal();   //Tener en cuenta crearlo con contabilidad para proximos dummies
+        saveUser(user, true);
 
-        String idLocal = UUID.randomUUID().toString();
-        Local local1 = new Local("Local1", "Carlos", "3259996452",inventario1,idLocal );
-        //local1.setContabilidad(contabilidad1);
-        saveLocal(local1);
-        user2.getIdLocales().add(local1.getId());
-
-        return user2;
-
-
+        return user;
     }
-    private void saveUserLocal() {
 
-        auth.createUserWithEmailAndPassword(
-                "admin@admin.com",
-                "admon169"
-        ).addOnSuccessListener(
-                command -> {
-                    // Aquí ya estamos loggeados
-                    String id = auth.getCurrentUser().getUid();
-                    AdministradorLocal userLocal = new AdministradorLocal(
-                            "245f0a73-db9b-472a-a5a9-450571553f72",
-                            "local1@local.com",
-                            "xlocal1",
-                            id,
-                            Tipo_usuario.ADMINISTRADOR_L
-                    );
-                    saveUser(userLocal);
-                }
-        ).addOnFailureListener(
-                command -> {
-
-                }
+    public static void saveUserLocal() {
+        String id = UUID.randomUUID().toString();
+        AdministradorLocal userLocal = new AdministradorLocal(
+                "245f0a73-db9b-472a-a5a9-450571553f72",
+                "local1@local.com",
+                "xlocal1",
+                id,
+                Tipo_usuario.ADMINISTRADOR_L
         );
+
+        saveUser(userLocal, false);
+        Log.e(">>>", "aniade el admon de local1");
     }
-    private void saveUser(Usuario user){
 
-
-        db.collection("users")
+    public static void saveUser(Usuario user, boolean isGeneral){
+        FirebaseFirestore.getInstance().collection("users")
                 .document(user.getId()).set(user)
                 .addOnSuccessListener(
                         dbtask -> {
+                            Log.e(">>>", "maquina tifon fiera capo master idolo");
+                            String u = user.getUsername();
+                            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u, user.getPassword())
+                                    .addOnSuccessListener(
+                                            command -> {
+                                                Log.e(">>>", "Se creo el usuario del en FirebaseAuth");
+                                                if(!isGeneral) {
+                                                    Inventario inventario1 = new Inventario();
+                                                    //saveInventario(inventario1);
+                                                    ContabilidadLocal contabilidad1 = new ContabilidadLocal();   //Tener en cuenta crearlo con contabilidad para proximos dummies
+
+                                                    String idLocal = UUID.randomUUID().toString();
+                                                    Local local1 = new Local("Local1", "Carlos", "3259996452", inventario1, idLocal);
+                                                    local1.setContabilidad(contabilidad1);
+                                                    saveLocal(local1, user);
+                                                    usuarioMayor.getIdLocales().add(local1.getId());
+                                                } else {
+                                                    usuarioMayor = (AdministradorGeneral) user;
+                                                    saveUserLocal();
+                                                }
+                                            }
+                                    ).addOnFailureListener(
+                                            command -> {
+                                                Log.e(">>>", "No se pudo crear el usuario: " + command.getMessage());
+                                            }
+                            );
                         }
                 ).addOnFailureListener(task->{
                     Log.e(">>", "errooooooooooooor");
         });
     }
 
-
-    private void saveLocal(Local local){
-        db.collection("local")
+    public static void saveLocal(Local local, Usuario localUser){
+        FirebaseFirestore.getInstance().collection("local")
                 .document(local.getId()).set(local)
                 .addOnSuccessListener(
                         dbtask -> {
+                            updateLocalAccounting(localUser);
                         }
                 ).addOnFailureListener(task->{
             Log.e(">>", "errooooooooooooor");
         });
     }
 
-    private void updateLocalAccounting(){
-        db.collection("users").whereEqualTo("id", "152091e6-71b5-4230-8743-9c4616297cf4").get().addOnSuccessListener(
+    public static void updateLocalAccounting(Usuario localUser){
+        FirebaseFirestore.getInstance().collection("users").whereEqualTo("id", localUser.getId()).get().addOnSuccessListener(
                 command -> {
                     AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
                     String idLocal = user.getIdLocal();
 
-                    db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                    FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
                             command1 -> {
                                 ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
+                                Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
                                 Local local = command1.getDocuments().get(0).toObject(Local.class);
                                 local.setContabilidad(contabilidad1);
                                 updateLocal(local);
@@ -221,7 +209,6 @@ public class MainActivityAdmin extends AppCompatActivity {
                                 Log.e(">>>", "Falló obteniendo el local");
                             }
                     );
-
                 }
         ).addOnFailureListener(
                 command222 ->{
@@ -231,27 +218,26 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     }
 
-    private void updateAccounting(ContabilidadLocal contabilidad1) {
-        db.collection("accounting")
+    public static void updateAccounting(ContabilidadLocal contabilidad1) {
+        FirebaseFirestore.getInstance().collection("accounting")
                 .document(contabilidad1.getId()).set(contabilidad1)
                 .addOnSuccessListener(
                         dbtask -> {
+                            Log.e(">>>", "todo bien agregando la contabilidad");
                         }
                 ).addOnFailureListener(task->{
-            Log.e(">>", "errooooooooooooor agregando contabilidad");
+            Log.e(">>>", "errooooooooooooor agregando contabilidad");
         });
     }
 
-    private void updateLocal(Local local){
-        db.collection("local").document(local.getId()).set(local).addOnSuccessListener(
+    public static void updateLocal(Local local) {
+        FirebaseFirestore.getInstance().collection("local").document(local.getId()).set(local).addOnSuccessListener(
                 command -> {
-                    Log.e(">>>>" ,"local id: "+ local.getId());
+                    Log.e(">>>>", "local id: " + local.getId());
                 }).addOnFailureListener(
-                command ->{
+                command -> {
                     Log.e(">>>", "Falló en la tercera");
                 }
         );
     }
-
-
 }

@@ -17,7 +17,6 @@ public class MainActivityOwner extends AppCompatActivity {
 
     private ShopFragment shopFragment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
