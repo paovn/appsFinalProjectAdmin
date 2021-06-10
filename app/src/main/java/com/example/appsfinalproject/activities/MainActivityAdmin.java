@@ -109,9 +109,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         transaction.commit();
     }
 
-    public static Usuario createUser(Context context){
-        Log.e(">>>", "Epa, se creo el usuario admin@admin.com en FireBaseAuth");
-        // Aquí ya estamos loggeados
+    public static Usuario createAdmin(){
         String id = UUID.randomUUID().toString();
 
         AdministradorGeneral user = new AdministradorGeneral(
@@ -120,12 +118,36 @@ public class MainActivityAdmin extends AppCompatActivity {
                 id,
                 Tipo_usuario.ADMINISTRADOR_G
         );
-
-        saveUser(user, true);
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), user.getPassword())
+                .addOnSuccessListener(
+                        command -> {
+                            Log.e(">>>", "Admin fue registrado en FireBaseAuth");
+                            user.setId(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            saveAdminInFireBaseDatabase(user);
+                        }
+                ).addOnFailureListener(
+                        command -> {
+                            Log.e(">>>", "No se pudo registrar el admin en FireBaseAuth: " + command.getMessage());
+                        }
+        );
 
         return user;
     }
 
+    public static void saveAdminInFireBaseDatabase(Usuario user){
+        FirebaseFirestore.getInstance().collection("users")
+                .document(user.getId()).set(user)
+                .addOnSuccessListener(
+                        dbtask -> {
+                            Log.e(">>>", "Admin registrado en la base de datos");
+                        }
+                ).addOnFailureListener(
+                        task -> {
+                            Log.e(">>>", "Error al registrar al Admin en la base de datos: " + task.getMessage());
+                        });
+    }
+
+/*
     public static void saveUserLocal() {
         String id = UUID.randomUUID().toString();
         AdministradorLocal userLocal = new AdministradorLocal(
@@ -138,43 +160,6 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         saveUser(userLocal, false);
         Log.e(">>>", "aniade el admon de local1");
-    }
-
-    public static void saveUser(Usuario user, boolean isGeneral){
-        FirebaseFirestore.getInstance().collection("users")
-                .document(user.getId()).set(user)
-                .addOnSuccessListener(
-                        dbtask -> {
-                            Log.e(">>>", "maquina tifon fiera capo master idolo");
-                            String u = user.getUsername();
-                            FirebaseAuth.getInstance().createUserWithEmailAndPassword(u, user.getPassword())
-                                    .addOnSuccessListener(
-                                            command -> {
-                                                Log.e(">>>", "Se creo el usuario del en FirebaseAuth");
-                                                if(!isGeneral) {
-                                                    Inventario inventario1 = new Inventario();
-                                                    //saveInventario(inventario1);
-                                                    ContabilidadLocal contabilidad1 = new ContabilidadLocal();   //Tener en cuenta crearlo con contabilidad para proximos dummies
-
-                                                    String idLocal = UUID.randomUUID().toString();
-                                                    Local local1 = new Local("Local1", "Carlos", "3259996452", inventario1, idLocal);
-                                                    local1.setContabilidad(contabilidad1);
-                                                    saveLocal(local1, user);
-                                                    usuarioMayor.getIdLocales().add(local1.getId());
-                                                } else {
-                                                    usuarioMayor = (AdministradorGeneral) user;
-                                                    saveUserLocal();
-                                                }
-                                            }
-                                    ).addOnFailureListener(
-                                            command -> {
-                                                Log.e(">>>", "No se pudo crear el usuario: " + command.getMessage());
-                                            }
-                            );
-                        }
-                ).addOnFailureListener(task->{
-                    Log.e(">>", "errooooooooooooor");
-        });
     }
 
     public static void saveLocal(Local local, Usuario localUser){
@@ -240,4 +225,6 @@ public class MainActivityAdmin extends AppCompatActivity {
                 }
         );
     }
+    */
+
 }

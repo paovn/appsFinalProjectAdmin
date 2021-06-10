@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.appsfinalproject.R;
-import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,9 +58,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
         ).addOnFailureListener(
                 command -> {
-                    Toast.makeText(this, "Invalid credentials, inserting dummy users", Toast.LENGTH_LONG).show();
-                    MainActivityAdmin.createUser(this);
-                    Log.e(">>", "no funcionó el login  " + command.getMessage());
+                    Toast.makeText(this, "Invalid credentials, inserting dummy admin", Toast.LENGTH_LONG).show();
+                    MainActivityAdmin.createAdmin();
+                    Log.e(">>", "no funcionó el login: " + command.getMessage());
                 }
         );
     }
@@ -81,24 +80,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
         );
     }
-
-    /*private void saveUser(Usuario user){
-
-        AdministradorLocal userLocal = new AdministradorLocal(
-                "245f0a73-db9b-472a-a5a9-450571553f72",
-                "local1@local.com",
-                "local169",
-                id,
-                Tipo_usuario.ADMINISTRADOR_L
-        );
-        db.collection("users")
-                .document(user.getId()).set(user)
-                .addOnSuccessListener(
-                        dbtask -> {
-                        }
-                ).addOnFailureListener(task->{
-            Log.e(">>", "errooooooooooooor");
-        });
-    }*/
-
 }

@@ -29,6 +29,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     private Button cancelBtn;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,11 +73,17 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                 .addOnSuccessListener(
                         dbtask -> {
                             Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(this, MainActivityOwner.class);
-                            startActivity(i);
+                            /*Intent i = new Intent(this, MainActivityOwner.class);
+                            startActivity(i); No se necesita, sabemos que viene del MainOwnerActivity y por lo tanto podemos hacer lo que esta abajo y liberar un poco de memoria
+                            */
+                            getIntent().putExtra("logro", "completo");
+                            setResult(RESULT_OK);
+                            finish();
                         }
-                ).addOnFailureListener(task->{
-            Log.e(">>", "no añadió el local");
-        });
+                ).addOnFailureListener(
+                        task->{
+                            Log.e(">>", "no añadió el local");
+                        }
+                );
     }
 }

@@ -23,7 +23,8 @@ public class MainActivityOwner extends AppCompatActivity {
         setContentView(R.layout.activity_main_owner);
 
         shopFragment = ShopFragment.newInstance();
-        showFragment(shopFragment);
+        configureNavigator();
+        navigator.setSelectedItemId(R.id.owner_shops_item); // hace click en el fragment y lo muestra
     }
 
     private void configureNavigator() {
