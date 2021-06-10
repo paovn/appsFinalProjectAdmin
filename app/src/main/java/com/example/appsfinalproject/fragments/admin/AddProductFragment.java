@@ -63,7 +63,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         mediumRangeET = v.findViewById(R.id.add_medium_range_ET);
         lowRangeET = v.findViewById(R.id.add_low_range_ET);
 
-        addButton = v.findViewById(R.id.add_cost_BTN);
+        addButton = v.findViewById(R.id.add_product_BTN);
         addButton.setOnClickListener(this);
 
         return v;
@@ -72,11 +72,11 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.add_cost_BTN:
-
+            case R.id.add_product_BTN:
+                String id = auth.getCurrentUser().getUid();
                 // ver el usuario que está logueado y obtenerle el local. Como el local tiene el id del inventario,
                 //traer el inventario de la base de datos y a ese añadirle el producto
-                db.collection("users").whereEqualTo("id", "152091e6-71b5-4230-8743-9c4616297cf4").get().addOnSuccessListener(
+                db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
                         command -> {
                             AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
                             String idLocal = user.getIdLocal();

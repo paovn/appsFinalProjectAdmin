@@ -11,11 +11,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.UUID;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordET = findViewById(R.id.passwordET);
         loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);
+      //  creatUserLocal();
     }
 
     @Override
@@ -79,5 +83,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(i);
                 }
         );
+    }
+
+    public void creatUserLocal(){
+        auth.createUserWithEmailAndPassword("local1@gmail.com","local169").addOnSuccessListener(
+                command -> {
+                    String id = auth.getCurrentUser().getUid();
+                    AdministradorLocal userLocal = new AdministradorLocal(
+                            "23c2f305-985f-49db-907f-c31ac11f0a8b",
+                            "local1@local.com",
+                            "xlocal1",
+                            id,
+                            Tipo_usuario.ADMINISTRADOR_L
+                    );
+                    db.collection("users").document(id).set(userLocal).addOnSuccessListener(
+                            dbtask -> {
+                                Log.e(">>>", "Admin registrado en la base de datos");
+                            }
+                    ).addOnFailureListener(
+                            task -> {
+                                Log.e(">>>", "Error al registrar al Admin en la base de datos: " + task.getMessage());
+                            });
+                });
+
     }
 }

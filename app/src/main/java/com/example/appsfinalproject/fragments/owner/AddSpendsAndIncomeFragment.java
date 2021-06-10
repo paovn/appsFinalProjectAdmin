@@ -53,7 +53,7 @@ public class AddSpendsAndIncomeFragment extends Fragment implements View.OnClick
         View v = inflater.inflate(R.layout.fragment_add_spends_and_income, container, false);
         registerNameET = v.findViewById(R.id.add_register_name_ET);
         amountET = v.findViewById(R.id.add_amount_ET);
-        addCostBTN = v.findViewById(R.id.add_cost_BTN);
+        addCostBTN = v.findViewById(R.id.add_product_BTN);
         addIncomeBTN = v.findViewById(R.id.add_inconme_BTN);
 
         addCostBTN.setOnClickListener(this);
@@ -69,7 +69,7 @@ public class AddSpendsAndIncomeFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.add_cost_BTN:
+            case R.id.add_product_BTN:
                 addRegister(0);
                 break;
             case R.id.add_inconme_BTN:

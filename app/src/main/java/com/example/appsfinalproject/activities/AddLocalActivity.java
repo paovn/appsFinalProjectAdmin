@@ -29,6 +29,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     private Button cancelBtn;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,5 +86,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                             Log.e(">>", "no añadió el local");
                         }
                 );
+
+
     }
 }
