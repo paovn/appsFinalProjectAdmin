@@ -9,17 +9,19 @@ public class Local {
     private Inventario inventario;
     private ContabilidadLocal contabilidad;
     private String id;
+    private String photoId;
 
     public Local(){
 
     }
 
-    public Local(String nombreLocal, String nombreEncargado,String telefono, Inventario inventario, String id) {
+    public Local(String nombreLocal, String nombreEncargado,String telefono, Inventario inventario, String id, String photoID) {
         this.nombreLocal = nombreLocal;
         this.nombreEncargado=nombreEncargado;
         this.telefono = telefono;
         this.inventario = inventario;
         this.id = id;
+        this.photoId = photoID;
     }
 
     public String getNombreLocal() {
