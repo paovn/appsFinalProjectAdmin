@@ -7,8 +7,8 @@ public class AdministradorLocal extends Usuario{
 
     }
 
-    public AdministradorLocal(String idLocal, String username, String password, String id, Tipo_usuario tipo) {
-        super(username,password,id,tipo);
+    public AdministradorLocal(String idLocal, String username, String id, Tipo_usuario tipo) {
+        super(username,id,tipo);
         this.idLocal = idLocal;
     }
 

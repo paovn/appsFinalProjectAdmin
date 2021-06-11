@@ -92,7 +92,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     AdministradorLocal userLocal = new AdministradorLocal(
                             "23c2f305-985f-49db-907f-c31ac11f0a8b",
                             "local1@local.com",
-                            "xlocal1",
                             id,
                             Tipo_usuario.ADMINISTRADOR_L
                     );

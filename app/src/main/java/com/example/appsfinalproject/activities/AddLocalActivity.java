@@ -80,14 +80,11 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                 Intent i2 = new Intent(Intent.ACTION_GET_CONTENT);
                 i2.setType("image/*");
                 startActivityForResult(i2, GALLERY_CALLBACK);
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                localImageBtn.setImageBitmap(bitmap);
                 break;
-
         }
     }
-    private void uploadPhoto(String photoID) {
 
+    private void uploadPhoto(String photoID) {
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(new File(path));
@@ -99,9 +96,8 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                     Log.e(">>>", "Falló al subir la imagen");
                 }
         );
-
-
     }
+
     public void saveLocal(){
         String localName = localNameET.getText().toString();
         String adminName = adminNameET.getText().toString();
@@ -110,13 +106,12 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
 
         Inventario inventario = new Inventario();
         String id = UUID.randomUUID().toString();
-        String photoID = UUID.randomUUID().toString();
-        Local local = new Local(localName,adminName,phone,inventario,id,photoID);
+        Local local = new Local(localName,adminName,phone,inventario,id,id);
         db.collection("local")
                 .document(local.getId()).set(local)
                 .addOnSuccessListener(
                         dbtask -> {
-                            uploadPhoto(photoID);
+                            uploadPhoto(id);
                             Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
                             getIntent().putExtra("logro", "completo");
                             setResult(RESULT_OK);
@@ -127,9 +122,8 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                             Log.e(">>", "no añadió el local");
                         }
                 );
-
-
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -137,7 +131,9 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         if(requestCode == GALLERY_CALLBACK && resultCode == Activity.RESULT_OK){
             Uri uri = data.getData();
             path = UtilDomi.getPath(this, uri);
-
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            localImageBtn.setImageBitmap(bitmap);
+            Log.e(">>>", "Se puso la imagen en el boton");
         }
     }
 }

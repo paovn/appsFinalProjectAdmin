@@ -114,11 +114,10 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         AdministradorGeneral user = new AdministradorGeneral(
                 "admin@admin.com",
-                "admon169",
                 id,
                 Tipo_usuario.ADMINISTRADOR_G
         );
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), user.getPassword())
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), "admon169")
                 .addOnSuccessListener(
                         command -> {
                             Log.e(">>>", "Admin fue registrado en FireBaseAuth");
