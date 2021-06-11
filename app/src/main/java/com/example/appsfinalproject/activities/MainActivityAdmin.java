@@ -138,11 +138,11 @@ public class MainActivityAdmin extends AppCompatActivity {
                 .document(user.getId()).set(user)
                 .addOnSuccessListener(
                         dbtask -> {
-                            Log.e(">>>", "Admin registrado en la base de datos");
+                            Log.e(">>>", "Admin registrado/actualizado en la base de datos");
                         }
                 ).addOnFailureListener(
                         task -> {
-                            Log.e(">>>", "Error al registrar al Admin en la base de datos: " + task.getMessage());
+                            Log.e(">>>", "Error al registrar/actualizar al Admin en la base de datos: " + task.getMessage());
                         });
     }
 

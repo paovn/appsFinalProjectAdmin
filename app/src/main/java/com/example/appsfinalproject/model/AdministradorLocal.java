@@ -1,6 +1,6 @@
 package com.example.appsfinalproject.model;
 
-public class AdministradorLocal extends Usuario{
+public class AdministradorLocal extends Usuario {
     private String idLocal;
 
     public AdministradorLocal(){

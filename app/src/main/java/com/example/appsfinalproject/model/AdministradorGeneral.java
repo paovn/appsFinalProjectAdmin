@@ -6,6 +6,7 @@ public class AdministradorGeneral extends Usuario{
     private ArrayList<String> idlocales;
 
     public AdministradorGeneral() {
+        idlocales = new ArrayList<>();
     }
 
     public AdministradorGeneral(String username, String id, Tipo_usuario tipo) {

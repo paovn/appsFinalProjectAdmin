@@ -4,7 +4,6 @@ import com.google.firebase.firestore.Exclude;
 
 public class Usuario {
     private String username;
-    private String idLocal;
     private String id;
     private Tipo_usuario tipo;
 
@@ -38,13 +37,5 @@ public class Usuario {
 
     public void setTipo(Tipo_usuario tipo) {
         this.tipo = tipo;
-    }
-
-    public void setIdLocal(String idLocal) {
-        this.idLocal = idLocal;
-    }
-
-    public String getIdLocal() {
-        return idLocal;
     }
 }

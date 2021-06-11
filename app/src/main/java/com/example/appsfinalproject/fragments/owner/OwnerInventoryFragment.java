@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +34,9 @@ public class OwnerInventoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static OwnerInventoryFragment newInstance() {
+    public static OwnerInventoryFragment newInstance(Local local) {
         OwnerInventoryFragment fragment = new OwnerInventoryFragment();
+        fragment.local = local;
         return fragment;
     }
 
@@ -58,20 +60,7 @@ public class OwnerInventoryFragment extends Fragment {
         adapter = new InventoryProductAdapter(new ArrayList<>());
         productList.setAdapter(adapter);
 
-        // FIXME puede que esto no funcione, probadlo
-        db.collection("users").document(auth.getCurrentUser().getUid()).get()
-        .addOnSuccessListener(
-                command -> {
-                    Usuario u = command.toObject(Usuario.class);
-                    db.collection("local").document(u.getIdLocal()).get()
-                            .addOnSuccessListener(
-                                    command1 -> {
-                                        local = command1.toObject(Local.class);
-                                        adapter.setItems(local.getInventario().getProductos_inventario());
-                                    }
-                            );
-                }
-        );
+        adapter.setItems(local.getInventario().getProductos_inventario());
 
         return v;
     }
