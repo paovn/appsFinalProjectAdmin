@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         db = FirebaseFirestore.getInstance();
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
-        loginBtn = findViewById(R.id.loginBtn);
+        loginBtn = findViewById(R.id.loginBTN);
         loginBtn.setOnClickListener(this);
       //  creatUserLocal();
     }
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.loginBtn:
+            case R.id.loginBTN:
                 login();
                 break;
         }

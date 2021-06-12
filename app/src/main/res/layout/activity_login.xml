@@ -50,10 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/loginBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginLeft="159dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginRight="159dp"
         android:text="@string/action_sign_in_short"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

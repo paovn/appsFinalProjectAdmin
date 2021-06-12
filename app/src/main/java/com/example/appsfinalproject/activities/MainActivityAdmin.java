@@ -59,8 +59,6 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         requestPermissions();
         configureNavigator();
-        //saveUser(createUser());
-        //saveUserLocal();
         showFragment(productFragment);
     }
 
