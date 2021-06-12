@@ -96,7 +96,11 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        storage.getReference().child("local").child(photoID).putStream(fis).addOnFailureListener(
+        storage.getReference().child("local").child(photoID).putStream(fis).addOnSuccessListener(
+                command -> {
+                    Log.e(">>>", "Subida la foto");
+                }
+        ).addOnFailureListener(
                 command2-> {
                     Log.e(">>>", "Falló al subir la imagen");
                 }
@@ -116,12 +120,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                 .document(local.getId()).set(local)
                 .addOnSuccessListener(
                         dbtask -> {
-                            uploadPhoto(id);
                             addAdministratorForNewLocalInFirebaseAuth(local);
-                            addLocalToOwner(id);
-                            Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
-                            setResult(RESULT_OK);
-                            finish();
                         }
                 ).addOnFailureListener(
                         task->{
@@ -131,12 +130,12 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void addAdministratorForNewLocalInFirebaseAuth(Local local) {
-        String emailAdminLocal = local.getId() + "@local.com";
+        String emailAdminLocal = local.getNombreLocal().replace(" ", "_") + "@local.com";
         auth.createUserWithEmailAndPassword(emailAdminLocal, passwordET.getText().toString())
         .addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Se creo el admin del local " + local.getId() + " en FirebaseAuth");
-                    addAdministratorForNewLocalInFirebaseFirestore(local, emailAdminLocal);
+                    addAdministratorForNewLocalInFirebaseFirestore(local, emailAdminLocal, auth.getCurrentUser().getUid());
                 }
         ).addOnFailureListener(
                 command -> {
@@ -145,13 +144,17 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         );
     }
 
-    private void addAdministratorForNewLocalInFirebaseFirestore(Local local, String emailAdminLocal) {
-        String adminLocalId = UUID.randomUUID().toString();
-        AdministradorLocal adminLocal = new AdministradorLocal(local.getId(), emailAdminLocal, adminLocalId, Tipo_usuario.ADMINISTRADOR_L);
-        db.collection("users").document(adminLocalId).set(adminLocal)
+    private void addAdministratorForNewLocalInFirebaseFirestore(Local local, String emailAdminLocal, String adminId) {
+        AdministradorLocal adminLocal = new AdministradorLocal(local.getId(), emailAdminLocal, adminId, Tipo_usuario.ADMINISTRADOR_L);
+        db.collection("users").document(adminId).set(adminLocal)
         .addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Se ha creado el usuario admin del local " + local.getId() + " en FirebaseFirestore");
+                    uploadPhoto(local.getPhotoId());
+                    addLocalToOwner(local.getId());
+                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK);
+                    finish();
                     String msg = "El local \"" + local.getNombreLocal() + "\" ha sido creado.\n" +
                             "El nombre de usuario del administrador del local es " + emailAdminLocal + " y la clave es la que ha elegido en el momento de inscripcion del local.";
                     NotificationUtil.createNotification(this, "Se ha creado un nuevo local", msg, new Intent(this, AddLocalActivity.class));
