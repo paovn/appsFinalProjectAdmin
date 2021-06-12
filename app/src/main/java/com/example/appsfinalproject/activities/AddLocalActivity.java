@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
+import com.example.appsfinalproject.model.ContabilidadLocal;
 import com.example.appsfinalproject.model.Inventario;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_usuario;
@@ -112,10 +113,12 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         String adminName = adminNameET.getText().toString();
         String address = addressET.getText().toString();
         String phone = phoneET.getText().toString();
+        ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
 
         Inventario inventario = new Inventario();
         String id = UUID.randomUUID().toString();
         Local local = new Local(localName,adminName,address, phone,inventario,id,id);
+        local.setContabilidad(contabilidad1);
         db.collection("local")
                 .document(local.getId()).set(local)
                 .addOnSuccessListener(
