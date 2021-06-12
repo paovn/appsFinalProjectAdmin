@@ -48,7 +48,7 @@ public class MainActivityOwner extends AppCompatActivity {
         );
     }
 
-    private void showFragment(Fragment fragment) {
+    public void showFragment(Fragment fragment) {
         // todas las actividades vienen con el fragmentManager solo lo debemos llamar
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

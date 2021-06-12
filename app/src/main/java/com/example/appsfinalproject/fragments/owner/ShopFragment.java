@@ -3,6 +3,7 @@ package com.example.appsfinalproject.fragments.owner;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,16 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.activities.AddLocalActivity;
+import com.example.appsfinalproject.activities.LocalActivityOwner;
 import com.example.appsfinalproject.activities.MainActivityOwner;
 import com.example.appsfinalproject.model.Local;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +32,7 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 
-public class ShopFragment extends Fragment implements View.OnClickListener {
+public class ShopFragment extends Fragment implements View.OnClickListener, LocalView.OnLocalClickAction {
 
     public static final int ADD_LOCAL_REQUEST_CODE = 12345;
 
@@ -58,7 +63,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         shopList = v.findViewById(R.id.shop_RV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         shopList.setLayoutManager(manager);
-        localAdapter = new LocalAdapter();
+        localAdapter = new LocalAdapter(this);
         shopList.setAdapter(localAdapter);
         getLocalsFromDatabase();
 
@@ -106,5 +111,12 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
                     Log.e(">>>", "Ocurrio un error al traer los locales de la base de datos");
                 }
         );
+    }
+
+    @Override
+    public void goToLocalInventory(String localId) {
+        Intent i = new Intent(getContext(), LocalActivityOwner.class);
+        i.putExtra("localId", localId);
+        startActivity(i);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.appsfinalproject.model;
+package com.example.appsfinalproject.util;
 
 import android.content.ContentUris;
 import android.content.Context;

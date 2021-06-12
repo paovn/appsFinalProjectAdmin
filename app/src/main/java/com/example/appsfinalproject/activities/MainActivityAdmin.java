@@ -114,11 +114,10 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         AdministradorGeneral user = new AdministradorGeneral(
                 "admin@admin.com",
-                "admon169",
                 id,
                 Tipo_usuario.ADMINISTRADOR_G
         );
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), user.getPassword())
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), "admon169")
                 .addOnSuccessListener(
                         command -> {
                             Log.e(">>>", "Admin fue registrado en FireBaseAuth");
@@ -139,11 +138,11 @@ public class MainActivityAdmin extends AppCompatActivity {
                 .document(user.getId()).set(user)
                 .addOnSuccessListener(
                         dbtask -> {
-                            Log.e(">>>", "Admin registrado en la base de datos");
+                            Log.e(">>>", "Admin registrado/actualizado en la base de datos");
                         }
                 ).addOnFailureListener(
                         task -> {
-                            Log.e(">>>", "Error al registrar al Admin en la base de datos: " + task.getMessage());
+                            Log.e(">>>", "Error al registrar/actualizar al Admin en la base de datos: " + task.getMessage());
                         });
     }
 

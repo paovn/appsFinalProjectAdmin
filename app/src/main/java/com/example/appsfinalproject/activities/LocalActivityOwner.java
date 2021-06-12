@@ -8,12 +8,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.OwnerInventoryFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
+import com.example.appsfinalproject.model.Local;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LocalActivityOwner extends AppCompatActivity {
 
@@ -22,18 +25,35 @@ public class LocalActivityOwner extends AppCompatActivity {
     private OwnerInventoryFragment ownerInventoryFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
     private LocalStatsFragment localStatsFragment;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_owner);
 
-        ownerInventoryFragment = OwnerInventoryFragment.newInstance();
-        spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
-        localStatsFragment = LocalStatsFragment.newInstance();
+        db = FirebaseFirestore.getInstance();
 
-        requestPermissions();
-        configureNavigator();
+        db.collection("local").document(getIntent().getExtras().getString("localId", "NO_ID"))
+                .get().addOnSuccessListener(
+                command -> {
+                    Log.e(">>>", "Se trajo el local para ver su inventario");
+                    Local local = command.toObject(Local.class);
+                    ownerInventoryFragment = OwnerInventoryFragment.newInstance(local);
+                    spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+                    localStatsFragment = LocalStatsFragment.newInstance();
+
+                    requestPermissions();
+                    configureNavigator();
+                    navigator.setSelectedItemId(R.id.owner_inventory_item); // hace click en el item del inventario
+                }
+        ).addOnFailureListener(
+                command -> {
+                    spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+                    localStatsFragment = LocalStatsFragment.newInstance();
+                    Log.e(">>>", "Ocurrio un error al consultar el inventario del local");
+                }
+        );
     }
 
     private void requestPermissions() {
