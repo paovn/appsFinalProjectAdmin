@@ -11,6 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appsfinalproject.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class LocalStatsFragment extends Fragment implements View.OnClickListener {
@@ -18,6 +25,8 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
     private TextView periodTV;
     private Button back;
     private Button next;
+    private LineChart chart;
+    private LineData dataChart;
 
     public LocalStatsFragment() {
         // Required empty public constructor
@@ -43,7 +52,22 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         back.setOnClickListener(this);
         next = v.findViewById(R.id.advance_period_button);
         next.setOnClickListener(this);
+        chart = v.findViewById(R.id.linechart);
+        loadData(30);
+        chart.setData(dataChart);
+
         return v;
+    }
+
+    private void loadData(int days) {
+        ArrayList data = new ArrayList();
+        Random rand = new Random();
+        for (int i = 0; i < days; i++) {
+            data.add(new Entry(rand.nextInt(100000),i));
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(data,"Rendimientos");
+        dataChart = new LineData(lineDataSet);
     }
 
     @Override
