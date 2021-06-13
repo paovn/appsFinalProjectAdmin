@@ -137,6 +137,8 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                     String id = command.getUser().getUid();
                     Log.e(">>>", "id de usuario creado = " + id + ", id del admin = " + idOwner);
                     Local local = new Local(localName,adminName,address, phone,inventario,id,id);
+                    ContabilidadLocal contabilidadLocal = new ContabilidadLocal(UUID.randomUUID().toString());
+                    local.setContabilidad(contabilidadLocal);
                     Log.e(">>>", "Se creo el admin del local " + local.getId() + " en FirebaseAuth");
                     addAdministratorForNewLocalInFirebaseFirestore(local, emailAdminLocal, auth.getCurrentUser().getUid(), idOwner);
                 }
