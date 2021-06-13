@@ -2,23 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/principalItem"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:id="@+id/productsItem"
+        android:icon="@drawable/listadmin"
         android:title="Productos" />
     <item
-        android:id="@+id/contabilidadItem"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Alertas" />
-    <item
         android:id="@+id/aniadirItem"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/masadmin"
         android:title="Aniadir" />
     <item
         android:id="@+id/contabilidadItem2"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Contabilidad2" />
+        android:icon="@drawable/countadmin"
+        android:title="Contabilidad" />
     <item
         android:id="@+id/estadisticasItem"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/stadisticadmin"
         android:title="Estadisticas" />
 </menu>
