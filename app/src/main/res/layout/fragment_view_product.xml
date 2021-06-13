@@ -7,26 +7,22 @@
     tools:context=".fragments.admin.ViewProductFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="340dp"
-        android:layout_height="500dp"
+        android:layout_height="455dp"
+        android:background="@drawable/borderstyle"
         android:gravity="center"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="34dp"
-        android:background="@drawable/borderstyle"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="14dp">
 
         <ImageButton
             android:id="@+id/view_product_image_button"
             android:layout_width="210dp"
             android:layout_height="118dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            tools:src="@tools:sample/avatars"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            tools:src="@tools:sample/avatars" />
 
         <EditText
             android:id="@+id/view_product_title_ET"
@@ -45,8 +41,8 @@
         <LinearLayout
             android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/view_presentation_TV"
@@ -56,113 +52,122 @@
                 android:paddingHorizontal="10dp"
                 android:text="Presentación"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/view_presentation_ET"
                 android:layout_width="180dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:paddingLeft="5dp"
                 android:background="@drawable/borderstyle"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:layout_marginLeft="30dp"
-                android:hint="#entero"/>
+                android:hint="#entero"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/view_unit_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unidad"
                 android:layout_gravity="center"
                 android:paddingHorizontal="10dp"
+                android:text="Unidad"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/view_unit_ET"
                 android:layout_width="180dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:ems="10"
-                android:inputType="textPersonName"
+                android:layout_marginLeft="74dp"
+                android:paddingLeft="5dp"
                 android:background="@drawable/borderstyle"
-                android:layout_marginStart="74dp"
-                android:hint="#entero" />
+                android:ems="10"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/view_medium_range_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rango medio"
                 android:layout_gravity="center"
                 android:paddingHorizontal="10dp"
+                android:text="Rango medio"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/view_medium_range_ET"
                 android:layout_width="180dp"
                 android:layout_height="35dp"
-                android:ems="10"
-                android:inputType="textPersonName"
                 android:layout_gravity="center"
-                android:background="@drawable/borderstyle"
                 android:layout_marginLeft="30dp"
-                android:hint="#entero"/>
+                android:background="@drawable/borderstyle"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/view_low_range_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rango bajo"
                 android:layout_gravity="center"
                 android:paddingHorizontal="10dp"
+                android:text="Rango bajo"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/view_low_range_ET"
                 android:layout_width="180dp"
                 android:layout_height="35dp"
-                android:ems="10"
-                android:inputType="textPersonName"
                 android:layout_gravity="center"
-                android:background="@drawable/borderstyle"
                 android:layout_marginLeft="44dp"
-                android:hint="#entero"/>
+                android:background="@drawable/borderstyle"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="352dp"
+        android:layout_width="340dp"
         android:layout_height="162dp"
+        android:layout_marginBottom="4dp"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="525dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="340dp"
@@ -204,5 +209,74 @@
             app:backgroundTintMode="add" />
 
     </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="415dp"
+        android:layout_height="88dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="643dp">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="transparent"
+            app:srcCompat="@drawable/rectanglebottom" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/storeadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/stadisticadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/masadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/listadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/countadmin" />
+
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

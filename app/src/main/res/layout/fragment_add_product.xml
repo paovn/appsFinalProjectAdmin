@@ -9,6 +9,74 @@
     android:layout_height="match_parent"
     tools:context=".fragments.admin.AddProductFragment">
 
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="415dp"
+        android:layout_height="88dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="643dp">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="transparent"
+            app:srcCompat="@drawable/rectanglebottom" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/storeadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/stadisticadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/masadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/listadmin" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                app:srcCompat="@drawable/countadmin" />
+
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
     <EditText
         android:id="@+id/add_product_title_ET"
         android:layout_width="wrap_content"
