@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class ContabilidadLocal {
     private ArrayList<RegistroContable> registros;
     private String id;
-    public final int MILI_SEC_DAY = 86400000;
+    public static final int MILI_SEC_DAY = 86400000;
 
     public ContabilidadLocal() {
     }
@@ -40,7 +40,7 @@ public class ContabilidadLocal {
         return id;
     }
 
-    public ArrayList<Entry> getRange(int days) {
+    public ArrayList<Entry> getRangeDays(int days) {
         ArrayList range_list = new ArrayList();
         HashMap<String,Float> contabilidad_dia = new HashMap<>();
         int pos = registros.size()-1;
@@ -62,20 +62,24 @@ public class ContabilidadLocal {
                 Log.e(">>>>", "Actual Date in while: " + act_Date);
 
                 float expend = (float)actual.getCosto();
-                //if(actual.getTipo() != Tipo_registro.EGRESO){
+
+                //Esto se puede actualizar con switch case y metodos para el uso de los checkbox
                if(actual.getTipo() == Tipo_registro.EGRESO) expend*=-1;
-                    if(contabilidad_dia.containsKey(act_Date)){
-                        contabilidad_dia.put(act_Date,contabilidad_dia.get(act_Date)+expend);
-                    }else{
-                        contabilidad_dia.put(act_Date,expend);
-                    }
-                //}
+                if(contabilidad_dia.containsKey(act_Date)){
+                    contabilidad_dia.put(act_Date,contabilidad_dia.get(act_Date)+expend);
+                }else{
+                    contabilidad_dia.put(act_Date,expend);
+                }
+
                 pos--;
                 actual = registros.get(pos);
                 new_Date = sobj.format(actual.getFecha());
             }
             cal.add(Calendar.DAY_OF_YEAR,-1);
             act_Date = sobj.format(cal.getTime());
+            if(act_Date.compareTo(new_Date) != 0){
+                contabilidad_dia.put(act_Date,0f);
+            }
             Log.e(">>>>", "Actual Date in Calendar : " + act_Date);
         }
         int day = 0;
