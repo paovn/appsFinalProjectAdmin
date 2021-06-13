@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.admin.AddProductFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".fragments.owner.AddSpendsAndIncomeFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.admin.AddProductFragment">
+    android:layout_width="match_parent">
 
         <LinearLayout
-            android:layout_width="340dp"
-            android:layout_height="650dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,14 +36,15 @@
 
                 <EditText
                     android:id="@+id/add_register_name_ET"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:ems="10"
                     android:hint="Nombre del gasto/ingreso"
                     android:inputType="textPersonName"
+                    android:paddingLeft="10dp" />
                     android:paddingVertical="14dp"
                     android:paddingHorizontal="16dp"/>
-                <!-->android:background="transparent-->
             </LinearLayout>
 
             <LinearLayout
@@ -60,11 +57,13 @@
 
                 <EditText
                     android:id="@+id/add_amount_ET"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:ems="10"
+                    android:hint="Cantidad"
                     android:inputType="textPersonName"
-                  />
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,12 +74,14 @@
                 android:background="@drawable/borderstyle"
                 android:layout_gravity="center">
 
-                <TextView
+                <EditText
                     android:id="@+id/add_amount_TV"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:ems="10"
                     android:hint="@string/monto"
+                    android:paddingLeft="10dp"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -107,6 +108,4 @@
                 android:layout_gravity="center"/>
 
         </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>
