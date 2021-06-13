@@ -73,8 +73,10 @@ public class ProductFragment extends Fragment {
                     String idLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class).getIdLocal();
                     db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
                             command1 -> {
-                                Local local = command1.getDocuments().get(0).toObject(Local.class);
-                                adapter.setProducts(local.getInventario().getProductos_inventario());
+
+                                    Local local = command1.getDocuments().get(0).toObject(Local.class);
+                                    adapter.setProducts(local.getInventario().getProductos_inventario());
+
                             }
 
                     );
