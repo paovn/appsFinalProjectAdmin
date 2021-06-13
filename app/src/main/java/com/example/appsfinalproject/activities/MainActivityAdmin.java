@@ -51,7 +51,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_main_admin);
 
         productFragment = ProductFragment.newInstance();
-        addProductFragment = AddProductFragment.newInstance();
+        addProductFragment = AddProductFragment.newInstance(this);
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
         addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
@@ -145,6 +145,10 @@ public class MainActivityAdmin extends AppCompatActivity {
                         task -> {
                             Log.e(">>>", "Error al registrar/actualizar al Admin en la base de datos: " + task.getMessage());
                         });
+    }
+
+    public BottomNavigationView getNavigator() {
+        return navigator;
     }
 
 /*

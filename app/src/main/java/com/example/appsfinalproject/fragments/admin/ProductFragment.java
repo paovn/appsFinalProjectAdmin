@@ -58,7 +58,7 @@ public class ProductFragment extends Fragment {
         productList = v.findViewById(R.id.productsRV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         productList.setLayoutManager(manager);
-        adapter = new ProductAdapter(new ArrayList<>()); // TODO poner los productos reales de la DB
+        adapter = new ProductAdapter();
         productList.setAdapter(adapter);
 
         getProductsFromDB();
@@ -73,18 +73,11 @@ public class ProductFragment extends Fragment {
                     String idLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class).getIdLocal();
                     db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
                             command1 -> {
-
                                     Local local = command1.getDocuments().get(0).toObject(Local.class);
                                     adapter.setProducts(local.getInventario().getProductos_inventario());
-
                             }
-
                     );
-
                 }
         );
-
-
     }
-
-    }
+}

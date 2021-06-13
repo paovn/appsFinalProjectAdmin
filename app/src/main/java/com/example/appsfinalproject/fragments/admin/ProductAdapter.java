@@ -17,6 +17,7 @@ import com.example.appsfinalproject.fragments.owner.LocalView;
 import com.example.appsfinalproject.model.Producto;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
@@ -24,8 +25,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
     private String path;
     private FirebaseStorage storage;
 
-    public ProductAdapter(List<Producto> products) {
-        this.products = products;
+    public ProductAdapter() {
+        this.products = new ArrayList<>();
     }
 
     public void addProduct(Producto product) {

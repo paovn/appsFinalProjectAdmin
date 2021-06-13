@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.activities.MainActivityAdmin;
 import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.util.UtilDomi;
@@ -35,6 +36,7 @@ import java.util.UUID;
 
 
 public class AddProductFragment extends Fragment implements View.OnClickListener {
+    private MainActivityAdmin mainActivityAdmin;
 
     private ImageButton imageButton;
     private EditText titleET;
@@ -44,6 +46,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     private EditText lowRangeET;
     private Button addButton;
     private FirebaseFirestore db;
+
     private FirebaseAuth auth;
     private FirebaseStorage storage;
     private String path;
@@ -52,8 +55,9 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
-    public static AddProductFragment newInstance() {
+    public static AddProductFragment newInstance(MainActivityAdmin mainActivityAdmin) {
         AddProductFragment fragment = new AddProductFragment();
+        fragment.mainActivityAdmin = mainActivityAdmin;
         return fragment;
     }
 
@@ -90,9 +94,6 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.add_product_BTN:
                 addProducto();
-                imageButton.setImageBitmap(null);
-                titleET.setText("");
-                presentationET.setText("");
                 break;
             case R.id.add_product_image_button:
                 Intent i2 = new Intent(Intent.ACTION_GET_CONTENT);
@@ -139,6 +140,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         db.collection("local").document(local.getId()).set(local).addOnSuccessListener(
                 command -> {
                     Log.e(">>>>" ,"local id: "+ local.getId());
+                    mainActivityAdmin.getNavigator().setSelectedItemId(R.id.principalItem); // hace click en el fragment principal para mandarnos ahi
         }).addOnFailureListener(
                 command ->{
                     Log.e(">>>", "Falló en la tercera");
