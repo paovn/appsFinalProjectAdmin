@@ -58,30 +58,31 @@ public class ContabilidadLocal {
         String new_Date = sobj.format(actual.getFecha());
 
         for (int i = 0; i < days && pos>=0; i++) {
-            while(act_Date == new_Date){
+            while(act_Date.compareTo(new_Date) == 0){
                 Log.e(">>>>", "Actual Date in while: " + act_Date);
 
-                //TODO pensar acerca de si es mejor tener otra linea para los ingresos y egresos
                 float expend = (float)actual.getCosto();
-                if(actual.getTipo() == Tipo_registro.EGRESO) expend*=-1;
-
-                if(contabilidad_dia.containsKey(act_Date)){
-                    contabilidad_dia.put(act_Date,contabilidad_dia.get(act_Date)+expend);
-                }else{
-                    contabilidad_dia.put(act_Date,expend);
-                }
+                //if(actual.getTipo() != Tipo_registro.EGRESO){
+               if(actual.getTipo() == Tipo_registro.EGRESO) expend*=-1;
+                    if(contabilidad_dia.containsKey(act_Date)){
+                        contabilidad_dia.put(act_Date,contabilidad_dia.get(act_Date)+expend);
+                    }else{
+                        contabilidad_dia.put(act_Date,expend);
+                    }
+                //}
                 pos--;
                 actual = registros.get(pos);
                 new_Date = sobj.format(actual.getFecha());
             }
-            cal.add(Calendar.DAY_OF_YEAR,-i);
+            cal.add(Calendar.DAY_OF_YEAR,-1);
             act_Date = sobj.format(cal.getTime());
             Log.e(">>>>", "Actual Date in Calendar : " + act_Date);
         }
         int day = 0;
         for (String i : contabilidad_dia.keySet()) {
-            range_list.add(new Entry(day++, contabilidad_dia.get(i)));
+            range_list.add(new Entry(day++,contabilidad_dia.get(i)));
         }
+        day = 0;
         return range_list;
     }
 }

@@ -37,7 +37,6 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
     private Button back;
     private Button next;
     private LineChart chart;
-    private LineData dataChart;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
@@ -107,10 +106,19 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         );
     }
 
-    private void updateChart(ArrayList data) {
-        LineDataSet lineDataSet = new LineDataSet(data,"Rendimientos");
-        dataChart = new LineData(lineDataSet);
-        chart.setData(dataChart);
+    private void updateChart(ArrayList<Entry> data) {
+        /*ArrayList<Integer> x_axis = new ArrayList<>();
+        for (int i = 0; i < ; i++) {
+
+        }*/
+        this.getActivity().runOnUiThread(
+                () -> {
+                    LineDataSet lineDataSet = new LineDataSet(data,"Rendimientos");
+                    LineData dataChart = new LineData(lineDataSet);
+                    chart.setData(dataChart);
+                }
+        );
+
     }
 
     @Override
