@@ -9,12 +9,115 @@
     android:layout_height="match_parent"
     tools:context=".fragments.admin.AddProductFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/add_product_image_button"
+            android:layout_width="180dp"
+            android:layout_height="162dp"
+            android:layout_marginTop="10dp"
+            tools:srcCompat="@tools:sample/avatars"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/add_product_title_ET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:ems="10"
+            android:hint="Título del producto"
+            android:inputType="textPersonName"
+            android:background="transparent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/add_presentation_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Presentación"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/add_presentation_ET"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/borderstyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/add_medium_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rango medio"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/add_medium_range_ET"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/borderstyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/add_low_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rango bajo"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/add_low_range_ET"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/borderstyle"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_product_BTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar"
+            android:background="@drawable/buttonbackground"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add"/>
+
+    </LinearLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:layout_width="415dp"
         android:layout_height="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="643dp">
+        tools:layout_editor_absoluteX="-3dp">
 
         <ImageView
             android:id="@+id/imageView4"
@@ -76,106 +179,6 @@
 
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
-
-    <EditText
-        android:id="@+id/add_product_title_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:hint="Título del producto"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_product_image_button" />
-
-    <TextView
-        android:id="@+id/add_presentation_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Presentación"
-        app:layout_constraintBottom_toBottomOf="@+id/add_presentation_ET"
-        app:layout_constraintEnd_toStartOf="@+id/add_presentation_ET"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_presentation_ET" />
-
-    <EditText
-        android:id="@+id/add_presentation_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add_presentation_TV"
-        app:layout_constraintTop_toBottomOf="@+id/add_product_title_ET" />
-
-    <EditText
-        android:id="@+id/add_medium_range_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/add_presentation_ET"
-        app:layout_constraintStart_toStartOf="@+id/add_presentation_ET"
-        app:layout_constraintTop_toBottomOf="@+id/add_presentation_ET" />
-
-    <TextView
-        android:id="@+id/add_medium_range_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rango medio"
-        app:layout_constraintBottom_toBottomOf="@+id/add_medium_range_ET"
-        app:layout_constraintEnd_toStartOf="@+id/add_medium_range_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_medium_range_ET" />
-
-    <TextView
-        android:id="@+id/add_low_range_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rango bajo"
-        app:layout_constraintBottom_toBottomOf="@+id/add_low_range_ET"
-        app:layout_constraintEnd_toStartOf="@+id/add_low_range_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_low_range_ET" />
-
-    <EditText
-        android:id="@+id/add_low_range_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/add_medium_range_ET"
-        app:layout_constraintStart_toStartOf="@+id/add_medium_range_ET"
-        app:layout_constraintTop_toBottomOf="@+id/add_medium_range_ET" />
-
-    <Button
-        android:id="@+id/add_product_BTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Agregar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_low_range_ET" />
-
-    <ImageButton
-        android:id="@+id/add_product_image_button"
-        android:layout_width="180dp"
-        android:layout_height="162dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

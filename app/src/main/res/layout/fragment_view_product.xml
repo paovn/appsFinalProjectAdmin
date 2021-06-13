@@ -203,8 +203,8 @@
             android:layout_width="308dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/buttonbackground"
             android:text="Volver"
+            android:background="@drawable/buttonbackground"
             app:backgroundTint="@color/browser_actions_divider_color"
             app:backgroundTintMode="add" />
 
