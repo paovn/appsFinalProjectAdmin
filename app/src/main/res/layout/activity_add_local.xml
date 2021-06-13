@@ -6,6 +6,133 @@
     android:layout_height="match_parent"
     >
 
+    <LinearLayout
+        android:layout_width="341dp"
+        android:layout_height="685dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347">
+
+        <ImageButton
+            android:id="@+id/localImageBtn"
+            android:layout_width="180dp"
+            android:layout_height="162dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/localNameEt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="transparent"
+                android:ems="10"
+                android:hint="@string/local_name"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:background="@drawable/borderstyle">
+
+            <EditText
+                android:id="@+id/adminNameET"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:background="transparent"
+                android:ems="10"
+                android:hint="@string/admin_name"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/addressET"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:background="transparent"
+                android:hint="@string/address"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/borderstyle">
+
+            <EditText
+                android:id="@+id/phoneET"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="@string/phone"
+                android:inputType="textPersonName"
+                android:background="transparent"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addLocalBtn"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/add_local"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="194dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/cancel"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

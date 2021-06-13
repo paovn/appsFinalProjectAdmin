@@ -17,8 +17,15 @@
     <string name="phone">Telefono</string>
     <string name="add_local">Añadir local</string>
     <string name="cancel">Cancelar</string>
+
+    <string name="no_tienes_cuenta_registrate">¿No tienes cuenta? Registrate</string>
+    <string name="agregar_como_costo">Agregar como costo</string>
+    <string name="agregar_como_ingreso">Agregar como ingreso</string>
+    <string name="monto">Monto</string>
+
     <string name="title_activity_choose_direction_maps">Map</string>
     <string name="title_activity_vojabes_maps">Map</string>
+
 
 
 </resources>
