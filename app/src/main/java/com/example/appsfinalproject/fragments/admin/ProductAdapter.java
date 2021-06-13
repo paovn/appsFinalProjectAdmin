@@ -1,7 +1,5 @@
 package com.example.appsfinalproject.fragments.admin;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.appsfinalproject.R;
-import com.example.appsfinalproject.fragments.owner.LocalView;
 import com.example.appsfinalproject.model.Producto;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements EditProductDialogFragment.EditProdDFInterface{
+public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements EditProductDialogFragment.EditProdDFInterface, OrderProductDialogFragment.OrderProductInterface {
     private List<Producto> products;
     private String path;
     private FirebaseStorage storage;
@@ -46,6 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements
         ConstraintLayout rowroot = (ConstraintLayout) root;
         ProductView productView = new ProductView(rowroot);
         productView.getEditProductDialogFragment().setEditProdDFInterface(this);
+        productView.getOrderProductDialogFragment().setOrderProductInterface(this);
         storage = FirebaseStorage.getInstance();
         return productView;
     }
@@ -97,8 +95,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements
     public void onUpdateProducto(Producto product) {
         for(int i=0;i<products.size();i++){
             if(products.get(i).getId().equals(product.getId())){
-                Log.e("<<sasasas>>", "sasoajs");
-                Log.e("<<saassa>>",product.getNombre());
+                products.set(i, product);
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCloseOrderDF(Producto product) {
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getId().equals(product.getId())){
                 products.set(i, product);
                 break;
             }

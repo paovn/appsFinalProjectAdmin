@@ -43,6 +43,8 @@
                     android:hint="Nombre del gasto/ingreso"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp" />
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="16dp"/>
             </LinearLayout>
 
             <LinearLayout
