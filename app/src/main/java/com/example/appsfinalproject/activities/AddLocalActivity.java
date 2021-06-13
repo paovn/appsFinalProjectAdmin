@@ -116,10 +116,16 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         storage.getReference().child("local").child(photoID).putStream(fis).addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Subida la foto");
+                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK);
+                    finish();
                 }
         ).addOnFailureListener(
                 command2-> {
                     Log.e(">>>", "Falló al subir la imagen");
+                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK);
+                    finish();
                 }
         );
     }
@@ -170,12 +176,9 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         .addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Se ha creado el usuario admin del local " + local.getId() + " en FirebaseFirestore");
-                    uploadPhoto(local.getPhotoId());
                     addLocalToOwner(local.getId(), idOwner);
                     saveLocal(local);
-                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
-                    setResult(RESULT_OK);
-                    finish();
+                    uploadPhoto(local.getPhotoId());
                     String msg = "El local \"" + local.getNombreLocal() + "\" ha sido creado.\n" +
                             "El nombre de usuario del administrador del local es " + emailAdminLocal + " y la clave es la que ha elegido en el momento de inscripcion del local.";
                     NotificationUtil.createNotification(this, "Se ha creado un nuevo local", msg, new Intent(this, AddLocalActivity.class));

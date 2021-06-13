@@ -140,7 +140,6 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         db.collection("local").document(local.getId()).set(local).addOnSuccessListener(
                 command -> {
                     Log.e(">>>>" ,"local id: "+ local.getId());
-                    mainActivityAdmin.getNavigator().setSelectedItemId(R.id.principalItem); // hace click en el fragment principal para mandarnos ahi
         }).addOnFailureListener(
                 command ->{
                     Log.e(">>>", "Falló en la tercera");
@@ -158,6 +157,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         storage.getReference().child("products").child(photoID).putStream(fis).addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Subida la foto");
+                    mainActivityAdmin.getNavigator().setSelectedItemId(R.id.principalItem); // hace click en el fragment principal para mandarnos ahi
                 }
         ).addOnFailureListener(
                 command2-> {
@@ -165,6 +165,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
                 }
         );
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
