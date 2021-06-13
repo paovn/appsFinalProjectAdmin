@@ -1,167 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragments.admin.ViewProductFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="581dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/lowRangeDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/middleRangeDF" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/title_product"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productImageDF" />
-
-        <EditText
-            android:id="@+id/productNameDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/productImageDF" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="44dp"
-            android:text="@string/presentation_product"
-            app:layout_constraintEnd_toStartOf="@+id/presentationProductDF"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/middle_range_product"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="44dp"
-            android:text="@string/low_range_product"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <EditText
-            android:id="@+id/presentationProductDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productNameDF" />
-
-        <EditText
-            android:id="@+id/middleRangeDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.577"
-            app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/presentationProductDF" />
-
-        <Button
-            android:id="@+id/deleteBtnDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:text="@string/delete"
-            app:layout_constraintEnd_toStartOf="@+id/editBtnDF"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editBtnDF" />
-
-        <Button
-            android:id="@+id/editBtnDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
-            android:text="@string/edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lowRangeDF" />
-
-        <Button
-            android:id="@+id/goBackBtnDF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/go_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/deleteBtnDF" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="340dp"
+        android:layout_height="455dp"
+        android:background="@drawable/borderstyle"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="14dp">
 
         <ImageButton
             android:id="@+id/productImageDF"
-            android:layout_width="152dp"
-            android:layout_height="147dp"
-            android:layout_marginStart="122dp"
-            android:layout_marginLeft="122dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="105dp"
-            android:layout_marginRight="105dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="210dp"
+            android:layout_height="118dp"
+            android:layout_gravity="center"
+            tools:src="@tools:sample/avatars" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/productNameDF"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/title_product"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_presentation_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="Presentación"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/presentationProductDF"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:paddingLeft="5dp"
+                android:background="@drawable/borderstyle"
+                android:ems="10"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_medium_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="Rango medio"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/middleRangeDF"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/borderstyle"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_low_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="Rango bajo"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/lowRangeDF"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="44dp"
+                android:background="@drawable/borderstyle"
+                android:ems="10"
+                android:paddingLeft="5dp"
+                android:hint="#entero"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="162dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteBtnDF"
+                android:layout_width="157dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/backgroundred"
+                android:text="Eliminar"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add" />
+
+            <Button
+                android:id="@+id/editBtnDF"
+                android:layout_width="156dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/backgroundgreen"
+                android:text="Editar"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/goBackBtnDF"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Volver"
+            android:background="@drawable/buttonbackground"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

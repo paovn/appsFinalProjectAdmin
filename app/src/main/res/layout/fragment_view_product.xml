@@ -16,7 +16,7 @@
         android:background="@drawable/borderstyle">
 
         <ImageButton
-            android:id="@+id/view_product_image_button"
+            android:id="@+id/productImageDF"
             android:layout_width="210dp"
             android:layout_height="118dp"
             android:layout_marginStart="32dp"
@@ -27,7 +27,7 @@
             tools:src="@tools:sample/avatars" />
 
         <EditText
-            android:id="@+id/view_product_title_ET"
+            android:id="@+id/productNameDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -47,7 +47,7 @@
                 android:text="Presentación" />
 
             <EditText
-                android:id="@+id/view_presentation_ET"
+                android:id="@+id/presentationProductDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -87,7 +87,7 @@
                 android:text="Rango medio" />
 
             <EditText
-                android:id="@+id/view_medium_range_ET"
+                android:id="@+id/middleRangeDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -107,7 +107,7 @@
                 android:text="Rango bajo" />
 
             <EditText
-                android:id="@+id/view_low_range_ET"
+                android:id="@+id/lowRangeDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -130,7 +130,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/view_delete_product_button"
+                android:id="@+id/deleteBtnDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -139,7 +139,7 @@
                 android:text="Eliminar" />
 
             <Button
-                android:id="@+id/view_edit_product_button"
+                android:id="@+id/editBtnDF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -148,7 +148,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/view_return_button"
+            android:id="@+id/goBackBtnDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Volver" />
