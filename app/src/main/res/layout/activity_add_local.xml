@@ -3,84 +3,145 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.AddLocalActivity">
-
-        <EditText
-            android:id="@+id/localNameEt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="31dp"
-            android:ems="10"
-            android:hint="@string/local_name"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/localImageBtn" />
-
-        <EditText
-            android:id="@+id/adminNameET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="@string/admin_name"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/localNameEt" />
-
-        <EditText
-            android:id="@+id/phoneET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="@string/phone"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressButton" />
-
-        <Button
-            android:id="@+id/addLocalBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/add_local"
-            app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLocalET" />
-
-        <Button
-            android:id="@+id/cancelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            app:layout_constraintBottom_toBottomOf="@+id/addLocalBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/addLocalBtn"
-            app:layout_constraintTop_toTopOf="@+id/addLocalBtn" />
+    <LinearLayout
+        android:layout_width="341dp"
+        android:layout_height="685dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347">
 
         <ImageButton
             android:id="@+id/localImageBtn"
             android:layout_width="180dp"
             android:layout_height="162dp"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/localNameEt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:ems="10"
+                android:hint="@string/local_name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/localImageBtn" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/adminNameET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/admin_name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/localNameEt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addressAddLocalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Direccion"
+                app:layout_constraintBottom_toBottomOf="@+id/addressButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/addressButton"
+                app:layout_constraintTop_toTopOf="@+id/addressButton" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/addressButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/buttonbackground"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:srcCompat="@drawable/outline_room_24"
+            tools:ignore="VectorDrawableCompat" />
+
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/borderstyle"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/phoneET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="@string/phone"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addressButton" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addLocalBtn"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/add_local"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="194dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/cancel"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
+
 
         <EditText
             android:id="@+id/passwordLocalET"
@@ -106,27 +167,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.842" />
 
-        <ImageButton
-            android:id="@+id/addressButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/addressAddLocalTV"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adminNameET"
-            app:srcCompat="@drawable/outline_room_24"
-            tools:ignore="VectorDrawableCompat" />
 
-        <TextView
-            android:id="@+id/addressAddLocalTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Direccion"
-            app:layout_constraintBottom_toBottomOf="@+id/addressButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/addressButton"
-            app:layout_constraintTop_toTopOf="@+id/addressButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    >
 </ScrollView>
