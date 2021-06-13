@@ -2,6 +2,7 @@ package com.example.appsfinalproject.fragments.owner;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -20,13 +21,19 @@ import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.RegistroContable;
 import com.example.appsfinalproject.model.Tipo_registro;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
@@ -46,12 +53,13 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private ContabilidadLocal contabilidad;
+
     private int rangeDateType;
     private String messageRangeType[];
 
-    public static final int DAY_PERIOD = 0;
-    public static final int WEEK_PERIOD = 1;
-    public static final int MONTH_PERIOD = 2;
+    private ArrayList<Integer> chartLines;
+
+
 
     public LocalStatsFragment() {
         // Required empty public constructor
@@ -88,7 +96,7 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         updateLocalAccounting();
         chart = v.findViewById(R.id.linechart);
         messageRangeType = new String[]{"Días", "Semanas", "Meses"};
-        rangeDateType = DAY_PERIOD;
+        rangeDateType = ContabilidadLocal.DAY_PERIOD;
         loadData();
         return v;
     }
@@ -110,7 +118,7 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
             case R.id.generateChart_BTN:
                 String periodo_raw = cantidadPeriodoET.getText().toString();
                 int periodo = Integer.parseInt(periodo_raw);
-                selectData(periodo,rangeDateType);
+                updateChart(periodo,rangeDateType);
                 break;
         }
 
@@ -128,7 +136,7 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
                                 Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
                                 Local local = command1.getDocuments().get(0).toObject(Local.class);
                                 contabilidad = local.getContabilidad();
-                                selectData(30, DAY_PERIOD);
+                                updateChart(30, ContabilidadLocal.DAY_PERIOD);
                             }
                     ).addOnFailureListener(
                             command2 ->{
@@ -143,33 +151,95 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         );
     }
 
-    public void selectData(int periods,int periodType){
+    public ArrayList selectData(int periods,int periodType, int dataType){
         ArrayList data = new ArrayList();
-        ArrayList xAxis = new ArrayList();
+        //ArrayList xAxis = new ArrayList();
 
         switch (periodType){
-            case DAY_PERIOD:
-                data = contabilidad.getRangeDays(periods);
+            case ContabilidadLocal.DAY_PERIOD:
+                data = contabilidad.getRange(periods,dataType, Calendar.DAY_OF_YEAR,"MMM dd");
                 break;
-            case WEEK_PERIOD:
+            case ContabilidadLocal.WEEK_PERIOD:
+                data = contabilidad.getRange(periods,dataType, Calendar.WEEK_OF_YEAR,"yyyy MMM dd");
                 break;
-            case MONTH_PERIOD:
+            case ContabilidadLocal.MONTH_PERIOD:
+                data = contabilidad.getRange(periods,dataType, Calendar.MONTH,"yyyy MMM dd");
+                //data = contabilidad.getRangeMonths(periods,dataType);
                 break;
         }
-
-        updateChart(data);
+        return data;
     }
 
-    private void updateChart(ArrayList<Entry> data) {
+    private void updateChart(int periods,int periodType) {
         this.getActivity().runOnUiThread(
                 () -> {
-                    LineDataSet lineDataSet = new LineDataSet(data,"Rendimientos");
-                    LineData dataChart = new LineData(lineDataSet);
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    ArrayList<String> xLabels = new ArrayList<>();
+
+                    xLabels = contabilidad.getRangeXaxis(periods,periodType,"dd-MM-yy");
+
+                    if(ingresosCB.isChecked()){
+                        ArrayList data = selectData(periods,periodType,ContabilidadLocal.INCOME_TYPE);
+                        dataSets.add(createLineData(data, android.R.color.holo_green_dark,android.R.color.holo_green_light ));
+                    }
+
+                    if(egresosCB.isChecked()){
+                        ArrayList data = selectData(periods,periodType,ContabilidadLocal.SPENDS_TYPE);
+                        dataSets.add(createLineData(data, android.R.color.holo_red_dark,android.R.color.holo_red_light ));
+                    }
+
+                    if(utilidadCB.isChecked()){
+                        ArrayList data = selectData(periods,periodType,ContabilidadLocal.UTILITY_TYPE);
+                        dataSets.add(createLineData(data, android.R.color.holo_blue_dark,android.R.color.holo_blue_light ));
+                    }
+
+                    if(!(ingresosCB.isChecked() || egresosCB.isChecked() || utilidadCB.isChecked())){
+                        ArrayList data = selectData(periods,periodType,ContabilidadLocal.INCOME_TYPE);
+                        dataSets.add(createLineData(data, android.R.color.holo_green_dark,android.R.color.holo_green_light ));
+                    }
+
+                    LineData dataChart = new LineData(dataSets);
                     chart.setData(dataChart);
-                    chart.invalidate();
+                    changeCharacteristicsChart(chart,xLabels);
                 }
         );
 
+    }
+
+    private void changeCharacteristicsChart(LineChart chart, ArrayList<String> xValues) {
+        chart.getAxisRight().setEnabled(false);
+
+        XAxis xAxis = chart.getXAxis();
+
+        xAxis.setGranularity(1f);
+
+
+
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                if((int)value == xValues.size()) return "";
+                return xValues.get((int)(value));
+            }
+        });
+
+        chart.invalidate();
+    }
+
+    private LineDataSet createLineData(ArrayList<Entry> data, int lineColor, int fillColor){
+        lineColor = ContextCompat.getColor(this.getContext(), lineColor);
+        fillColor = ContextCompat.getColor(this.getContext(), fillColor);
+        LineDataSet dataSet = new LineDataSet(data,"Rendimientos");
+        dataSet.setDrawCircles(true);
+        dataSet.setCircleColor(lineColor);
+        dataSet.setValueTextSize(0f);
+        dataSet.setLineWidth(3f); //lineWidth = 3f;
+        //dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        dataSet.setColor(lineColor);
+        dataSet.setDrawFilled(true);
+        dataSet.setLabel("");
+        dataSet.setFillColor(fillColor);
+        return dataSet;
     }
 
     //Creación de información dummy
