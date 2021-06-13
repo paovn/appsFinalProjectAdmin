@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         db = FirebaseFirestore.getInstance();
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
+        Log.e(">>>", "passwordEt = " + passwordET);
         loginBtn = findViewById(R.id.loginBTN);
         loginBtn.setOnClickListener(this);
       //  creatUserLocal();
