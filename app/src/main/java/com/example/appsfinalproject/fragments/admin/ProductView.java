@@ -24,6 +24,7 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
     private Button registerProductBtn;
 
     private EditProductDialogFragment editProductDialogFragment;
+    private OrderProductDialogFragment orderProductDialogFragment;
 
 
     private FragmentManager fragmentManager;
@@ -44,6 +45,7 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
         editProductBtn.setOnClickListener(this);
         registerProductBtn.setOnClickListener(this);
         editProductDialogFragment = new EditProductDialogFragment("", "", null);
+        orderProductDialogFragment= new OrderProductDialogFragment(null, "");
     }
 
     public View getRoot() {
@@ -97,6 +99,9 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
                 editProductDialogFragment.show(fragmentManager, "editProduct");
                 break;
             case R.id.registerProductBtn:
+                orderProductDialogFragment.setLocalId(localId);
+                orderProductDialogFragment.setProduct(product);
+                orderProductDialogFragment.show(fragmentManager, "orderProduct");
                 break;
         }
     }
@@ -111,6 +116,10 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
 
     public void setLocalId(String localId) {
         this.localId = localId;
+    }
+
+    public OrderProductDialogFragment getOrderProductDialogFragment() {
+        return orderProductDialogFragment;
     }
 
     public void setProduct(Producto product) {

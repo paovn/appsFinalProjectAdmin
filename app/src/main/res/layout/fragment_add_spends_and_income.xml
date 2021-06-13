@@ -45,9 +45,9 @@
                     android:ems="10"
                     android:hint="Nombre del gasto/ingreso"
                     android:inputType="textPersonName"
-                    android:background="transparent"
                     android:paddingVertical="14dp"
                     android:paddingHorizontal="16dp"/>
+                <!-->android:background="transparent-->
             </LinearLayout>
 
             <LinearLayout
@@ -64,7 +64,7 @@
                     android:layout_height="50dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:background="transparent"/>
+                  />
             </LinearLayout>
 
             <LinearLayout
