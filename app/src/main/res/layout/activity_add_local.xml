@@ -131,7 +131,7 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -253,4 +253,4 @@
             app:layout_constraintStart_toEndOf="@+id/addressButton"
             app:layout_constraintTop_toTopOf="@+id/addressButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+

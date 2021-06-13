@@ -12,8 +12,33 @@
         tools:context=".fragments.admin.AddProductFragment">
 
         <LinearLayout
-            android:layout_width="340dp"
-            android:layout_height="650dp"
+            android:layout_width="411dp"
+            android:layout_height="94dp"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="10dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="transparent"
+                android:src="@drawable/volver" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:src="@drawable/logoapanados" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="352dp"
+            android:layout_height="525dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +52,6 @@
                 android:layout_width="210dp"
                 android:layout_height="118dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 tools:src="@tools:sample/avatars" />
 
             <LinearLayout
@@ -42,45 +66,50 @@
                     android:id="@+id/add_register_name_ET"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
+                    android:background="transparent"
                     android:ems="10"
                     android:hint="Nombre del gasto/ingreso"
                     android:inputType="textPersonName"
-                    android:background="transparent"
-                    android:paddingVertical="14dp"
-                    android:paddingHorizontal="16dp"/>
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="14dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:orientation="vertical"
+                android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/borderstyle"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/add_amount_ET"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
+                    android:background="transparent"
                     android:ems="10"
+                    android:hint="Tipo"
                     android:inputType="textPersonName"
-                    android:background="transparent"/>
+                    android:paddingHorizontal="15dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:orientation="vertical"
+                android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/borderstyle"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/add_amount_TV"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:ems="10"
                     android:hint="@string/monto"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="10dp"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -88,23 +117,23 @@
                 android:id="@+id/add_inconme_BTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:text="@string/agregar_como_ingreso"
                 android:background="@drawable/buttonbackground"
+                android:text="@string/agregar_como_ingreso"
                 app:backgroundTint="@color/browser_actions_divider_color"
-                app:backgroundTintMode="add"
-                android:layout_gravity="center"/>
+                app:backgroundTintMode="add" />
 
             <Button
                 android:id="@+id/add_product_BTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:text="@string/agregar_como_costo"
                 android:background="@drawable/buttonbackground"
+                android:text="@string/agregar_como_costo"
                 app:backgroundTint="@color/browser_actions_divider_color"
-                app:backgroundTintMode="add"
-                android:layout_gravity="center"/>
+                app:backgroundTintMode="add" />
 
         </LinearLayout>
 

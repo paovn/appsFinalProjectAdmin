@@ -7,13 +7,14 @@
     tools:context=".fragments.admin.ViewProductFragment">
 
     <LinearLayout
-        android:layout_width="339dp"
-        android:layout_height="501dp"
+        android:layout_width="340dp"
+        android:layout_height="500dp"
         android:gravity="center"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="34dp"
-        android:background="@drawable/borderstyle">
+        android:background="@drawable/borderstyle"
+        tools:ignore="MissingConstraints">
 
         <ImageButton
             android:id="@+id/view_product_image_button"
@@ -24,134 +25,183 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/view_product_title_ET"
-            android:layout_width="wrap_content"
+            android:layout_width="136dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="transparent"
             android:ems="10"
             android:hint="Título del producto"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="323dp"
+            android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/view_presentation_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Presentación" />
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="Presentación"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/view_presentation_ET"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/borderstyle"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_marginLeft="30dp"
+                android:hint="#entero"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="326dp"
-            android:layout_height="64dp"
-            android:orientation="horizontal">
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/view_unit_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unidad" />
+                android:text="Unidad"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/view_unit_ET"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:background="@drawable/borderstyle"
+                android:layout_marginStart="74dp"
+                android:hint="#entero" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="340dp"
             android:layout_height="54dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/view_medium_range_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rango medio" />
+                android:text="Rango medio"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/view_medium_range_ET"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_gravity="center"
+                android:background="@drawable/borderstyle"
+                android:layout_marginLeft="30dp"
+                android:hint="#entero"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_width="340dp"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/view_low_range_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rango bajo" />
+                android:text="Rango bajo"
+                android:layout_gravity="center"
+                android:paddingHorizontal="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/view_low_range_ET"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_gravity="center"
+                android:background="@drawable/borderstyle"
+                android:layout_marginLeft="44dp"
+                android:hint="#entero"/>
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="332dp"
-        android:layout_height="179dp"
+        android:layout_width="352dp"
+        android:layout_height="162dp"
         android:orientation="vertical"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="525dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/view_delete_product_button"
-                android:layout_width="wrap_content"
+                android:layout_width="157dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Eliminar" />
+                android:layout_gravity="center"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/backgroundRed"
+                android:text="Eliminar"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add" />
 
             <Button
                 android:id="@+id/view_edit_product_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="Editar" />
+                android:layout_width="156dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/backgroundgreen"
+                android:text="Editar"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add" />
         </LinearLayout>
 
         <Button
             android:id="@+id/view_return_button"
-            android:layout_width="wrap_content"
+            android:layout_width="308dp"
             android:layout_height="wrap_content"
-            android:text="Volver" />
+            android:layout_gravity="center"
+            android:background="@drawable/buttonbackground"
+            android:text="Volver"
+            app:backgroundTint="@color/browser_actions_divider_color"
+            app:backgroundTintMode="add" />
 
     </LinearLayout>
 
