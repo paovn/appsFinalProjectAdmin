@@ -17,7 +17,8 @@
     <string name="phone">Telefono</string>
     <string name="add_local">Añadir local</string>
     <string name="cancel">Cancelar</string>
-
+    <string name="title_activity_choose_direction_maps">Map</string>
+    <string name="title_activity_vojabes_maps">Map</string>
 
 
 </resources>

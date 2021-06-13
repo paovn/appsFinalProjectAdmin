@@ -1,7 +1,9 @@
 package com.example.appsfinalproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Log.e(">>>", "passwordEt = " + passwordET);
         loginBtn = findViewById(R.id.loginBTN);
         loginBtn.setOnClickListener(this);
-      //  creatUserLocal();
+        requestPermissions(); // pedimos los permisos aqui para que no se vojabecee luego
     }
 
     @Override
@@ -106,5 +108,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             });
                 });
 
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        }, 12345);
     }
 }

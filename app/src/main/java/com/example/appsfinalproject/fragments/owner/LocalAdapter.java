@@ -27,12 +27,11 @@ import java.util.List;
 
 public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     private List<Local> locals;
-    LocalView.OnLocalClickAction onLocalClickAction;
+    OnLocalClickAction onLocalClickAction;
     private FirebaseStorage storage;
 
-    public LocalAdapter(LocalView.OnLocalClickAction onLocalClickAction) {
+    public LocalAdapter() {
         locals = new ArrayList<>();
-        this.onLocalClickAction = onLocalClickAction;
         storage = FirebaseStorage.getInstance();
     }
 
@@ -47,7 +46,7 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View root = inflater.inflate(R.layout.row_local, null);
         ConstraintLayout rowroot = (ConstraintLayout) root;
-        LocalView localView = new LocalView(rowroot, onLocalClickAction);
+        LocalView localView = new LocalView(rowroot);
         Log.e(">>>", "Creando viewholder para el Local");
         return localView;
     }
@@ -55,9 +54,11 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     @Override
     public void onBindViewHolder(@NonNull LocalView holder, int position) {
         Local local = locals.get(position);
+        downloadPhoto(local.getPhotoId(), holder);
         holder.setLocalId(local.getId());
         holder.getLocalNameTV().setText(local.getNombreLocal());
-        downloadPhoto(local.getPhotoId(), holder);
+        holder.getLocalImage().setOnClickListener(v -> onLocalClickAction.goToLocalInventory(holder.getLocalId()));
+        holder.getLocalNameTV().setOnClickListener(v -> onLocalClickAction.goToLocalInventory(holder.getLocalId()));
         Log.e(">>>", "Se le da el viewholder al Local");
     }
 
@@ -79,5 +80,13 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     public void setLocals(List<Local> locals) {
         this.locals = locals;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnLocalClickAction listener) {
+        this.onLocalClickAction = listener;
+    }
+
+    public static interface OnLocalClickAction {
+        void goToLocalInventory(String localId);
     }
 }

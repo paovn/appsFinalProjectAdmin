@@ -16,9 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.activities.commons.ChooseDirectionMapsActivity;
 import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.ContabilidadLocal;
@@ -39,10 +41,12 @@ import java.util.UUID;
 public class AddLocalActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int GALLERY_CALLBACK = 11;
+    private static final int CHOOSE_ADDRESS_CALLBACK = 12;
+
     private ImageButton localImageBtn;
     private EditText localNameET;
     private EditText adminNameET;
-    private EditText addressET;
+    private ImageButton addressButton;
     private EditText phoneET;
     private EditText passwordET;
     private Button addLocalBtn;
@@ -50,6 +54,9 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private FirebaseStorage storage;
+
+    private TextView addressTV;
+
     private String path;
 
     @Override
@@ -63,13 +70,15 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         localImageBtn.setOnClickListener(this);
         localNameET = findViewById(R.id.localNameEt);
         adminNameET = findViewById(R.id.adminNameET);
-        addressET = findViewById(R.id.addressET);
+        addressButton = findViewById(R.id.addressButton);
+        addressButton.setOnClickListener(this);
         phoneET = findViewById(R.id.phoneET);
         passwordET = findViewById(R.id.passwordLocalET);
         addLocalBtn = findViewById(R.id.addLocalBtn);
         cancelBtn = findViewById(R.id.cancelBtn);
         addLocalBtn.setOnClickListener(this);
         cancelBtn.setOnClickListener(this);
+        addressTV = findViewById(R.id.addressAddLocalTV);
     }
 
     @Override
@@ -79,13 +88,20 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                 addAdministratorForNewLocalInFirebaseAuth();
                 break;
             case R.id.cancelBtn:
-                Intent i = new Intent(this, MainActivityOwner.class).putExtra("from", "AddLocalActivity");
+                /*Intent i = new Intent(this, MainActivityOwner.class).putExtra("from", "AddLocalActivity");
                 startActivity(i);
+                No es necesario, solo se hace finish y funciona jabroso
+                */
+                finish();
                 break;
             case R.id.localImageBtn:
                 Intent i2 = new Intent(Intent.ACTION_GET_CONTENT);
                 i2.setType("image/*");
                 startActivityForResult(i2, GALLERY_CALLBACK);
+                break;
+            case R.id.addressButton:
+                Intent i3 = new Intent(this, ChooseDirectionMapsActivity.class);
+                startActivityForResult(i3, CHOOSE_ADDRESS_CALLBACK);
                 break;
         }
     }
@@ -100,10 +116,16 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         storage.getReference().child("local").child(photoID).putStream(fis).addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Subida la foto");
+                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK);
+                    finish();
                 }
         ).addOnFailureListener(
                 command2-> {
                     Log.e(">>>", "Falló al subir la imagen");
+                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK);
+                    finish();
                 }
         );
     }
@@ -125,7 +147,6 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     private void addAdministratorForNewLocalInFirebaseAuth() {
         String localName = localNameET.getText().toString();
         String adminName = adminNameET.getText().toString();
-        String address = addressET.getText().toString();
         String phone = phoneET.getText().toString();
 
         Inventario inventario = new Inventario();
@@ -136,7 +157,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                 command -> {
                     String id = command.getUser().getUid();
                     Log.e(">>>", "id de usuario creado = " + id + ", id del admin = " + idOwner);
-                    Local local = new Local(localName,adminName,address, phone,inventario,id,id);
+                    Local local = new Local(localName,adminName, addressTV.getText().toString(), phone,inventario,id,id);
                     ContabilidadLocal contabilidadLocal = new ContabilidadLocal(UUID.randomUUID().toString());
                     local.setContabilidad(contabilidadLocal);
                     Log.e(">>>", "Se creo el admin del local " + local.getId() + " en FirebaseAuth");
@@ -155,12 +176,9 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
         .addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Se ha creado el usuario admin del local " + local.getId() + " en FirebaseFirestore");
-                    uploadPhoto(local.getPhotoId());
                     addLocalToOwner(local.getId(), idOwner);
                     saveLocal(local);
-                    Toast.makeText(this, "Se ha añadido el local correctamente", Toast.LENGTH_LONG).show();
-                    setResult(RESULT_OK);
-                    finish();
+                    uploadPhoto(local.getPhotoId());
                     String msg = "El local \"" + local.getNombreLocal() + "\" ha sido creado.\n" +
                             "El nombre de usuario del administrador del local es " + emailAdminLocal + " y la clave es la que ha elegido en el momento de inscripcion del local.";
                     NotificationUtil.createNotification(this, "Se ha creado un nuevo local", msg, new Intent(this, AddLocalActivity.class));
@@ -199,6 +217,10 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             localImageBtn.setImageBitmap(bitmap);
             Log.e(">>>", "Se puso la imagen en el boton");
+        } else if(requestCode == CHOOSE_ADDRESS_CALLBACK && resultCode == Activity.RESULT_OK) {
+            String address = data.getExtras().getString("address");
+            addressTV.setText(address);
+            Log.e(">>>", "address is " + address);
         }
     }
 }
