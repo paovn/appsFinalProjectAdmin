@@ -5,6 +5,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appsfinalproject.R;
@@ -16,6 +18,7 @@ public class ProductView extends RecyclerView.ViewHolder {
     private TextView quantityTV;
     private TextView lowRangeTV;
     private ImageView productImage;
+    private ConstraintLayout rowProductCL;
 
     public ProductView(@NonNull View itemView) {
         super(itemView);
@@ -25,6 +28,8 @@ public class ProductView extends RecyclerView.ViewHolder {
         quantityTV = root.findViewById(R.id.quantityTV);
         lowRangeTV = root.findViewById(R.id.low_range_TV);
         productImage = root.findViewById(R.id.row_product_img_view);
+        rowProductCL = root.findViewById(R.id.rowProductCL);
+        rowProductCL.setBackgroundColor(ContextCompat.getColor(root.getContext(), R.color.red));
     }
 
     public View getRoot() {
