@@ -36,18 +36,6 @@
             app:layout_constraintTop_toBottomOf="@+id/localNameEt" />
 
         <EditText
-            android:id="@+id/addressET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="@string/address"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adminNameET" />
-
-        <EditText
             android:id="@+id/phoneET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +45,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressET" />
+            app:layout_constraintTop_toBottomOf="@+id/addressButton" />
 
         <Button
             android:id="@+id/addLocalBtn"
@@ -103,5 +91,39 @@
             app:layout_constraintEnd_toEndOf="@+id/phoneET"
             app:layout_constraintStart_toStartOf="@+id/phoneET"
             app:layout_constraintTop_toBottomOf="@+id/phoneET" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Cambia la imagen del local"
+            app:layout_constraintBottom_toTopOf="@+id/localImageBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.842" />
+
+        <ImageButton
+            android:id="@+id/addressButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toStartOf="@+id/addressAddLocalTV"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adminNameET"
+            app:srcCompat="@drawable/outline_room_24" />
+
+        <TextView
+            android:id="@+id/addressAddLocalTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            app:layout_constraintBottom_toBottomOf="@+id/addressButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/addressButton"
+            app:layout_constraintTop_toTopOf="@+id/addressButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

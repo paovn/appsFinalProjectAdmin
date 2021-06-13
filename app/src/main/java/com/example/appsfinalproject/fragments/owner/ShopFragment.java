@@ -32,7 +32,7 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 
-public class ShopFragment extends Fragment implements View.OnClickListener, LocalView.OnLocalClickAction {
+public class ShopFragment extends Fragment implements View.OnClickListener, LocalAdapter.OnLocalClickAction {
 
     public static final int ADD_LOCAL_REQUEST_CODE = 12345;
 
@@ -63,7 +63,8 @@ public class ShopFragment extends Fragment implements View.OnClickListener, Loca
         shopList = v.findViewById(R.id.shop_RV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         shopList.setLayoutManager(manager);
-        localAdapter = new LocalAdapter(this);
+        localAdapter = new LocalAdapter();
+        localAdapter.setListener(this);
         shopList.setAdapter(localAdapter);
         getLocalsFromDatabase();
 
@@ -86,6 +87,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener, Loca
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
+
         Log.e(">>>", "requestCode = " + requestCode + ", resultCode = " + resultCode + ", resultOk = " + RESULT_OK);
         if(requestCode == ADD_LOCAL_REQUEST_CODE && resultCode == RESULT_OK) {
             Log.e(">>>", "Aniadiendo el local al RecyclerView");
@@ -94,15 +96,10 @@ public class ShopFragment extends Fragment implements View.OnClickListener, Loca
     }
 
     public void getLocalsFromDatabase() {
-        ArrayList<Local> locals = new ArrayList<>();
         FirebaseFirestore.getInstance().collection("local")
                 .get().addOnSuccessListener(
                         command -> {
-                            List<DocumentSnapshot> docs = command.getDocuments();
-                            for(DocumentSnapshot doc : docs) {
-                                locals.add(doc.toObject(Local.class));
-                                Log.e(">>>", "Local: " + doc.toString());
-                            }
+                            List<Local> locals = command.toObjects(Local.class);
                             Log.e(">>>", "Se trajo los locales de la base de datos");
                             localAdapter.setLocals(locals);
                         }
