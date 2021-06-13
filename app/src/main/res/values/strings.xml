@@ -33,7 +33,9 @@
     <string name="go_back">Volver</string>
     <string name="add">Agregar</string>
     <string name="title_product">Nombre del producto</string>
-
+    <string name="price">Precio</string>
+    <string name="quantity">Cantidad</string>
+    <string name="egress">¿Es un egreso?</string>
 
 
 

@@ -62,7 +62,7 @@ public class EditProductDialogFragment extends DialogFragment implements View.On
     public void onStart() {
         super.onStart();
         //Aseguramos el tamaño del dialog
-        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //Ponemos el dialogo transparente para poder usar bordes redondos
       //  getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
