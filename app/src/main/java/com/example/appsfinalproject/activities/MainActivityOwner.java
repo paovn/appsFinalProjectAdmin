@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.ShopFragment;
+import com.example.appsfinalproject.model.Local;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivityOwner extends AppCompatActivity {
@@ -17,12 +19,15 @@ public class MainActivityOwner extends AppCompatActivity {
 
     private ShopFragment shopFragment;
 
+    private LocalStatsFragment localStatsFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_owner);
 
         shopFragment = ShopFragment.newInstance();
+        localStatsFragment = LocalStatsFragment.newInstance();
         configureNavigator();
         navigator.setSelectedItemId(R.id.owner_shops_item); // hace click en el fragment y lo muestra
     }
@@ -40,7 +45,7 @@ public class MainActivityOwner extends AppCompatActivity {
                             showFragment(shopFragment);
                             break;
                         case R.id.owner_stats_general_item:
-                            // TODO
+                            showFragment(localStatsFragment);
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra
@@ -48,7 +53,7 @@ public class MainActivityOwner extends AppCompatActivity {
         );
     }
 
-    private void showFragment(Fragment fragment) {
+    public void showFragment(Fragment fragment) {
         // todas las actividades vienen con el fragmentManager solo lo debemos llamar
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

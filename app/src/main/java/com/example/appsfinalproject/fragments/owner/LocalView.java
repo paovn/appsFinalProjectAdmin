@@ -13,6 +13,7 @@ public class LocalView extends RecyclerView.ViewHolder {
     private View root;
     private TextView localNameTV;
     private ImageView localImage;
+    private String localId;
 
     public LocalView(@NonNull View itemView) {
         super(itemView);
@@ -44,5 +45,13 @@ public class LocalView extends RecyclerView.ViewHolder {
 
     public void setLocalImage(ImageView localImage) {
         this.localImage = localImage;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
     }
 }

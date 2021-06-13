@@ -6,51 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".fragments.owner.LocalStatsFragment">
 
-    <androidx.constraintlayout.utils.widget.MockView
-        android:id="@+id/mockView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/period"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/back_period_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="previo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/period"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/period_TV"
+        app:layout_constraintEnd_toStartOf="@+id/period_TV"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/period_TV" />
 
     <Button
         android:id="@+id/advance_period_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="siguiente"
-        app:layout_constraintBottom_toBottomOf="@+id/period"
+        app:layout_constraintBottom_toBottomOf="@+id/period_TV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/period"
-        app:layout_constraintTop_toTopOf="@+id/period" />
+        app:layout_constraintStart_toEndOf="@+id/period_TV"
+        app:layout_constraintTop_toTopOf="@+id/period_TV" />
 
     <TextView
-        android:id="@+id/period"
+        android:id="@+id/period_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Periodicidad"
-        app:layout_constraintBottom_toBottomOf="@+id/back_period_button"
-        app:layout_constraintEnd_toStartOf="@+id/advance_period_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/back_period_button"
-        app:layout_constraintTop_toTopOf="@+id/back_period_button" />
+        android:layout_marginTop="32dp"
+        android:text="Días "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catidadPeriodo_ET" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/egresos_CB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/catidadPeriodo_ET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Digite el número de periodos"
+        app:layout_constraintBottom_toTopOf="@+id/catidadPeriodo_ET"
+        app:layout_constraintStart_toStartOf="@+id/catidadPeriodo_ET" />
+
+    <CheckBox
+        android:id="@+id/ingresos_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="Ingresos"
+        app:layout_constraintBottom_toBottomOf="@+id/egresos_CB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/egresos_CB"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/egresos_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="Egresos"
+        app:layout_constraintBottom_toBottomOf="@+id/utilidad_CB"
+        app:layout_constraintStart_toEndOf="@+id/ingresos_CB"
+        app:layout_constraintTop_toTopOf="@+id/utilidad_CB" />
+
+    <CheckBox
+        android:id="@+id/utilidad_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Utilidadad"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toEndOf="@+id/egresos_CB" />
+
+    <Button
+        android:id="@+id/generateChart_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Generar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/period_TV" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

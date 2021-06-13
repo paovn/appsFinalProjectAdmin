@@ -4,11 +4,11 @@
     <item
         android:id="@+id/principalItem"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="Principal" />
+        android:title="Productos" />
     <item
         android:id="@+id/contabilidadItem"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="Contabilidad" />
+        android:title="Alertas" />
     <item
         android:id="@+id/aniadirItem"
         android:icon="@drawable/ic_launcher_foreground"

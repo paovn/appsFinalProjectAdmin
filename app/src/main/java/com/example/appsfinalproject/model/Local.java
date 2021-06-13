@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Local {
     private String nombreLocal;
     private String nombreEncargado;
+    private String direccion;
     private String telefono;
     private Inventario inventario;
     private ContabilidadLocal contabilidad;
@@ -15,13 +16,14 @@ public class Local {
 
     }
 
-    public Local(String nombreLocal, String nombreEncargado,String telefono, Inventario inventario, String id, String photoID) {
+    public Local(String nombreLocal, String nombreEncargado, String direccion, String telefono, Inventario inventario, String id, String photoID) {
         this.nombreLocal = nombreLocal;
         this.nombreEncargado=nombreEncargado;
         this.telefono = telefono;
         this.inventario = inventario;
         this.id = id;
         this.photoId = photoID;
+        this.direccion = direccion;
     }
 
     public String getNombreLocal() {
@@ -54,6 +56,26 @@ public class Local {
 
     public void setContabilidad(ContabilidadLocal contabilidad) {
         this.contabilidad = contabilidad;
+    }
+
+    public void setNombreEncargado(String nombreEncargado) {
+        this.nombreEncargado = nombreEncargado;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
     }
 
     public String getNombreEncargado() {

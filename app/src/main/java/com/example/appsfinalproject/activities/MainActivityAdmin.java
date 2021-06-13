@@ -16,6 +16,7 @@ import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
 import com.example.appsfinalproject.fragments.owner.AddSpendsAndIncomeFragment;
+import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
@@ -40,6 +41,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private ViewProductFragment viewProductFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
     private AddSpendsAndIncomeFragment addSpendsAndIncomeFragment;
+    private LocalStatsFragment localStatsFragment;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
@@ -49,18 +51,17 @@ public class MainActivityAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_main_admin);
 
         productFragment = ProductFragment.newInstance();
-        addProductFragment = AddProductFragment.newInstance();
+        addProductFragment = AddProductFragment.newInstance(this);
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
         addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
+        localStatsFragment = LocalStatsFragment.newInstance();
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
         requestPermissions();
         configureNavigator();
-        //saveUser(createUser());
-        //saveUserLocal();
         showFragment(productFragment);
     }
 
@@ -93,7 +94,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                             showFragment(addSpendsAndIncomeFragment);
                             break;
                         case R.id.estadisticasItem:
-                            // TODO
+                            showFragment(localStatsFragment);
                             break;
                     }
                     return true; // le estoy diciendo que si estoy manejando la acción de la barra
@@ -114,11 +115,10 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         AdministradorGeneral user = new AdministradorGeneral(
                 "admin@admin.com",
-                "admon169",
                 id,
                 Tipo_usuario.ADMINISTRADOR_G
         );
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), user.getPassword())
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUsername(), "admon169")
                 .addOnSuccessListener(
                         command -> {
                             Log.e(">>>", "Admin fue registrado en FireBaseAuth");
@@ -139,12 +139,16 @@ public class MainActivityAdmin extends AppCompatActivity {
                 .document(user.getId()).set(user)
                 .addOnSuccessListener(
                         dbtask -> {
-                            Log.e(">>>", "Admin registrado en la base de datos");
+                            Log.e(">>>", "Admin registrado/actualizado en la base de datos");
                         }
                 ).addOnFailureListener(
                         task -> {
-                            Log.e(">>>", "Error al registrar al Admin en la base de datos: " + task.getMessage());
+                            Log.e(">>>", "Error al registrar/actualizar al Admin en la base de datos: " + task.getMessage());
                         });
+    }
+
+    public BottomNavigationView getNavigator() {
+        return navigator;
     }
 
 /*

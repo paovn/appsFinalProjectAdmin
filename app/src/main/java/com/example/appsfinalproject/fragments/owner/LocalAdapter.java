@@ -6,22 +6,33 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.model.Local;
+import com.example.appsfinalproject.util.UtilDomi;
+import com.google.firebase.storage.FirebaseStorage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     private List<Local> locals;
+    OnLocalClickAction onLocalClickAction;
+    private FirebaseStorage storage;
 
     public LocalAdapter() {
         locals = new ArrayList<>();
+        storage = FirebaseStorage.getInstance();
     }
 
     public void addLocal(Local local) {
@@ -43,10 +54,22 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     @Override
     public void onBindViewHolder(@NonNull LocalView holder, int position) {
         Local local = locals.get(position);
-        /*Bitmap bitmap = BitmapFactory.decodeFile("/path/to/image/when/available.png"); // TODO
-        holder.getLocalImage().setImageBitmap(bitmap);*/
+        downloadPhoto(local.getPhotoId(), holder);
+        holder.setLocalId(local.getId());
         holder.getLocalNameTV().setText(local.getNombreLocal());
+        holder.getLocalImage().setOnClickListener(v -> onLocalClickAction.goToLocalInventory(holder.getLocalId()));
+        holder.getLocalNameTV().setOnClickListener(v -> onLocalClickAction.goToLocalInventory(holder.getLocalId()));
         Log.e(">>>", "Se le da el viewholder al Local");
+    }
+
+    public void downloadPhoto(String photoId, LocalView holder) {
+        storage.getReference().child("local").child(photoId).getDownloadUrl().addOnCompleteListener(
+                urlTask -> {
+                    String url = urlTask.getResult().toString();
+                    ImageView img = holder.getLocalImage();
+                    Glide.with(img).load(url).into(img);
+                }
+        );
     }
 
     @Override
@@ -57,5 +80,13 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalView> {
     public void setLocals(List<Local> locals) {
         this.locals = locals;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnLocalClickAction listener) {
+        this.onLocalClickAction = listener;
+    }
+
+    public static interface OnLocalClickAction {
+        void goToLocalInventory(String localId);
     }
 }

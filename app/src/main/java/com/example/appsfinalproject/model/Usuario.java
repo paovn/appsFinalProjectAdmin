@@ -4,17 +4,13 @@ import com.google.firebase.firestore.Exclude;
 
 public class Usuario {
     private String username;
-    @Exclude // FIXME la contrasenia no se supone que se guarde NUNCA, ni siquiera de forma local. Con esta anotacion se evita que se suba a Firestore
-    private String password; // FIXME considerar dejar que FirebaseAuth se encargue de esto y eliminar el atributo
-    private String idLocal;
     private String id;
     private Tipo_usuario tipo;
 
     public Usuario(){}
 
-    public Usuario(String username, String password, String id, Tipo_usuario tipo) {
+    public Usuario(String username, String id, Tipo_usuario tipo) {
         this.username = username;
-        this.password = password;
         this.id = id;
         this.tipo = tipo;
     }
@@ -25,14 +21,6 @@ public class Usuario {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getId() {
@@ -49,13 +37,5 @@ public class Usuario {
 
     public void setTipo(Tipo_usuario tipo) {
         this.tipo = tipo;
-    }
-
-    public void setIdLocal(String idLocal) {
-        this.idLocal = idLocal;
-    }
-
-    public String getIdLocal() {
-        return idLocal;
     }
 }

@@ -6,10 +6,11 @@ public class AdministradorGeneral extends Usuario{
     private ArrayList<String> idlocales;
 
     public AdministradorGeneral() {
+        idlocales = new ArrayList<>();
     }
 
-    public AdministradorGeneral(String username, String password, String id, Tipo_usuario tipo) {
-        super(username,password,id,tipo);
+    public AdministradorGeneral(String username, String id, Tipo_usuario tipo) {
+        super(username,id,tipo);
         this.idlocales = new ArrayList<>();
     }
 
