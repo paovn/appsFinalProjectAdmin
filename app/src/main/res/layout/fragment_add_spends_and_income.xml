@@ -1,86 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.admin.AddProductFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".fragments.owner.AddSpendsAndIncomeFragment">
+    android:layout_width="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.admin.AddProductFragment">
-
-        <TextView
-            android:id="@+id/add_amount_TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monto"
-            app:layout_constraintBottom_toBottomOf="@+id/add_amount_ET"
-            app:layout_constraintEnd_toStartOf="@+id/add_amount_ET"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/add_amount_ET" />
-
-        <EditText
-            android:id="@+id/add_amount_ET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginRight="84dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_register_name_ET" />
-
-        <Button
-            android:id="@+id/add_product_BTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Agregar como costo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_amount_ET" />
-
-        <Button
-            android:id="@+id/add_inconme_BTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Agregar como ingreso"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_product_BTN"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageButton
-            android:id="@+id/add_product_image_button2"
-            android:layout_width="210dp"
-            android:layout_height="118dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="104dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.598"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/add_register_name_ET"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint=" Nombre del gasto/ingreso"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_product_image_button2" />
+            <ImageButton
+                android:id="@+id/add_product_image_button2"
+                android:layout_width="210dp"
+                android:layout_height="118dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                tools:src="@tools:sample/avatars" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/borderstyle"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/add_register_name_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Nombre del gasto/ingreso"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp" />
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/borderstyle"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/add_amount_ET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Cantidad"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/borderstyle"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/add_amount_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="@string/monto"
+                    android:paddingLeft="10dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/add_inconme_BTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/agregar_como_ingreso"
+                android:background="@drawable/buttonbackground"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/add_product_BTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/agregar_como_costo"
+                android:background="@drawable/buttonbackground"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+</ScrollView>

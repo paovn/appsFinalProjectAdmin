@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
         Log.e(">>>", "passwordEt = " + passwordET);
-        loginBtn = findViewById(R.id.loginBTN);
+        loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);
         requestPermissions(); // pedimos los permisos aqui para que no se vojabecee luego
     }
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.loginBTN:
+            case R.id.loginBtn:
                 login();
                 break;
         }

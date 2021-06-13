@@ -6,151 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".fragments.admin.ViewProductFragment">
 
-    <EditText
-        android:id="@+id/view_product_title_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Título del producto"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/view_product_image_button"
-        app:layout_constraintStart_toStartOf="@+id/view_product_image_button"
-        app:layout_constraintTop_toBottomOf="@+id/view_product_image_button" />
+    <LinearLayout
+        android:layout_width="339dp"
+        android:layout_height="501dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="34dp"
+        android:background="@drawable/borderstyle">
 
-    <ImageButton
-        android:id="@+id/view_product_image_button"
-        android:layout_width="210dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        <ImageButton
+            android:id="@+id/productImageDF"
+            android:layout_width="210dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/view_presentation_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Presentación"
-        app:layout_constraintBottom_toBottomOf="@+id/view_presentation_ET"
-        app:layout_constraintEnd_toStartOf="@+id/view_presentation_ET"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_presentation_ET" />
+        <EditText
+            android:id="@+id/productNameDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Título del producto"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/view_presentation_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/view_presentation_TV"
-        app:layout_constraintTop_toBottomOf="@+id/view_product_title_ET" />
+        <LinearLayout
+            android:layout_width="323dp"
+            android:layout_height="54dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/view_unit_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Unidad"
-        app:layout_constraintBottom_toBottomOf="@+id/view_unit_ET"
-        app:layout_constraintEnd_toStartOf="@+id/view_unit_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_unit_ET" />
+            <TextView
+                android:id="@+id/view_presentation_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Presentación" />
 
-    <EditText
-        android:id="@+id/view_unit_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/view_presentation_ET"
-        app:layout_constraintStart_toStartOf="@+id/view_presentation_ET"
-        app:layout_constraintTop_toBottomOf="@+id/view_presentation_ET" />
+            <EditText
+                android:id="@+id/presentationProductDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/view_medium_range_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/view_unit_ET"
-        app:layout_constraintStart_toStartOf="@+id/view_unit_ET"
-        app:layout_constraintTop_toBottomOf="@+id/view_unit_ET" />
+        <LinearLayout
+            android:layout_width="326dp"
+            android:layout_height="64dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/view_medium_range_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rango medio"
-        app:layout_constraintBottom_toBottomOf="@+id/view_medium_range_ET"
-        app:layout_constraintEnd_toStartOf="@+id/view_medium_range_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_medium_range_ET" />
+            <TextView
+                android:id="@+id/view_unit_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unidad" />
 
-    <TextView
-        android:id="@+id/view_low_range_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rango bajo"
-        app:layout_constraintBottom_toBottomOf="@+id/view_low_range_ET"
-        app:layout_constraintEnd_toStartOf="@+id/view_low_range_ET"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_low_range_ET" />
+            <EditText
+                android:id="@+id/view_unit_ET"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/view_low_range_ET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/view_medium_range_ET"
-        app:layout_constraintStart_toStartOf="@+id/view_medium_range_ET"
-        app:layout_constraintTop_toBottomOf="@+id/view_medium_range_ET" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/view_delete_product_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Eliminar"
-        app:layout_constraintEnd_toStartOf="@+id/view_edit_product_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_low_range_ET" />
+            <TextView
+                android:id="@+id/view_medium_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rango medio" />
 
-    <Button
-        android:id="@+id/view_edit_product_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Editar"
-        app:layout_constraintBottom_toBottomOf="@+id/view_delete_product_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/view_delete_product_button"
-        app:layout_constraintTop_toTopOf="@+id/view_delete_product_button" />
+            <EditText
+                android:id="@+id/middleRangeDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/view_return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_delete_product_button" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_low_range_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rango bajo" />
+
+            <EditText
+                android:id="@+id/lowRangeDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="332dp"
+        android:layout_height="179dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="525dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteBtnDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Eliminar" />
+
+            <Button
+                android:id="@+id/editBtnDF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Editar" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/goBackBtnDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

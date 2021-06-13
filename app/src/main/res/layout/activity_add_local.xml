@@ -1,119 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.AddLocalActivity">
+    <ImageButton
+        android:id="@+id/localImageBtn"
+        android:layout_width="180dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/borderstyle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/localImageBtn"
+        app:layout_constraintStart_toStartOf="@+id/localImageBtn"
+        app:layout_constraintTop_toBottomOf="@+id/localImageBtn">
 
         <EditText
             android:id="@+id/localNameEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="31dp"
             android:ems="10"
             android:hint="@string/local_name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/localImageBtn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/borderstyle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <EditText
             android:id="@+id/adminNameET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/admin_name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/localNameEt" />
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/phoneET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="@string/phone"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressButton" />
-
-        <Button
-            android:id="@+id/addLocalBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/add_local"
-            app:layout_constraintEnd_toStartOf="@+id/cancelBtn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLocalET" />
-
-        <Button
-            android:id="@+id/cancelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            app:layout_constraintBottom_toBottomOf="@+id/addLocalBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/addLocalBtn"
-            app:layout_constraintTop_toTopOf="@+id/addLocalBtn" />
-
-        <ImageButton
-            android:id="@+id/localImageBtn"
-            android:layout_width="180dp"
-            android:layout_height="162dp"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <EditText
-            android:id="@+id/passwordLocalET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/phoneET"
-            app:layout_constraintStart_toStartOf="@+id/phoneET"
-            app:layout_constraintTop_toBottomOf="@+id/phoneET" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="Cambia la imagen del local"
-            app:layout_constraintBottom_toTopOf="@+id/localImageBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.842" />
-
-        <ImageButton
-            android:id="@+id/addressButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/addressAddLocalTV"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adminNameET"
-            app:srcCompat="@drawable/outline_room_24" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/borderstyle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/addressAddLocalTV"
@@ -125,5 +91,95 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/addressButton"
             app:layout_constraintTop_toTopOf="@+id/addressButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/addressButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/buttonbackground"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:srcCompat="@drawable/outline_room_24"
+        tools:ignore="VectorDrawableCompat" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/borderstyle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/addressButton"
+        app:layout_constraintTop_toBottomOf="@+id/addressButton"
+        app:layout_constraintStart_toStartOf="@+id/addressButton">
+
+        <EditText
+            android:id="@+id/phoneET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addLocalBtn"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/buttonbackground"
+        android:text="@string/add_local"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:backgroundTintMode="add"
+        app:layout_constraintEnd_toEndOf="@+id/passwordLocalET"
+        app:layout_constraintStart_toStartOf="@+id/passwordLocalET"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLocalET" />
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="194dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/buttonbackground"
+        android:text="@string/cancel"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:backgroundTintMode="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/addLocalBtn"
+        app:layout_constraintStart_toStartOf="@+id/addLocalBtn"
+        app:layout_constraintTop_toBottomOf="@+id/addLocalBtn" />
+
+
+    <EditText
+        android:id="@+id/passwordLocalET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Cambia la imagen del local"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

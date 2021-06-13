@@ -17,8 +17,31 @@
     <string name="phone">Telefono</string>
     <string name="add_local">Añadir local</string>
     <string name="cancel">Cancelar</string>
+
+    <string name="no_tienes_cuenta_registrate">¿No tienes cuenta? Registrate</string>
+    <string name="agregar_como_costo">Agregar como costo</string>
+    <string name="agregar_como_ingreso">Agregar como ingreso</string>
+    <string name="monto">Monto</string>
+
     <string name="title_activity_choose_direction_maps">Map</string>
     <string name="title_activity_vojabes_maps">Map</string>
+    <string name="presentation_product">Presentación</string>
+    <string name="middle_range_product">Rango medio</string>
+    <string name="low_range_product">Rango bajo</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="go_back">Volver</string>
+    <string name="add">Agregar</string>
+    <string name="title_product">Nombre del producto</string>
+    <string name="price">Precio</string>
+    <string name="quantity">Cantidad</string>
+    <string name="egress">¿Es un egreso?</string>
+    <string name="register">Registrar</string>
+
+
+
+
+
 
 
 </resources>

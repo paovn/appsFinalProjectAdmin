@@ -4,20 +4,24 @@ import java.util.Date;
 
 public class Registro_producto {
     private String id;
-    private Date fechaEntrada;
-    private Date fechaSalida;
-    private int cantidad;
-    private int precio;
+    private Date fecha;
+    private float cantidad;
+    private float precio;
+    private float total;
+
 
     public Registro_producto() {
     }
 
-    public Registro_producto(String id, Date fechaEntrada, Date fechaSalida, int cantidad, int precio) {
+
+
+    public Registro_producto(String id, Date fecha, float cantidad, float precio) {
         this.id = id;
-        this.fechaEntrada = fechaEntrada;
-        this.fechaSalida = fechaSalida;
+        this.fecha = fecha;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.total = cantidad*precio;
+
     }
 
     public String getId() {
@@ -28,27 +32,34 @@ public class Registro_producto {
         this.id = id;
     }
 
-    public Date getFechaEntrada() {
-        return fechaEntrada;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
+    public Date getFecha() {
+        return fecha;
+    }
+    public void setCantidad(float cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public Date getFechaSalida() {
-        return fechaSalida;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
-        this.fechaSalida = fechaSalida;
+    public void setTotal(float total) {
+        this.total = total;
     }
 
-    public int getCantidad() {
+    public float getPrecio() {
+        return precio;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 }
