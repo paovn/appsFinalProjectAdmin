@@ -19,6 +19,19 @@
     <string name="cancel">Cancelar</string>
     <string name="title_activity_choose_direction_maps">Map</string>
     <string name="title_activity_vojabes_maps">Map</string>
+    <string name="presentation_product">Presentación</string>
+    <string name="middle_range_product">Rango medio</string>
+    <string name="low_range_product">Rango bajo</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+    <string name="go_back">Volver</string>
+    <string name="add">Agregar</string>
+    <string name="title_product">Nombre del producto</string>
+
+
+
+
+
 
 
 </resources>

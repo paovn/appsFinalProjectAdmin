@@ -3,6 +3,7 @@ package com.example.appsfinalproject.fragments.admin;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,13 +33,13 @@ public class ProductFragment extends Fragment {
     private Local local;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-
     public ProductFragment() {
         // Required empty public constructor
     }
 
     public static ProductFragment newInstance() {
         ProductFragment fragment = new ProductFragment();
+
         return fragment;
     }
 
@@ -58,7 +59,7 @@ public class ProductFragment extends Fragment {
         productList = v.findViewById(R.id.productsRV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         productList.setLayoutManager(manager);
-        adapter = new ProductAdapter();
+        adapter = new ProductAdapter(getFragmentManager());
         productList.setAdapter(adapter);
 
         getProductsFromDB();
@@ -74,6 +75,7 @@ public class ProductFragment extends Fragment {
                     db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
                             command1 -> {
                                     Local local = command1.getDocuments().get(0).toObject(Local.class);
+                                    adapter.setLocalId(local.getPhotoId());
                                     adapter.setProducts(local.getInventario().getProductos_inventario());
                             }
                     );

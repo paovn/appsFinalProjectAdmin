@@ -2,6 +2,7 @@ package com.example.appsfinalproject.fragments.admin;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,13 +22,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements EditProductDialogFragment.EditProdDFInterface{
     private List<Producto> products;
     private String path;
     private FirebaseStorage storage;
-
-    public ProductAdapter() {
+    private FragmentManager fragmentManager;
+    private String localId;
+    public ProductAdapter(FragmentManager fragmentManager) {
         this.products = new ArrayList<>();
+        this.fragmentManager = fragmentManager;
     }
 
     public void addProduct(Producto product) {
@@ -41,6 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
         View root = inflater.inflate(R.layout.row_product, null);
         ConstraintLayout rowroot = (ConstraintLayout) root;
         ProductView productView = new ProductView(rowroot);
+        productView.getEditProductDialogFragment().setEditProdDFInterface(this);
         storage = FirebaseStorage.getInstance();
         return productView;
     }
@@ -48,11 +53,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
     @Override
     public void onBindViewHolder(@NonNull ProductView holder, int position) {
         Producto product = products.get(position);
+        holder.setFragmentManager(fragmentManager);
+        holder.setProductId(product.getId());
+        holder.setLocalId(localId);
+        holder.setProduct(product);
         downloadPhoto(product.getPhotId(), holder);
         holder.getProductNameTV().setText(product.getNombre());
         holder.getQuantityTV().setText(""+product.getQuantitiy());
         holder.getLowRangeTV().setText(""+product.getLowRange());
-
     }
 
     @Override
@@ -73,5 +81,28 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> {
                     Glide.with(img).load(url).into(img);
                 }
         );
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
+    }
+    @Override
+    public void onDeleteProduct(Producto product){
+        Log.e("onClose", "onCloseeee");
+        products.remove(product);
+        notifyDataSetChanged();
+    };
+
+    @Override
+    public void onUpdateProducto(Producto product) {
+        for(int i=0;i<products.size();i++){
+            if(products.get(i).getId().equals(product.getId())){
+                Log.e("<<sasasas>>", "sasoajs");
+                Log.e("<<saassa>>",product.getNombre());
+                products.set(i, product);
+                break;
+            }
+        }
+        notifyDataSetChanged();
     }
 }
