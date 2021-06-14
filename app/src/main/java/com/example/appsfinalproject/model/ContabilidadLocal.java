@@ -7,8 +7,10 @@ import com.github.mikephil.charting.data.Entry;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ContabilidadLocal {
     private ArrayList<RegistroContable> registros;
@@ -72,7 +74,7 @@ public class ContabilidadLocal {
 
         for (int i = 0; i < days && pos>=0; i++) {
             while(act_Date.get(calendarType) == new_Date.get(calendarType) && pos>=0){
-                Log.e(">>>>", "Actual Date in while: " + act_Date);
+                Log.e(">>>>", "Actual Date in while: " +sobj.format(act_Date.getTime()));
 
                 float expend = (float)actual.getCosto();
 
@@ -102,7 +104,7 @@ public class ContabilidadLocal {
                 contabilidad_periodo.put(sobj.format(act_Date.getTime()),0f);
             }
 
-            Log.e(">>>>", "Actual Date in Calendar : " + act_Date);
+            Log.e(">>>>", "Actual Date in Calendar : " + sobj.format(act_Date.getTime()));
         }
         int week = 0;
         for (String i : contabilidad_periodo.keySet()) {
@@ -154,16 +156,20 @@ public class ContabilidadLocal {
         act_Date.setTime(actual.getFecha());
 
 
-        SimpleDateFormat sobj =  new SimpleDateFormat(formatType);
+        SimpleDateFormat sobj =  new SimpleDateFormat(formatType,Locale.ENGLISH);
 
 
         for (int i = 0; i < periods && pos>=0; i++) {
             act_Date.add(calendarType,-1);
             out.add(sobj.format(act_Date.getTime()));
-            //Log.e(">>>>", "Actual Date in Calendar : " + act_Date);
+            Log.e(">>>>", "Date for format Calendar : " + act_Date);
         }
 
 
         return out;
+    }
+
+    public void sortRegisters() {
+        Collections.sort(registros);
     }
 }

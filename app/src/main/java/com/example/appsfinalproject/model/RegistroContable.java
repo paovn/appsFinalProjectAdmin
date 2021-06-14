@@ -2,7 +2,7 @@ package com.example.appsfinalproject.model;
 
 import java.util.Date;
 
-public class RegistroContable {
+public class RegistroContable implements Comparable<RegistroContable>{
     private String nombre;
     private Date  fecha;
     private long DateMiliseconds;
@@ -67,5 +67,10 @@ public class RegistroContable {
 
     public void setDateMiliseconds(long dateMiliseconds) {
         DateMiliseconds = dateMiliseconds;
+    }
+
+    @Override
+    public int compareTo(RegistroContable o) {
+        return this.getFecha().compareTo(o.getFecha());
     }
 }

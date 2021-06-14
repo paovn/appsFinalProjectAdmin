@@ -1,5 +1,6 @@
 package com.example.appsfinalproject.fragments.owner;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -15,11 +16,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.activities.MainActivityAdmin;
+import com.example.appsfinalproject.activities.MainActivityOwner;
+import com.example.appsfinalproject.model.AdministradorGeneral;
 import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.ContabilidadLocal;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.RegistroContable;
 import com.example.appsfinalproject.model.Tipo_registro;
+import com.example.appsfinalproject.model.Tipo_usuario;
+import com.example.appsfinalproject.model.Usuario;
+import com.example.appsfinalproject.model.chartValueFormatter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -38,6 +45,8 @@ import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.crypto.Cipher;
+
 
 public class LocalStatsFragment extends Fragment implements View.OnClickListener {
 
@@ -53,6 +62,7 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private ContabilidadLocal contabilidad;
+    ContabilidadLocal temp_contabilidad;
 
     private int rangeDateType;
     private String messageRangeType[];
@@ -93,7 +103,7 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         generateChart.setOnClickListener(this);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        updateLocalAccounting();
+        updateAccounting();
         chart = v.findViewById(R.id.linechart);
         messageRangeType = new String[]{"Días", "Semanas", "Meses"};
         rangeDateType = ContabilidadLocal.DAY_PERIOD;
@@ -128,21 +138,51 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         String id = auth.getCurrentUser().getUid();
         db.collection("users").whereEqualTo("id", auth.getCurrentUser().getUid()).get().addOnSuccessListener(
                 command -> {
-                    AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
-                    String idLocal = user.getIdLocal();
+                    Usuario userStart = command.getDocuments().get(0).toObject(Usuario.class);
 
-                    FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
-                            command1 -> {
-                                Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
-                                Local local = command1.getDocuments().get(0).toObject(Local.class);
-                                contabilidad = local.getContabilidad();
-                                updateChart(30, ContabilidadLocal.DAY_PERIOD);
-                            }
-                    ).addOnFailureListener(
-                            command2 ->{
-                                Log.e(">>>", "Falló obteniendo el local");
-                            }
-                    );
+                    if(userStart.getTipo().equals(Tipo_usuario.ADMINISTRADOR_G)){
+                        AdministradorGeneral admin =  command.getDocuments().get(0).toObject(AdministradorGeneral.class);
+                        ArrayList<String> locales = admin.getIdLocales();
+                        contabilidad = new ContabilidadLocal(UUID.randomUUID().toString());
+
+                        FirebaseFirestore.getInstance().collection("local").get().addOnSuccessListener(
+                                command1 -> {
+                                    Log.e(">>>", "Recorriendo los locales bro");
+                                    for(int i = 0; i<command1.getDocuments().size(); i++){
+                                        Local local = command1.getDocuments().get(i).toObject(Local.class);
+                                        ContabilidadLocal temp_contabilidad = local.getContabilidad();
+                                        for (int j = 0; j < temp_contabilidad.getRegistros().size(); j++) {
+                                            contabilidad.getRegistros().add(temp_contabilidad.getRegistros().get(j));
+                                        }
+                                    }
+                                    updateChart(30, ContabilidadLocal.DAY_PERIOD);
+
+                                }
+                        ).addOnFailureListener(
+                                command2 ->{
+                                    Log.e(">>>", "Falló obteniendo el local");
+                                }
+                        );
+
+
+                        contabilidad.sortRegisters();
+                    }else {
+                        AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
+                        String idLocal = user.getIdLocal();
+                        FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                                command1 -> {
+                                    Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
+                                    Local local = command1.getDocuments().get(0).toObject(Local.class);
+                                    contabilidad = local.getContabilidad();
+                                    updateChart(30, ContabilidadLocal.DAY_PERIOD);
+                                }
+                        ).addOnFailureListener(
+                                command2 ->{
+                                    Log.e(">>>", "Falló obteniendo el local");
+                                }
+                        );
+                    }
+
                 }
         ).addOnFailureListener(
                 command222 ->{
@@ -151,13 +191,16 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         );
     }
 
+
+
+
     public ArrayList selectData(int periods,int periodType, int dataType){
         ArrayList data = new ArrayList();
         //ArrayList xAxis = new ArrayList();
 
         switch (periodType){
             case ContabilidadLocal.DAY_PERIOD:
-                data = contabilidad.getRange(periods,dataType, Calendar.DAY_OF_YEAR,"MMM dd");
+                data = contabilidad.getRange(periods,dataType, Calendar.DAY_OF_YEAR,"yyyy MMM dd");
                 break;
             case ContabilidadLocal.WEEK_PERIOD:
                 data = contabilidad.getRange(periods,dataType, Calendar.WEEK_OF_YEAR,"yyyy MMM dd");
@@ -214,14 +257,8 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         xAxis.setGranularity(1f);
 
 
+        //xAxis.setValueFormatter(new chartValueFormatter(xValues));
 
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getAxisLabel(float value, AxisBase axis) {
-                if((int)value == xValues.size()) return "";
-                return xValues.get((int)(value));
-            }
-        });
 
         chart.invalidate();
     }
@@ -244,8 +281,31 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
 
     //Creación de información dummy
 
-    public void updateLocalAccounting(){
+    public void updateAccounting(){
         db.collection("users").whereEqualTo("id", auth.getCurrentUser().getUid()).get().addOnSuccessListener(
+                command -> {
+
+                    Usuario userStart = command.getDocuments().get(0).toObject(Usuario.class);
+
+                    if(userStart.getTipo().equals(Tipo_usuario.ADMINISTRADOR_G)){
+                        AdministradorGeneral admin =  command.getDocuments().get(0).toObject(AdministradorGeneral.class);
+                        ArrayList<String> locales = admin.getIdLocales();
+                        for (int i = 0; i < locales.size(); i++) {
+                            updateLocalAccounting(locales.get(i));
+                        }
+                    }else{
+                        updateLocalAccounting(auth.getCurrentUser().getUid());
+                    }
+                }
+        ).addOnFailureListener(
+                command222 ->{
+                    Log.e(">>>", "Falló obteniendo el usuario");
+                }
+        );
+    }
+
+    public void updateLocalAccounting(String id){
+        db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
                 command -> {
                     AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
                     String idLocal = user.getIdLocal();
