@@ -29,8 +29,6 @@ public class MainActivityOwner extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_owner);
-        getSupportActionBar().hide();
-        getSupportActionBar().hide();
         localFragment = LocalFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
         viewLocalsInMapsFragment = ViewLocalsInMapsFragment.newInstance();
