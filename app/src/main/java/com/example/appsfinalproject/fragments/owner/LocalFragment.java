@@ -3,7 +3,6 @@ package com.example.appsfinalproject.fragments.owner;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,20 +17,15 @@ import android.widget.Button;
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.activities.AddLocalActivity;
 import com.example.appsfinalproject.activities.LocalActivityOwner;
-import com.example.appsfinalproject.activities.MainActivityOwner;
 import com.example.appsfinalproject.model.Local;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class ShopFragment extends Fragment implements View.OnClickListener, LocalAdapter.OnLocalClickAction {
+public class LocalFragment extends Fragment implements View.OnClickListener, LocalAdapter.OnLocalClickAction {
 
     public static final int ADD_LOCAL_REQUEST_CODE = 12345;
 
@@ -40,12 +33,12 @@ public class ShopFragment extends Fragment implements View.OnClickListener, Loca
     private LocalAdapter localAdapter;
     private Button addShopButton;
 
-    public ShopFragment() {
+    public LocalFragment() {
         // Required empty public constructor
     }
 
-    public static ShopFragment newInstance() {
-        ShopFragment fragment = new ShopFragment();
+    public static LocalFragment newInstance() {
+        LocalFragment fragment = new LocalFragment();
         return fragment;
     }
 
@@ -58,7 +51,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener, Loca
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_shop, container, false);
+        View v = inflater.inflate(R.layout.fragment_locals, container, false);
 
         shopList = v.findViewById(R.id.shop_RV);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

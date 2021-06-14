@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/owner_map_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/mapaowner"
         android:title="Mapa" />
     <item
         android:id="@+id/owner_shops_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/masadmin"
         android:title="Locales" />
     <item
         android:id="@+id/owner_stats_general_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/stadisticadmin"
         android:title="Estadisticas" />
 </menu>
