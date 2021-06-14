@@ -3,6 +3,7 @@ package com.example.appsfinalproject.fragments.admin;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
     private ConstraintLayout rowProductCL;
     private Button editProductBtn;
     private Button registerProductBtn;
+    private LinearLayout linearLyRowProd;
 
     private EditProductDialogFragment editProductDialogFragment;
     private OrderProductDialogFragment orderProductDialogFragment;
@@ -42,6 +44,7 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
        // rowProductCL.setBackgroundColor(ContextCompat.getColor(root.getContext(), R.color.red));
         editProductBtn = root.findViewById(R.id.editProductBtn);
         registerProductBtn = root.findViewById(R.id.registerProductBtn);
+        linearLyRowProd = root.findViewById(R.id.linearLyRowProd);
         editProductBtn.setOnClickListener(this);
         registerProductBtn.setOnClickListener(this);
         editProductDialogFragment = new EditProductDialogFragment("", "", null);
@@ -86,6 +89,10 @@ public class ProductView extends RecyclerView.ViewHolder implements View.OnClick
 
     public TextView getLowRangeTV() {
         return lowRangeTV;
+    }
+
+    public LinearLayout getLinearLyRowProd() {
+        return linearLyRowProd;
     }
 
     @Override

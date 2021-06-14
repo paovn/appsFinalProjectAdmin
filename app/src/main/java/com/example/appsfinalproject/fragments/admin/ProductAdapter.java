@@ -8,11 +8,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.model.AlertaProducto;
 import com.example.appsfinalproject.model.Producto;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements EditProductDialogFragment.EditProdDFInterface, OrderProductDialogFragment.OrderProductInterface {
     private List<Producto> products;
+    private View root;
     private String path;
     private FirebaseStorage storage;
     private FragmentManager fragmentManager;
@@ -39,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements
     @Override
     public ProductView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View root = inflater.inflate(R.layout.row_product, null);
+         root = inflater.inflate(R.layout.row_product, null);
         ConstraintLayout rowroot = (ConstraintLayout) root;
         ProductView productView = new ProductView(rowroot);
         productView.getEditProductDialogFragment().setEditProdDFInterface(this);
@@ -56,6 +59,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductView> implements
         holder.setLocalId(localId);
         holder.setProduct(product);
         downloadPhoto(product.getPhotId(), holder);
+        if(product.getAlertaProducto().equals(AlertaProducto.VERDE)){
+            holder.getLinearLyRowProd().setBackgroundColor(ContextCompat.getColor(root.getContext(),R.color.light_green));
+        }else if(product.getAlertaProducto().equals(AlertaProducto.AMARILLO)){
+
+            holder.getLinearLyRowProd().setBackgroundColor(ContextCompat.getColor(root.getContext(),R.color.yellow));
+        }else{
+            holder.getLinearLyRowProd().setBackgroundColor(ContextCompat.getColor(root.getContext(),R.color.red));
+        }
         holder.getProductNameTV().setText(product.getNombre());
         holder.getQuantityTV().setText(""+product.getQuantitiy());
         holder.getLowRangeTV().setText(""+product.getLowRange());
