@@ -15,8 +15,8 @@ import com.example.appsfinalproject.R;
 
 
 public class NotificationUtil {
-    private static final String CHANNEL_ID = "messages";
-    private static final String CHANNEL_NAME = "Messages";
+    private static final String CHANNEL_ID = "notifications";
+    private static final String CHANNEL_NAME = "Notifications";
     private static final int CHANNEL_IMPORTANCE = NotificationManager.IMPORTANCE_HIGH;
 
     private static int idCounter = 0;
@@ -40,11 +40,12 @@ public class NotificationUtil {
                 .setContentIntent(pendingIntent) // aqui ponemos el pending intent
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setStyle(new NotificationCompat.BigTextStyle()); // hace que la notificacion sea expandible
 
         Notification notification = builder.build();
         notificationManager.notify(idCounter, notification);
-        Log.e(">>>", "jajajajajjaa" + idCounter);
+        Log.e(">>>", "notif" + idCounter);
         idCounter++;
     }
 }

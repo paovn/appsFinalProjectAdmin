@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.LocalFragment;
+import com.example.appsfinalproject.fragments.owner.ViewLocalsInMapsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivityOwner extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class MainActivityOwner extends AppCompatActivity {
     private BottomNavigationView navigator;
 
     private LocalFragment localFragment;
-
+    private ViewLocalsInMapsFragment viewLocalsInMapsFragment;
     private LocalStatsFragment localStatsFragment;
 
     @Override
@@ -27,6 +28,7 @@ public class MainActivityOwner extends AppCompatActivity {
         getSupportActionBar().hide();
         localFragment = LocalFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
+        viewLocalsInMapsFragment = ViewLocalsInMapsFragment.newInstance();
         configureNavigator();
         navigator.setSelectedItemId(R.id.owner_shops_item); // hace click en el fragment y lo muestra
     }
@@ -38,7 +40,7 @@ public class MainActivityOwner extends AppCompatActivity {
                 (menuItem)->{
                     switch(menuItem.getItemId()){
                         case R.id.owner_map_item:
-                            // TODO
+                            showFragment(viewLocalsInMapsFragment);
                             break;
                         case R.id.owner_shops_item:
                             showFragment(localFragment);

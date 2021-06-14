@@ -181,7 +181,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                     uploadPhoto(local.getPhotoId());
                     String msg = "El local \"" + local.getNombreLocal() + "\" ha sido creado.\n" +
                             "El nombre de usuario del administrador del local es " + emailAdminLocal + " y la clave es la que ha elegido en el momento de inscripcion del local.";
-                    NotificationUtil.createNotification(this, "Se ha creado un nuevo local", msg, new Intent(this, AddLocalActivity.class));
+                    NotificationUtil.createNotification(this, "Nuevo local \uD83C\uDFEA", msg, new Intent(this, AddLocalActivity.class));
                 }
         ).addOnFailureListener(
                 command -> {
