@@ -62,7 +62,6 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private ContabilidadLocal contabilidad;
-    ContabilidadLocal temp_contabilidad;
 
     private int rangeDateType;
     private String messageRangeType[];

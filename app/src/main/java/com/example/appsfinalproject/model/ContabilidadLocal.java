@@ -56,6 +56,7 @@ public class ContabilidadLocal {
     public ArrayList getRange(int days, int dataType, int calendarType, String dateFormat) {
         ArrayList range_list = new ArrayList();
         HashMap<String,Float> contabilidad_periodo = new HashMap<>();
+        Collections.sort(registros);
         int pos = registros.size()-1;
 
         if(pos == -1) return range_list;
@@ -171,5 +172,52 @@ public class ContabilidadLocal {
 
     public void sortRegisters() {
         Collections.sort(registros);
+    }
+
+    public ArrayList getRangeForList(int periods, int dataType, int calendarType) {
+        ArrayList<RegistroContable> range_list = new ArrayList();
+        Collections.sort(registros);
+        int pos = registros.size()-1;
+        if(pos == -1) return range_list;
+
+        RegistroContable actual = registros.get(pos);
+
+        Calendar act_Date = Calendar.getInstance();
+        act_Date.setTime(actual.getFecha());
+
+        Calendar new_Date = Calendar.getInstance();
+        new_Date.setTime(actual.getFecha());
+
+
+        SimpleDateFormat sobj =  new SimpleDateFormat("yyyy MM dd");
+
+
+        for (int i = 0; i < periods && pos>=0; i++) {
+            while(act_Date.get(calendarType) == new_Date.get(calendarType) && pos>0){
+                Log.e(">>>>", "Actual Date in while: " +sobj.format(act_Date.getTime()));
+
+                float expend = (float)actual.getCosto();
+
+                //Esto se puede actualizar con switch case y metodos para el uso de los checkbox
+                if(dataType == ContabilidadLocal.INCOME_TYPE &&  actual.getTipo() == Tipo_registro.INGRESO){
+                    range_list.add(actual);
+                }
+
+                if(dataType == ContabilidadLocal.SPENDS_TYPE &&  actual.getTipo() == Tipo_registro.EGRESO){
+                    range_list.add(actual);
+                }
+
+
+                pos--;
+                actual = registros.get(pos);
+                new_Date.setTime(actual.getFecha());
+                String str_new_date = sobj.format(new_Date.getTime());
+                //new_Date = actual.getFecha();
+            }
+
+            act_Date.add(calendarType,-1);
+            String str_act_date = sobj.format(act_Date.getTime());
+        }
+        return range_list;
     }
 }

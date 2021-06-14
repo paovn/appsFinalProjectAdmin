@@ -29,7 +29,7 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterView> {
 
     @Override
     public void onBindViewHolder(@NonNull RegisterView holder, int position) {
-        RegistroContable registroContable = registers.get(0);
+        RegistroContable registroContable = registers.get(position);
         holder.getNameRegister().setText(registroContable.getNombre());
         holder.getDateRegister().setText(registroContable.getFecha().toString());
         holder.getValueRegister().setText(""+registroContable.getCosto());
