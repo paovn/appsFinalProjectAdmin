@@ -9,15 +9,14 @@ import android.os.Bundle;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
-import com.example.appsfinalproject.fragments.owner.ShopFragment;
-import com.example.appsfinalproject.model.Local;
+import com.example.appsfinalproject.fragments.owner.LocalFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivityOwner extends AppCompatActivity {
 
     private BottomNavigationView navigator;
 
-    private ShopFragment shopFragment;
+    private LocalFragment localFragment;
 
     private LocalStatsFragment localStatsFragment;
 
@@ -26,7 +25,7 @@ public class MainActivityOwner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_owner);
         getSupportActionBar().hide();
-        shopFragment = ShopFragment.newInstance();
+        localFragment = LocalFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
         configureNavigator();
         navigator.setSelectedItemId(R.id.owner_shops_item); // hace click en el fragment y lo muestra
@@ -42,7 +41,7 @@ public class MainActivityOwner extends AppCompatActivity {
                             // TODO
                             break;
                         case R.id.owner_shops_item:
-                            showFragment(shopFragment);
+                            showFragment(localFragment);
                             break;
                         case R.id.owner_stats_general_item:
                             showFragment(localStatsFragment);

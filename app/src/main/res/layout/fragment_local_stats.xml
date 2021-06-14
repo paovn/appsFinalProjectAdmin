@@ -14,9 +14,10 @@
         android:text="previo"
         app:layout_constraintBottom_toBottomOf="@+id/period_TV"
         app:layout_constraintEnd_toStartOf="@+id/period_TV"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/period_TV" />
+        app:layout_constraintTop_toTopOf="@+id/period_TV"
+        app:layout_constraintVertical_bias="0.482" />
 
     <Button
         android:id="@+id/advance_period_button"
@@ -25,6 +26,7 @@
         android:text="siguiente"
         app:layout_constraintBottom_toBottomOf="@+id/period_TV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/period_TV"
         app:layout_constraintTop_toTopOf="@+id/period_TV" />
 
@@ -34,8 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Días "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/advance_period_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/back_period_button"
         app:layout_constraintTop_toBottomOf="@+id/catidadPeriodo_ET" />
 
     <com.github.mikephil.charting.charts.LineChart
@@ -80,10 +83,10 @@
         android:id="@+id/ingresos_CB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:text="Ingresos"
         app:layout_constraintBottom_toBottomOf="@+id/egresos_CB"
+        app:layout_constraintEnd_toStartOf="@+id/egresos_CB"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/egresos_CB"
         app:layout_constraintVertical_bias="0.0" />
@@ -92,10 +95,10 @@
         android:id="@+id/egresos_CB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:text="Egresos"
         app:layout_constraintBottom_toBottomOf="@+id/utilidad_CB"
+        app:layout_constraintEnd_toStartOf="@+id/utilidad_CB"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ingresos_CB"
         app:layout_constraintTop_toTopOf="@+id/utilidad_CB" />
 
@@ -103,13 +106,11 @@
         android:id="@+id/utilidad_CB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginBottom="8dp"
         android:text="Utilidadad"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/egresos_CB" />
 
     <Button
