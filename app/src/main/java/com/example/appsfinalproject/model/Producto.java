@@ -68,23 +68,25 @@ public class Producto {
 
     public void setQuantitiy(float quantitiy) {
         this.quantitiy = quantitiy;
-     //   float rangoMedioDif = Math.abs(middleRange-this.quantitiy);
-       // float rangoBajoDif = Math.abs(lowRange-this.quantitiy);
+        updateAlert();
+    }
+    public void  updateAlert(){
         if(this.quantitiy>this.lowRange && this.quantitiy<=this.middleRange){
-            alertaProducto = AlertaProducto.AMARILLO;
+            this.alertaProducto = AlertaProducto.AMARILLO;
         }else if(this.quantitiy<=this.lowRange){
-            alertaProducto = AlertaProducto.ROJO;
+            this.alertaProducto = AlertaProducto.ROJO;
         }else{
-            alertaProducto = AlertaProducto.VERDE;
+            this.alertaProducto = AlertaProducto.VERDE;
         }
     }
-
     public void setLowRange(float lowRange) {
         this.lowRange = lowRange;
+        updateAlert();
     }
 
     public void setMiddleRange(float middleRange) {
         this.middleRange = middleRange;
+        updateAlert();
     }
 
     public void setPresentation(String presentation) {
