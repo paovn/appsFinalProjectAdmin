@@ -21,6 +21,7 @@ import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Producto;
 import com.example.appsfinalproject.model.RegistroContable;
 import com.example.appsfinalproject.model.Registro_producto;
+import com.example.appsfinalproject.model.Tipo_registro;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -95,15 +96,20 @@ public class OrderProductDialogFragment extends DialogFragment implements View.O
 
                             float quant = Float.parseFloat(quantityET.getText().toString());
                             float price = Float.parseFloat(priceET.getText().toString());
+                            Tipo_registro type = Tipo_registro.INGRESO;
                             if(egressCheckBox.isChecked()==true) {
                                 p.setQuantitiy(p.getQuantitiy() - quant);
+                                type=Tipo_registro.EGRESO;
                             }else{
                                 p.setQuantitiy(p.getQuantitiy() + quant);
                             }
-                            Registro_producto registro_producto = new Registro_producto(idRegistro,new Date(), quant,price);
+                            Date date = new Date();
+                            Registro_producto registro_producto = new Registro_producto(idRegistro,date, quant,price);
                             p.getRegistros().add(registro_producto);
                             product = p;
-                            RegistroContable registroContable = new RegistroContable();
+
+                            String idRegistroContable = UUID.randomUUID().toString();
+                            local.getContabilidad().addRegistro("Pedido del producto: "+product.getNombre(),date,registro_producto.getTotal(), type,idRegistroContable);
                             saveLocal(local);
                             break;
                         }
