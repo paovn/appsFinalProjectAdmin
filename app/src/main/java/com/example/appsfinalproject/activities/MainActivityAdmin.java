@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
@@ -35,6 +36,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
+    private AccountingListFragment accountingListFragment;
     private AddSpendsAndIncomeFragment addSpendsAndIncomeFragment;
     private LocalStatsFragment localStatsFragment;
     private FirebaseFirestore db;
@@ -49,6 +51,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         addProductFragment = AddProductFragment.newInstance(this);
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+        accountingListFragment = AccountingListFragment.newInstance();
         addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
 
@@ -82,9 +85,11 @@ public class MainActivityAdmin extends AppCompatActivity {
                         case R.id.aniadirItem:
                             showFragment(addProductFragment);
                             break;
-                        case R.id.contabilidadItem2:
+                        case R.id.addRegisterItem:
                             showFragment(addSpendsAndIncomeFragment);
                             break;
+                        case R.id.accountingItem:
+                            showFragment(accountingListFragment);
                         case R.id.estadisticasItem:
                             showFragment(localStatsFragment);
                             break;

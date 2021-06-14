@@ -10,7 +10,11 @@
         android:icon="@drawable/masadmin"
         android:title="Aniadir" />
     <item
-        android:id="@+id/contabilidadItem2"
+        android:id="@+id/addRegisterItem"
+        android:icon="@drawable/listowner"
+        android:title="Añadir Registro"></item>
+    <item
+        android:id="@+id/accountingItem"
         android:icon="@drawable/countadmin"
         android:title="Contabilidad" />
     <item
