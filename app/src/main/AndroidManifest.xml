@@ -35,7 +35,7 @@
 
         <activity
             android:name=".VojabesMapsActivity"
-            android:label="@string/title_activity_vojabes_maps"></activity>
+            android:label="@string/title_activity_vojabes_maps" />
         <activity
             android:name=".activities.commons.ChooseDirectionMapsActivity"
             android:label="@string/title_activity_choose_direction_maps" />

@@ -12,10 +12,14 @@
     >
 
     <LinearLayout
-        android:layout_width="399dp"
-        android:layout_height="783dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView4"
@@ -33,7 +37,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
@@ -59,7 +63,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
@@ -83,17 +87,17 @@
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/addressAddLocalTV"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
                 android:background="@drawable/borderstyle"
                 android:hint="@string/direccion"
                 android:paddingLeft="10dp"
@@ -102,6 +106,14 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/addressButton"
                 app:layout_constraintTop_toTopOf="@+id/addressButton" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/addressButton"
@@ -112,12 +124,12 @@
                 app:backgroundTint="@color/browser_actions_divider_color"
                 app:srcCompat="@drawable/outline_room_24"
                 tools:ignore="VectorDrawableCompat" />
-
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearLayout4"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:background="@drawable/borderstyle"
@@ -125,7 +137,7 @@
 
             <EditText
                 android:id="@+id/phoneET"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
