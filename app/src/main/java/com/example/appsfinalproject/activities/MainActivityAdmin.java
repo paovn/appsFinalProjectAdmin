@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
@@ -27,11 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.UUID;
 
-public class MainActivityAdmin extends AppCompatActivity {
+public class MainActivityAdmin extends AppCompatActivity implements View.OnClickListener {
 
     private static AdministradorGeneral usuarioMayor;
 
     private BottomNavigationView navigator;
+    private ImageButton logoutBtnAdmin;
     private ProductFragment productFragment;
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
@@ -54,7 +58,8 @@ public class MainActivityAdmin extends AppCompatActivity {
         accountingListFragment = AccountingListFragment.newInstance();
         addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
-
+        logoutBtnAdmin = findViewById(R.id.logoutBtnAdmin);
+        logoutBtnAdmin.setOnClickListener(this);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
@@ -146,6 +151,17 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     public BottomNavigationView getNavigator() {
         return navigator;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.logoutBtnAdmin:
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+                break;
+        }
     }
 
 /*

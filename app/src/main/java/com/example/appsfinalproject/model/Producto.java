@@ -11,7 +11,7 @@ public class Producto {
     private String presentation;
     private String photId;
     private ArrayList<Registro_producto> registros;
-
+    private AlertaProducto alertaProducto;
     public Producto(){}
 
     public Producto(String nombre, String presentation, String id,float lowRange, float middleRange, String photId) {
@@ -19,6 +19,7 @@ public class Producto {
         this.id = id;
         this.registros = new ArrayList<>();
         this.quantitiy = 0;
+        alertaProducto = AlertaProducto.ROJO;
         this.lowRange = lowRange;
         this.middleRange = middleRange;
         this.presentation = presentation;
@@ -61,16 +62,31 @@ public class Producto {
         return middleRange;
     }
 
-    public void setQuantitiy(float quantitiy) {
-        this.quantitiy = quantitiy;
+    public AlertaProducto getAlertaProducto() {
+        return alertaProducto;
     }
 
+    public void setQuantitiy(float quantitiy) {
+        this.quantitiy = quantitiy;
+        updateAlert();
+    }
+    public void  updateAlert(){
+        if(this.quantitiy>this.lowRange && this.quantitiy<=this.middleRange){
+            this.alertaProducto = AlertaProducto.AMARILLO;
+        }else if(this.quantitiy<=this.lowRange){
+            this.alertaProducto = AlertaProducto.ROJO;
+        }else{
+            this.alertaProducto = AlertaProducto.VERDE;
+        }
+    }
     public void setLowRange(float lowRange) {
         this.lowRange = lowRange;
+        updateAlert();
     }
 
     public void setMiddleRange(float middleRange) {
         this.middleRange = middleRange;
+        updateAlert();
     }
 
     public void setPresentation(String presentation) {
