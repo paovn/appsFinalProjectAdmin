@@ -157,7 +157,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         storage.getReference().child("products").child(photoID).putStream(fis).addOnSuccessListener(
                 command -> {
                     Log.e(">>>", "Subida la foto");
-                    mainActivityAdmin.getNavigator().setSelectedItemId(R.id.principalItem); // hace click en el fragment principal para mandarnos ahi
+                    mainActivityAdmin.getNavigator().setSelectedItemId(R.id.productsItem); // hace click en el fragment principal para mandarnos ahi
                 }
         ).addOnFailureListener(
                 command2-> {

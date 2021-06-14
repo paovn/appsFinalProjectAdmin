@@ -7,11 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
 import com.example.appsfinalproject.fragments.admin.AddProductFragment;
 import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.admin.ViewProductFragment;
@@ -19,10 +19,6 @@ import com.example.appsfinalproject.fragments.owner.AddSpendsAndIncomeFragment;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
 import com.example.appsfinalproject.model.AdministradorGeneral;
-import com.example.appsfinalproject.model.AdministradorLocal;
-import com.example.appsfinalproject.model.ContabilidadLocal;
-import com.example.appsfinalproject.model.Inventario;
-import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.model.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -40,6 +36,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     private AddProductFragment addProductFragment;
     private ViewProductFragment viewProductFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
+    private AccountingListFragment accountingListFragment;
     private AddSpendsAndIncomeFragment addSpendsAndIncomeFragment;
     private LocalStatsFragment localStatsFragment;
     private FirebaseFirestore db;
@@ -49,11 +46,12 @@ public class MainActivityAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
-
+        getSupportActionBar().hide();
         productFragment = ProductFragment.newInstance();
         addProductFragment = AddProductFragment.newInstance(this);
         viewProductFragment = ViewProductFragment.newInstance();
         spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
+        accountingListFragment = AccountingListFragment.newInstance();
         addSpendsAndIncomeFragment = AddSpendsAndIncomeFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
 
@@ -81,18 +79,17 @@ public class MainActivityAdmin extends AppCompatActivity {
         navigator.setOnNavigationItemSelectedListener(
                 (menuItem)->{
                     switch(menuItem.getItemId()){
-                        case R.id.principalItem:
+                        case R.id.productsItem:
                             showFragment(productFragment);
                             break;
                         case R.id.aniadirItem:
                             showFragment(addProductFragment);
                             break;
-                        case R.id.contabilidadItem:
-                            showFragment(spendsAndIncomeFragment);
-                            break;
-                        case R.id.contabilidadItem2:
+                        case R.id.addRegisterItem:
                             showFragment(addSpendsAndIncomeFragment);
                             break;
+                        case R.id.accountingItem:
+                            showFragment(accountingListFragment);
                         case R.id.estadisticasItem:
                             showFragment(localStatsFragment);
                             break;

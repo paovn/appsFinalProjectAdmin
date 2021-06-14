@@ -37,11 +37,7 @@
     <string name="quantity">Cantidad</string>
     <string name="egress">¿Es un egreso?</string>
     <string name="register">Registrar</string>
-
-
-
-
-
+    <string name="direccion">Direccion</string>
 
 
 </resources>
