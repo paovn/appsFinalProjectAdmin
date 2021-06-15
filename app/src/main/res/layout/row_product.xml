@@ -70,6 +70,7 @@
                             android:layout_marginTop="0dp"
                             android:text="@string/quantity"
                             android:textSize="16sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/product_name_TV" />
 
@@ -101,6 +102,7 @@
                             android:layout_marginLeft="28dp"
                             android:layout_marginTop="0dp"
                             android:text="Rango bajo"
+                            android:textStyle="bold"
                             android:textSize="16sp"
                             app:layout_constraintHorizontal_bias="0.611"
                             app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -141,6 +143,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/buttonbackground"
                         android:text="Editar"
+                        android:textColor="@color/white"
                         app:backgroundTint="@color/browser_actions_divider_color"
                         app:backgroundTintMode="add"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -159,6 +162,7 @@
                         android:layout_marginRight="90dp"
                         android:background="@drawable/buttonbackground"
                         android:text="Pedido"
+                        android:textColor="@color/white"
                         app:backgroundTint="@color/browser_actions_divider_color"
                         app:backgroundTintMode="add"
                         app:layout_constraintBottom_toBottomOf="parent"

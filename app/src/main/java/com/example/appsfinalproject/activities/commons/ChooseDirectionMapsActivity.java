@@ -69,6 +69,8 @@ public class ChooseDirectionMapsActivity extends FragmentActivity implements OnM
             String add = addresses.get(0).getAddressLine(0)+"\n";
             Intent data = new Intent();
             data.putExtra("address", add);
+            data.putExtra("lat", latLng.latitude);
+            data.putExtra("lng", latLng.longitude);
             setResult(Activity.RESULT_OK, data);
             Log.e(">>>", "El resultado fue seteado y va a la actividad que lo ha llamado");
             finish();

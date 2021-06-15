@@ -50,7 +50,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
-        getSupportActionBar().hide();
         productFragment = ProductFragment.newInstance();
         addProductFragment = AddProductFragment.newInstance(this);
         viewProductFragment = ViewProductFragment.newInstance();

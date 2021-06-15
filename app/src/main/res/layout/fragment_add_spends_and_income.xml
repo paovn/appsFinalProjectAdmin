@@ -87,25 +87,28 @@
 
             <Button
                 android:id="@+id/add_inconme_BTN"
-                android:layout_width="wrap_content"
+                android:layout_width="189dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/agregar_como_ingreso"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/buttonbackground"
+                android:gravity="center"
+                android:text="@string/agregar_como_ingreso"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/browser_actions_divider_color"
-                app:backgroundTintMode="add"
-                android:layout_gravity="center"/>
+                app:backgroundTintMode="add" />
 
             <Button
                 android:id="@+id/add_product_BTN"
-                android:layout_width="wrap_content"
+                android:layout_width="181dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/agregar_como_costo"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/buttonbackground"
+                android:text="@string/agregar_como_costo"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/browser_actions_divider_color"
-                app:backgroundTintMode="add"
-                android:layout_gravity="center"/>
+                app:backgroundTintMode="add" />
 
         </LinearLayout>
 </ScrollView>

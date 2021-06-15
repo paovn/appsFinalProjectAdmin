@@ -14,6 +14,7 @@
         app:layout_constraintEnd_toStartOf="@+id/row_local_img_view"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@+id/row_local_img_view" />
 
     <ImageView

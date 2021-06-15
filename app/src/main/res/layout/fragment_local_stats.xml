@@ -17,7 +17,11 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/period_TV"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintVertical_bias="0.482"
+        android:background="@drawable/buttonbackground"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:backgroundTintMode="add"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/advance_period_button"
@@ -28,7 +32,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/period_TV"
-        app:layout_constraintTop_toTopOf="@+id/period_TV" />
+        app:layout_constraintTop_toTopOf="@+id/period_TV"
+        android:background="@drawable/buttonbackground"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:backgroundTintMode="add"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/period_TV"
@@ -45,6 +53,7 @@
         android:id="@+id/linechart"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/borderstyle"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
@@ -60,11 +69,13 @@
     <EditText
         android:id="@+id/catidadPeriodo_ET"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginBottom="148dp"
         android:ems="10"
+        android:paddingLeft="20dp"
         android:inputType="textPersonName"
         android:text="30"
+        android:background="@drawable/borderstyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
@@ -75,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="Digite el número de periodos"
         app:layout_constraintBottom_toTopOf="@+id/catidadPeriodo_ET"
         app:layout_constraintStart_toStartOf="@+id/catidadPeriodo_ET" />
@@ -121,6 +133,10 @@
         android:text="Generar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/period_TV" />
+        app:layout_constraintTop_toBottomOf="@+id/period_TV"
+        android:background="@drawable/buttonbackground"
+        app:backgroundTint="@color/browser_actions_divider_color"
+        app:backgroundTintMode="add"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
