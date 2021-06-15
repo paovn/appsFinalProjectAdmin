@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.OwnerInventoryFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
@@ -24,6 +25,7 @@ public class LocalActivityOwner extends AppCompatActivity {
 
     private OwnerInventoryFragment ownerInventoryFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
+    private AccountingListFragment accountingListFragment;
     private LocalStatsFragment localStatsFragment;
     private FirebaseFirestore db;
 
@@ -42,6 +44,7 @@ public class LocalActivityOwner extends AppCompatActivity {
                     ownerInventoryFragment = OwnerInventoryFragment.newInstance(local);
                     spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
                     localStatsFragment = LocalStatsFragment.newInstance();
+                    accountingListFragment = AccountingListFragment.newInstance();
 
                     requestPermissions();
                     configureNavigator();
@@ -73,7 +76,8 @@ public class LocalActivityOwner extends AppCompatActivity {
                 (menuItem)->{
                     switch(menuItem.getItemId()){
                         case R.id.owner_acountability_item:
-                            showFragment(spendsAndIncomeFragment);
+                            //showFragment(spendsAndIncomeFragment);
+                            showFragment(accountingListFragment);
                             break;
                         case R.id.owner_inventory_item:
                             showFragment(ownerInventoryFragment);
