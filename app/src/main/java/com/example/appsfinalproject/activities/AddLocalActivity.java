@@ -29,6 +29,7 @@ import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_usuario;
 import com.example.appsfinalproject.util.NotificationUtil;
 import com.example.appsfinalproject.util.UtilDomi;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -56,6 +57,7 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseStorage storage;
 
     private TextView addressTV;
+    private LatLng latLng;
 
     private String path;
 
@@ -158,6 +160,8 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
                     String id = command.getUser().getUid();
                     Log.e(">>>", "id de usuario creado = " + id + ", id del admin = " + idOwner);
                     Local local = new Local(localName,adminName, addressTV.getText().toString(), phone,inventario,id,id);
+                    local.setLat(latLng.latitude);
+                    local.setLng(latLng.longitude);
                     ContabilidadLocal contabilidadLocal = new ContabilidadLocal(UUID.randomUUID().toString());
                     local.setContabilidad(contabilidadLocal);
                     Log.e(">>>", "Se creo el admin del local " + local.getId() + " en FirebaseAuth");
@@ -218,9 +222,11 @@ public class AddLocalActivity extends AppCompatActivity implements View.OnClickL
             localImageBtn.setImageBitmap(bitmap);
             Log.e(">>>", "Se puso la imagen en el boton");
         } else if(requestCode == CHOOSE_ADDRESS_CALLBACK && resultCode == Activity.RESULT_OK) {
-            String address = data.getExtras().getString("address");
+            Bundle extras = data.getExtras();
+            String address = extras.getString("address");
             addressTV.setText(address);
             Log.e(">>>", "address is " + address);
+            latLng = new LatLng(extras.getDouble("lat"), extras.getDouble("lng"));
         }
     }
 }

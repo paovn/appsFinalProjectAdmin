@@ -71,15 +71,9 @@ public class ViewLocalsInMapsFragment extends Fragment implements OnMapReadyCall
                 command -> {
                     Log.e(">>>", "Trajo los locales para verlos en el mapa");
                     List<Local> locals = command.toObjects(Local.class);
-                    Geocoder geocoder = new Geocoder(getContext());
                     for(Local local : locals) {
-                        try {
-                            Address address = geocoder.getFromLocationName(local.getDireccion(), 1).get(0);
-                            LatLng pos = new LatLng(address.getLatitude(), address.getLongitude());
-                            googleMap.addMarker(new MarkerOptions().position(pos).title(local.getNombreLocal()).snippet(local.getDireccion()));
-                        } catch (IOException e) {
-                            Log.e(">>>", "Error al convertir la direccion en un Latlng: " + e.getMessage());
-                        }
+                        LatLng pos = new LatLng(local.getLat(), local.getLng());
+                        googleMap.addMarker(new MarkerOptions().position(pos).title(local.getNombreLocal()).snippet(local.getDireccion()));
                     }
                 }
         );
@@ -88,24 +82,18 @@ public class ViewLocalsInMapsFragment extends Fragment implements OnMapReadyCall
     @Override
     public boolean onMarkerClick(Marker marker) {
         goToLocalBtn.setVisibility(View.VISIBLE);
-        try {
-            Geocoder geocoder = new Geocoder(getContext());
-            Address address = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1).get(0);
-            String addrss = address.getAddressLine(0);
-            db.collection("local").whereEqualTo("direccion", addrss).get()
-                    .addOnSuccessListener(
-                            command -> {
-                                Log.e(">>>", "Trae el local basado en la direccion (" +addrss + ")");
-                                selectedLocal = command.getDocuments().get(0).toObject(Local.class);
-                            }
-                    ).addOnFailureListener(
-                            command -> {
-                                Log.e(">>>", "No pudo traer el local basado en la direccion");
-                            }
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        LatLng pos = marker.getPosition();
+        Log.e(">>>", pos.toString());
+        db.collection("local").whereEqualTo("lat", pos.latitude).whereEqualTo("lng", pos.longitude).get()
+                .addOnSuccessListener(
+                        command -> {
+                            selectedLocal = command.getDocuments().get(0).toObject(Local.class);
+                        }
+                ).addOnFailureListener(
+                        command -> {
+                            Log.e(">>>", "No pudo traer el local basado en la direccion");
+                        }
+        );
         return false;
     }
 
