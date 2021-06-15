@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/owner_map_item"
@@ -9,6 +10,10 @@
         android:id="@+id/owner_shops_item"
         android:icon="@drawable/masadmin"
         android:title="Locales" />
+    <item
+        android:id="@+id/owner_cost_list_item"
+        android:icon="@drawable/countadmin"
+        android:title="Contabilidad" />
     <item
         android:id="@+id/owner_stats_general_item"
         android:icon="@drawable/stadisticadmin"

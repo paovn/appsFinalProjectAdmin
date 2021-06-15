@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.LocalFragment;
 import com.example.appsfinalproject.fragments.owner.ViewLocalsInMapsFragment;
@@ -24,6 +25,7 @@ public class MainActivityOwner extends AppCompatActivity implements View.OnClick
     private LocalFragment localFragment;
     private ViewLocalsInMapsFragment viewLocalsInMapsFragment;
     private LocalStatsFragment localStatsFragment;
+    private AccountingListFragment accountingListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivityOwner extends AppCompatActivity implements View.OnClick
         localFragment = LocalFragment.newInstance();
         localStatsFragment = LocalStatsFragment.newInstance();
         viewLocalsInMapsFragment = ViewLocalsInMapsFragment.newInstance();
+        accountingListFragment = AccountingListFragment.newInstance();
         logoutBtnOwner = findViewById(R.id.logoutBtnOwner);
         logoutBtnOwner.setOnClickListener(this);
         configureNavigator();
@@ -49,6 +52,9 @@ public class MainActivityOwner extends AppCompatActivity implements View.OnClick
                             break;
                         case R.id.owner_shops_item:
                             showFragment(localFragment);
+                            break;
+                        case R.id.owner_cost_list_item:
+                            showFragment(accountingListFragment);
                             break;
                         case R.id.owner_stats_general_item:
                             showFragment(localStatsFragment);

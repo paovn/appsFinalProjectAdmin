@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,15 @@ import com.example.appsfinalproject.model.ContabilidadLocal;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.RegistroContable;
 import com.example.appsfinalproject.model.Tipo_registro;
+import com.example.appsfinalproject.model.Tipo_usuario;
+import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.UUID;
 
 
 public class AccountingListFragment extends Fragment implements View.OnClickListener {
@@ -88,15 +92,37 @@ public class AccountingListFragment extends Fragment implements View.OnClickList
         db.collection("users").whereEqualTo("id",idUser).get().addOnSuccessListener(
           command -> {
               String idLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class).getIdLocal();
-              db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
-                      command1 -> {
-                          Local local = command1.getDocuments().get(0).toObject(Local.class);
-                          contabilidad = local.getContabilidad();
-                          //registerAdapter.setRegisters(local.getContabilidad().getRegistros());
-                          updateList(30);
-                      }
 
-              );
+              Usuario userStart = command.getDocuments().get(0).toObject(Usuario.class);
+
+              if(userStart.getTipo().equals(Tipo_usuario.ADMINISTRADOR_G)){
+                  db.collection("local").get().addOnSuccessListener(
+                          command1 -> {
+                              Log.e(">>>", "Recorriendo los locales bro");
+                              contabilidad = new ContabilidadLocal(UUID.randomUUID().toString());
+                              for(int i = 0; i<command1.getDocuments().size(); i++){
+                                  Local local = command1.getDocuments().get(i).toObject(Local.class);
+                                  ContabilidadLocal temp_contabilidad = local.getContabilidad();
+                                  for (int j = 0; j < temp_contabilidad.getRegistros().size(); j++) {
+                                      contabilidad.getRegistros().add(temp_contabilidad.getRegistros().get(j));
+                                  }
+                              }
+                              updateList(30);
+                          }
+                  );
+
+              }else{
+                  db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                          command1 -> {
+                              Local local = command1.getDocuments().get(0).toObject(Local.class);
+                              contabilidad = local.getContabilidad();
+                              //registerAdapter.setRegisters(local.getContabilidad().getRegistros());
+                              updateList(30);
+                          }
+                  );
+              }
+
+
           }
         );
     }
