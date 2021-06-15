@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -88,15 +89,6 @@
             app:backgroundTintMode="add"
             android:textColor="@color/white"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/no_tienes_cuenta_registrate"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:textColor="@drawable/buttonbackground"
-            android:gravity="center_horizontal" />
 
     </LinearLayout>
 
