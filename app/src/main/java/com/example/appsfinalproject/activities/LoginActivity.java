@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordET = findViewById(R.id.passwordET);
         Log.e(">>>", "passwordEt = " + passwordET);
         loginBtn = findViewById(R.id.loginBtn);
+        Log.e(">>>", "loginBtn = " + loginBtn);
         loginBtn.setOnClickListener(this);
         requestPermissions(); // pedimos los permisos aqui para que no se vojabecee luego
     }
