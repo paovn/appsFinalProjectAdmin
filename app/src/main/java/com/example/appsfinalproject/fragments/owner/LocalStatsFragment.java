@@ -288,12 +288,34 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
 
                     if(userStart.getTipo().equals(Tipo_usuario.ADMINISTRADOR_G)){
                         AdministradorGeneral admin =  command.getDocuments().get(0).toObject(AdministradorGeneral.class);
-                        ArrayList<String> locales = admin.getIdLocales();
-                        for (int i = 0; i < locales.size(); i++) {
-                            updateLocalAccounting(locales.get(i));
-                        }
+                        FirebaseFirestore.getInstance().collection("local").get().addOnSuccessListener(
+                                command1 -> {
+                                    for(int i = 0; i<command1.getDocuments().size(); i++){
+                                        Local local = command1.getDocuments().get(i).toObject(Local.class);
+                                        updateLocalAccounting(local);
+                                    }
+                                }
+                        ).addOnFailureListener(
+                                command2 ->{
+                                    Log.e(">>>", "Falló obteniendo el local");
+                                }
+                        );
+
+
                     }else{
-                        updateLocalAccounting(auth.getCurrentUser().getUid());
+                        AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
+                        String idLocal = user.getIdLocal();
+                        FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                                command1 -> {
+                                    //Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
+                                    Local local = command1.getDocuments().get(0).toObject(Local.class);
+                                    updateLocalAccounting(local);
+                                }
+                        ).addOnFailureListener(
+                                command2 ->{
+                                    Log.e(">>>", "Falló obteniendo el local");
+                                }
+                        );
                     }
                 }
         ).addOnFailureListener(
@@ -303,35 +325,13 @@ public class LocalStatsFragment extends Fragment implements View.OnClickListener
         );
     }
 
-    public void updateLocalAccounting(String id){
-        db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
-                command -> {
-                    AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
-                    String idLocal = user.getIdLocal();
-
-                    FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
-                            command1 -> {
-                                Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
-                                Local local = command1.getDocuments().get(0).toObject(Local.class);
-                                if(local.getContabilidad() == null || local.getContabilidad().getRegistros().size() == 0){
-                                    ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
-                                    createContabilidadData(contabilidad1);
-                                    local.setContabilidad(contabilidad1);
-                                    updateLocal(local);
-                                }
-                            }
-                    ).addOnFailureListener(
-                            command2 ->{
-                                Log.e(">>>", "Falló obteniendo el local");
-                            }
-                    );
-                }
-        ).addOnFailureListener(
-                command222 ->{
-                    Log.e(">>>", "Falló obteniendo el usuario");
-                }
-        );
-
+    public void updateLocalAccounting(Local local){
+        if(local.getContabilidad() == null || local.getContabilidad().getRegistros().size() == 0){
+            ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
+            createContabilidadData(contabilidad1);
+            local.setContabilidad(contabilidad1);
+            updateLocal(local);
+        }
     }
 
     private void createContabilidadData(ContabilidadLocal contabilidad1) {

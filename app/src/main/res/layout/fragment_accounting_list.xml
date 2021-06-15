@@ -5,28 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/accountingListRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/linearLayout6"
+        android:layout_width="425dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="314dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/accountingListRV"
-            android:layout_width="401dp"
-            android:layout_height="494dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp">
-
-        </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="329dp"
-            android:layout_height="wrap_content"
+            android:layout_width="330dp"
+            android:layout_height="41dp"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:paddingLeft="10dp"
@@ -69,19 +71,19 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/borderstyle"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="30"
                 android:paddingLeft="10dp"
-                android:background="@drawable/borderstyle"/>
+                android:text="30" />
 
             <Button
                 android:id="@+id/generateBalanceList_BTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/buttonbackground"
                 android:text="Generar"
-                android:layout_marginLeft="20dp"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/browser_actions_divider_color"
                 app:backgroundTintMode="add" />

@@ -17,6 +17,8 @@ import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Producto;
+import com.example.appsfinalproject.model.Tipo_usuario;
+import com.example.appsfinalproject.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -71,14 +73,34 @@ public class ProductFragment extends Fragment {
 
         db.collection("users").whereEqualTo("id", idUser).get().addOnSuccessListener(
                 command -> {
-                    String idLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class).getIdLocal();
-                    db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
-                            command1 -> {
+                    Usuario userStart = command.getDocuments().get(0).toObject(Usuario.class);
+
+                    if(userStart.getTipo().equals(Tipo_usuario.ADMINISTRADOR_G)) {
+                        db.collection("local").get()
+                                .addOnSuccessListener(
+                                        command1 -> {
+                                            List<Local> locals = command1.toObjects(Local.class);
+                                            ArrayList<Producto> productos = new ArrayList<>();
+                                            for(Local l : locals) {
+                                                productos.addAll(l.getInventario().getProductos_inventario());
+                                            }
+                                            adapter.setProducts(productos);
+                                        }
+                                ).addOnFailureListener(
+                                        command1 -> {
+                                            Log.e(">>>", "Fallo al obtener los locales de firebase firestore");
+                                        }
+                        );
+                    } else {
+                        String idLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class).getIdLocal();
+                        db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                                command1 -> {
                                     Local local = command1.getDocuments().get(0).toObject(Local.class);
                                     adapter.setLocalId(local.getPhotoId());
                                     adapter.setProducts(local.getInventario().getProductos_inventario());
-                            }
-                    );
+                                }
+                        );
+                    }
                 }
         );
     }

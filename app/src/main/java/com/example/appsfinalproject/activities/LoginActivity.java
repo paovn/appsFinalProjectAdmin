@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordET = findViewById(R.id.passwordET);
         Log.e(">>>", "passwordEt = " + passwordET);
         loginBtn = findViewById(R.id.loginBtn);
+        Log.e(">>>", "loginBtn = " + loginBtn);
         loginBtn.setOnClickListener(this);
         requestPermissions(); // pedimos los permisos aqui para que no se vojabecee luego
     }
@@ -65,9 +66,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
         ).addOnFailureListener(
                 command -> {
-                    Toast.makeText(this, "Invalid credentials, inserting dummy admin", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show();
+                    /*
                     MainActivityAdmin.createAdmin();
                     Log.e(">>", "no funcionó el login: " + command.getMessage());
+                    */
                 }
         );
     }

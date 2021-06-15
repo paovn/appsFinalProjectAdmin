@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rowProductCL"
-    android:layout_width="400dp"
+    android:layout_width="match_parent"
     android:layout_height="230dp">
 
 
     <LinearLayout
         android:id="@+id/linearLyRowProd"
-        android:layout_width="397dp"
-        android:layout_height="166dp"
+        android:layout_width="404dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,6 +30,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="83dp"
+            android:textStyle="bold"
             android:layout_marginRight="83dp"
             android:text="TextView"
             android:textSize="18sp"
@@ -40,12 +44,14 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="236dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="224dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="62dp"
                     android:layout_gravity="left"
                     android:layout_marginStart="10dp"
@@ -102,8 +108,8 @@
                             android:layout_marginLeft="28dp"
                             android:layout_marginTop="0dp"
                             android:text="Rango bajo"
-                            android:textStyle="bold"
                             android:textSize="16sp"
+                            android:textStyle="bold"
                             app:layout_constraintHorizontal_bias="0.611"
                             app:layout_constraintStart_toEndOf="@+id/textView5"
                             app:layout_constraintTop_toBottomOf="@+id/product_name_TV" />
@@ -127,8 +133,8 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="227dp"
-                    android:layout_height="47dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
@@ -178,8 +184,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"

@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.appsfinalproject.R;
+import com.example.appsfinalproject.fragments.admin.AccountingListFragment;
+import com.example.appsfinalproject.fragments.admin.ProductFragment;
 import com.example.appsfinalproject.fragments.owner.LocalStatsFragment;
 import com.example.appsfinalproject.fragments.owner.OwnerInventoryFragment;
 import com.example.appsfinalproject.fragments.owner.SpendsAndIncomeFragment;
@@ -22,8 +24,10 @@ public class LocalActivityOwner extends AppCompatActivity {
 
     private BottomNavigationView navigator;
 
-    private OwnerInventoryFragment ownerInventoryFragment;
+    //private OwnerInventoryFragment ownerInventoryFragment;
+    private ProductFragment productFragment;
     private SpendsAndIncomeFragment spendsAndIncomeFragment;
+    private AccountingListFragment accountingListFragment;
     private LocalStatsFragment localStatsFragment;
     private FirebaseFirestore db;
 
@@ -39,9 +43,11 @@ public class LocalActivityOwner extends AppCompatActivity {
                 command -> {
                     Log.e(">>>", "Se trajo el local para ver su inventario");
                     Local local = command.toObject(Local.class);
-                    ownerInventoryFragment = OwnerInventoryFragment.newInstance(local);
+                    //ownerInventoryFragment = OwnerInventoryFragment.newInstance(local);
+                    productFragment = ProductFragment.newInstance();
                     spendsAndIncomeFragment = SpendsAndIncomeFragment.newInstance();
                     localStatsFragment = LocalStatsFragment.newInstance();
+                    accountingListFragment = AccountingListFragment.newInstance();
 
                     requestPermissions();
                     configureNavigator();
@@ -73,10 +79,12 @@ public class LocalActivityOwner extends AppCompatActivity {
                 (menuItem)->{
                     switch(menuItem.getItemId()){
                         case R.id.owner_acountability_item:
-                            showFragment(spendsAndIncomeFragment);
+                            //showFragment(spendsAndIncomeFragment);
+                            showFragment(accountingListFragment);
                             break;
                         case R.id.owner_inventory_item:
-                            showFragment(ownerInventoryFragment);
+                            //showFragment(ownerInventoryFragment);
+                            showFragment(productFragment);
                             break;
                         case R.id.owner_stats_local_item:
                             showFragment(localStatsFragment);

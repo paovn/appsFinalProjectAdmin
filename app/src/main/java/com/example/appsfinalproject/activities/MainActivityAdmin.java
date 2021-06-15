@@ -94,6 +94,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
                             break;
                         case R.id.accountingItem:
                             showFragment(accountingListFragment);
+                            break;
                         case R.id.estadisticasItem:
                             showFragment(localStatsFragment);
                             break;
@@ -163,84 +164,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         }
     }
 
-/*
-    public static void saveUserLocal() {
-        String id = UUID.randomUUID().toString();
-        AdministradorLocal userLocal = new AdministradorLocal(
-                "245f0a73-db9b-472a-a5a9-450571553f72",
-                "local1@local.com",
-                "xlocal1",
-                id,
-                Tipo_usuario.ADMINISTRADOR_L
-        );
 
-        saveUser(userLocal, false);
-        Log.e(">>>", "aniade el admon de local1");
-    }
-
-    public static void saveLocal(Local local, Usuario localUser){
-        FirebaseFirestore.getInstance().collection("local")
-                .document(local.getId()).set(local)
-                .addOnSuccessListener(
-                        dbtask -> {
-                            updateLocalAccounting(localUser);
-                        }
-                ).addOnFailureListener(task->{
-            Log.e(">>", "errooooooooooooor");
-        });
-    }
-
-    public static void updateLocalAccounting(Usuario localUser){
-        FirebaseFirestore.getInstance().collection("users").whereEqualTo("id", localUser.getId()).get().addOnSuccessListener(
-                command -> {
-                    AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
-                    String idLocal = user.getIdLocal();
-
-                    FirebaseFirestore.getInstance().collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
-                            command1 -> {
-                                ContabilidadLocal contabilidad1 = new ContabilidadLocal(UUID.randomUUID().toString());
-                                Log.e(">>>", "Antes del out of bounds el id del local es: " + idLocal);
-                                Local local = command1.getDocuments().get(0).toObject(Local.class);
-                                local.setContabilidad(contabilidad1);
-                                updateLocal(local);
-                                updateAccounting(contabilidad1);
-                            }
-                    ).addOnFailureListener(
-                            command2 ->{
-                                Log.e(">>>", "Falló obteniendo el local");
-                            }
-                    );
-                }
-        ).addOnFailureListener(
-                command222 ->{
-                    Log.e(">>>", "Falló obteniendo el usuario");
-                }
-        );
-
-    }
-
-    public static void updateAccounting(ContabilidadLocal contabilidad1) {
-        FirebaseFirestore.getInstance().collection("accounting")
-                .document(contabilidad1.getId()).set(contabilidad1)
-                .addOnSuccessListener(
-                        dbtask -> {
-                            Log.e(">>>", "todo bien agregando la contabilidad");
-                        }
-                ).addOnFailureListener(task->{
-            Log.e(">>>", "errooooooooooooor agregando contabilidad");
-        });
-    }
-
-    public static void updateLocal(Local local) {
-        FirebaseFirestore.getInstance().collection("local").document(local.getId()).set(local).addOnSuccessListener(
-                command -> {
-                    Log.e(">>>>", "local id: " + local.getId());
-                }).addOnFailureListener(
-                command -> {
-                    Log.e(">>>", "Falló en la tercera");
-                }
-        );
-    }
-    */
 
 }
