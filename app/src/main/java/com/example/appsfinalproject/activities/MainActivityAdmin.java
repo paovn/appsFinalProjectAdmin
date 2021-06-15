@@ -94,6 +94,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
                             break;
                         case R.id.accountingItem:
                             showFragment(accountingListFragment);
+                            break;
                         case R.id.estadisticasItem:
                             showFragment(localStatsFragment);
                             break;
