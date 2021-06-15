@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
+import com.bumptech.glide.Glide;
 import com.example.appsfinalproject.R;
 import com.example.appsfinalproject.model.AdministradorLocal;
 import com.example.appsfinalproject.model.ContabilidadLocal;
@@ -18,6 +20,7 @@ import com.example.appsfinalproject.model.Local;
 import com.example.appsfinalproject.model.Tipo_registro;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.Date;
 import java.util.UUID;
@@ -28,10 +31,11 @@ public class AddSpendsAndIncomeFragment extends Fragment implements View.OnClick
     private EditText amountET;
     private  Button addCostBTN;
     private  Button addIncomeBTN;
-
+    private ImageButton productImage;
 
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+    private FirebaseStorage storage;
 
     public AddSpendsAndIncomeFragment() {
         // Required empty public constructor
@@ -55,15 +59,38 @@ public class AddSpendsAndIncomeFragment extends Fragment implements View.OnClick
         amountET = v.findViewById(R.id.add_amount_ET);
         addCostBTN = v.findViewById(R.id.add_product_BTN);
         addIncomeBTN = v.findViewById(R.id.add_inconme_BTN);
-
+        productImage = v.findViewById(R.id.add_product_image_button2);
         addCostBTN.setOnClickListener(this);
         addIncomeBTN.setOnClickListener(this);
 
         db= FirebaseFirestore.getInstance();
         auth= FirebaseAuth.getInstance();
-
-
+        storage = FirebaseStorage.getInstance();
+        getPhoto();
         return v;
+    }
+
+    private void getPhoto() {
+        String id = auth.getCurrentUser().getUid();
+        db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
+          command -> {
+              AdministradorLocal administradorLocal = command.getDocuments().get(0).toObject(AdministradorLocal.class);
+              String idLocal = administradorLocal.getIdLocal();
+              db.collection("local").whereEqualTo("id", idLocal).get().addOnSuccessListener(
+                command1 -> {
+                    Local local = command1.getDocuments().get(0).toObject(Local.class);
+                    String photoId = local.getPhotoId();
+                    storage.getReference().child("local").child(photoId).getDownloadUrl().addOnCompleteListener(
+                            urlTask -> {
+                                String url = urlTask.getResult().toString();
+                                Glide.with(productImage).load(url).into(productImage);
+
+                            }
+                    );
+                }
+              );
+          }
+        );
     }
 
     @Override
@@ -79,7 +106,8 @@ public class AddSpendsAndIncomeFragment extends Fragment implements View.OnClick
     }
 
     public  void addRegister(int type){
-        db.collection("users").whereEqualTo("id", "152091e6-71b5-4230-8743-9c4616297cf4").get().addOnSuccessListener(
+        String id = auth.getCurrentUser().getUid();
+        db.collection("users").whereEqualTo("id", id).get().addOnSuccessListener(
                 command -> {
                     AdministradorLocal user = command.getDocuments().get(0).toObject(AdministradorLocal.class);
                     String idLocal = user.getIdLocal();
