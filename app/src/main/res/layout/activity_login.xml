@@ -82,10 +82,11 @@
 
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/buttonbackground"
             android:text="@string/action_sign_in_short"
+            android:background="@drawable/buttonbackground"
             app:backgroundTint="@color/browser_actions_divider_color"
-            app:backgroundTintMode="add" />
+            app:backgroundTintMode="add"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textView"

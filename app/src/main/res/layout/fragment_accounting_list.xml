@@ -19,62 +19,78 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" />
+            android:layout_marginRight="8dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:paddingLeft="10dp"
+            android:text="Digite el número de días de los que quiere generar la contabilidad" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:text=" Saldo $  "
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/balanceTV"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:text="0"
                 android:textSize="24sp" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/cantidadPeriodoList_ET"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="30" />
+                android:text="30"
+                android:paddingLeft="10dp"
+                android:background="@drawable/borderstyle"/>
 
             <Button
                 android:id="@+id/generateBalanceList_BTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Generar" />
+                android:background="@drawable/buttonbackground"
+                android:text="Generar"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/browser_actions_divider_color"
+                app:backgroundTintMode="add" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Digite el número de días de los que quiere generar la contabilidad" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <CheckBox
@@ -83,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="28dp"
                 android:text="Egresos" />
 
             <CheckBox
