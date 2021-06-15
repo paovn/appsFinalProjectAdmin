@@ -14,11 +14,11 @@
         android:icon="@drawable/listowner"
         android:title="Añadir Registro"></item>
     <item
-        android:id="@+id/accountingItem"
-        android:icon="@drawable/countadmin"
-        android:title="Contabilidad" />
-    <item
         android:id="@+id/estadisticasItem"
         android:icon="@drawable/stadisticadmin"
         android:title="Estadisticas" />
+    <item
+        android:id="@+id/accountingItem"
+        android:icon="@drawable/countadmin"
+        android:title="Accounting" />
 </menu>
