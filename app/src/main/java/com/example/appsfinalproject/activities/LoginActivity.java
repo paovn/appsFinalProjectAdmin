@@ -30,10 +30,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                runOnUiThread(()->{
+                    findViewById(R.id.splashScreen).setVisibility(View.GONE);
+                    findViewById(R.id.loginConstraint).setVisibility(View.VISIBLE);
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         emailET = findViewById(R.id.emailET);
