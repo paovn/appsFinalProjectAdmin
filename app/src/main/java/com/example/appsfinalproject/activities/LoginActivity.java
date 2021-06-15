@@ -65,9 +65,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
         ).addOnFailureListener(
                 command -> {
-                    Toast.makeText(this, "Invalid credentials, inserting dummy admin", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Invalid credentials", Toast.LENGTH_LONG).show();
+                    /*
                     MainActivityAdmin.createAdmin();
                     Log.e(">>", "no funcionó el login: " + command.getMessage());
+                    */
                 }
         );
     }
